@@ -17,6 +17,22 @@ class AdminController extends Controller
         return view('admin.index');
     }
 
+
+    public function deleteCourses()
+    {
+        return view('admin.deleteCourses');
+    }
+
+    public function profile()
+    {
+        return view('admin.profile');
+    }
+
+    public function showCourses()
+    {
+        return view('admin.showCourses');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

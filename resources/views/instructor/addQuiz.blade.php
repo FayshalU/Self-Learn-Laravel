@@ -72,7 +72,7 @@
                 <nav class="sidebar-nav left-sidebar-menu-pro">
                     <ul class="metismenu" id="menu1">
                         <li class="active">
-                            <a class="has-arrow" href="/admin">
+                            <a class="has-arrow" href="">
           								   <span class="educate-icon educate-home icon-wrap"></span>
           								   <span class="mini-click-non">Education</span>
           								</a>
@@ -80,17 +80,18 @@
                         </li>
 
                         <li>
-                            <a class="has-arrow" href="all-courses.html" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Courses</span></a>
+                            <a class="has-arrow" href="" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Courses</span></a>
 
                              <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="All Courses" href="/admin/course"><span class="mini-sub-pro">All Courses
+                                <li><a title="All Courses" href="{{route('instructor.myCourses')}}"><span class="mini-sub-pro">My Courses
                                 </span></a></li>
 
                             </ul>
                             <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="All Courses" href="/admin/addCourses"><span class="mini-sub-pro">Add Courses</span></a></li>
+                                <li><a title="All Courses" href="{{route('instructor.create')}}"><span class="mini-sub-pro">Add Courses</span></a></li>
 
                             </ul>
+                            
                         </li>
 
 
@@ -132,7 +133,7 @@
                                     <div class="col-lg-6 col-md-7 col-sm-6 col-xs-12">
                                         <div class="header-top-menu tabl-d-n">
                                             <ul class="nav navbar-nav mai-top-nav">
-                                                <li class="nav-item"><a href="/admin" class="nav-link">Home</a>
+                                                <li class="nav-item"><a href="" class="nav-link">Home</a>
                                                 </li>
                                                 <li class="nav-item"><a href="" class="nav-link">About</a>
                                                 </li>

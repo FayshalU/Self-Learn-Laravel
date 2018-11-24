@@ -76,25 +76,32 @@
                 <nav class="sidebar-nav left-sidebar-menu-pro">
                     <ul class="metismenu" id="menu1">
                         <li>
-                            <a class="has-arrow" href="/admin">
+                            <a class="has-arrow" href="{{route('admin.index')}}">
             								   <span class="educate-icon educate-home icon-wrap"></span>
             								   <span class="mini-click-non">Education</span>
             								</a>
 
                         </li>
                         <li>
-                            <a class="has-arrow" href="all-courses.html" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Courses</span></a>
+                            <a class="has-arrow" href="" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Courses</span></a>
 
                              <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="All Courses" href="/admin/course"><span class="mini-sub-pro">All Courses
+                                <li><a title="All Courses" href="{{route('admin.showCourses')}}"><span class="mini-sub-pro">All Courses
                                 </span></a></li>
 
                             </ul>
-                            <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="All Courses" href="/admin/addCourses"><span class="mini-sub-pro">Add Courses
+                           
+                        </li>
+
+                         <li>
+                            <a class="has-arrow" href="" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Instructors</span></a>
+
+                             <ul class="submenu-angle" aria-expanded="false">
+                                <li><a title="All instrcutors" href="{{route('admin.showInstructors')}}"><span class="mini-sub-pro">All instructors
                                 </span></a></li>
 
                             </ul>
+                            
                         </li>
 
                     </ul>
@@ -129,11 +136,11 @@
                                     <div class="col-lg-6 col-md-7 col-sm-6 col-xs-12">
                                         <div class="header-top-menu tabl-d-n">
                                             <ul class="nav navbar-nav mai-top-nav">
-                                                <li class="nav-item"><a href="/admin" class="nav-link">Home</a>
+                                                <li class="nav-item"><a href="{{route('admin.index')}}" class="nav-link">Home</a>
                                                 </li>
                                                 <li class="nav-item"><a href="" class="nav-link">About</a>
                                                 </li>
-                                                <li class="nav-item"><a href="admin/course" class="nav-link">Courses</a>
+                                                <li class="nav-item"><a href="{{route('admin.showCourses')}}" class="nav-link">Courses</a>
                                                 </li>
 
                                             </ul>
@@ -152,12 +159,12 @@
                         														</a>
                                                     <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
 
-                                                        <li><a href="/admin/profile"><span class="edu-icon edu-user-rounded author-log-ic"></span>My Profile</a>
+                                                        <li><a href="{{route('admin.profile')}}"><span class="edu-icon edu-user-rounded author-log-ic"></span>My Profile</a>
                                                         </li>
 
                                                         <li><a href=""><span class="edu-icon edu-settings author-log-ic"></span>Settings</a>
                                                         </li>
-                                                        <li><a href="/logout"><span class="edu-icon edu-locked author-log-ic"></span>Log Out</a>
+                                                        <li><a href="{{route('logout.index')}}"><span class="edu-icon edu-locked author-log-ic"></span>Log Out</a>
                                                         </li>
                                                     </ul>
                                                 </li>
@@ -232,7 +239,7 @@
                               </div>
                               <div class="button-style-three">
 
-                                  <a href="/admin/deleteCourses/<%= course[i].course_id %>"><button type="button" class="btn btn-custon-rounded-three btn-danger">Delete</button></a>
+                                  <a href="{{route('admin.deleteCourses')}}"><button type="button" class="btn btn-custon-rounded-three btn-danger">Delete</button></a>
 
                               </div>
                           </div>
@@ -248,7 +255,7 @@
                               </div>
                               <div class="button-style-three">
 
-                                  <a href="/admin/deleteCourses/<%= course[i].course_id %>"><button type="button" class="btn btn-custon-rounded-three btn-danger">Delete</button></a>
+                                  <a href="{{route('admin.deleteCourses')}}"><button type="button" class="btn btn-custon-rounded-three btn-danger">Delete</button></a>
 
                               </div>
                           </div>
