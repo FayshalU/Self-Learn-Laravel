@@ -4,9 +4,10 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Admin | Homepage</title>
+    <title>Instructors</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="/">
 
     <!-- Google Fonts
 		============================================ -->
@@ -98,7 +99,6 @@
                             </ul>
 
                         </li>
-
                         <li>
                            <a class="has-arrow" href="" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Students</span></a>
 
@@ -192,27 +192,30 @@
             </div>
         </div>
         <div class="breadcome-area">
-            <div class="container-fluid">
-              <h2></h2>
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="breadcome-list">
-                            <div class="row">
-                              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                  <div class="breadcome-heading nav-item">
-                                    <h6 style="text-align: center;font-weight: 300;height: 10px;font-size: 40px;">Timeline</h6>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="breadcome-list single-page-breadcome">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="breadcome-heading">
+                                            <form role="search" class="sr-input-func">
+                                                <input type="text" placeholder="Search..." class="search-int form-control">
+                                                <a href="#"><i class="fa fa-search"></i></a>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <ul class="breadcome-menu">
 
-                                  </div>
-
-                              </div>
-
-
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
         <div class="courses-area">
             <div class="container-fluid">
                 <div class="row">
@@ -223,23 +226,47 @@
                               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                   <div class="latest-blog-single blog-single-full-view">
 
-                                      <div class="blog-details blog-sig-details">
-
-                                        <!-- User Post -->
-
-                                        <!-- <%
-                                          for(var i=0; i< post.length; i++){ %>
-
-                                            <h1><a class="blog-ht" href="#"><%= post[i].user_name %></a></h1>
-                                            <p style="font-size: 20px;"><%= post[i].text %></p><br>
-
-                                        <% } %> -->
-
-                                      </div>
-                                      <div class="product-buttons">
-
-
-                                      </div>
+                                    <div class="sparkline8-list">
+                                        <div class="sparkline8-hd">
+                                            <div class="main-sparkline8-hd">
+                                                <h1>Instructors</h1>
+                                            </div>
+                                        </div>
+                                        <div class="sparkline8-graph">
+                                            <div class="static-table-list">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>Name</th>
+                                                            <th>Username</th>
+                                                            <th>Email</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>1</td>
+                                                            <td>Mamun</td>
+                                                            <td>user2</td>
+                                                            <td>@Facebook</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>2</td>
+                                                            <td>Suhag</td>
+                                                            <td>user1</td>
+                                                            <td>@Twitter</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>3</td>
+                                                            <td>Sakil</td>
+                                                            <td>user3</td>
+                                                            <td>@Linkedin</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
                                   </div>
                               </div>
                           </div>

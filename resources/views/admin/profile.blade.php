@@ -83,14 +83,14 @@
 
                         </li>
                         <li>
-                            <a class="has-arrow" href=" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Courses</span></a>
+                            <a class="has-arrow" href="" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Courses</span></a>
 
                              <ul class="submenu-angle" aria-expanded="false">
                                 <li><a title="All Courses" href="{{route('admin.showCourses')}}"><span class="mini-sub-pro">All Courses
                                 </span></a></li>
 
                             </ul>
-                           
+
 
                         </li>
 
@@ -98,12 +98,23 @@
                             <a class="has-arrow" href="" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Instructors</span></a>
 
                              <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="All instrcutors" href="{{route('admin.showInstructors')}}"><span class="mini-sub-pro">All instructors
+                                <li><a title="All instrcutors" href="{{route('admin.showInstructors')}}"><span class="mini-sub-pro">All Instructors
                                 </span></a></li>
 
                             </ul>
-                            
+
                         </li>
+
+                        <li>
+                           <a class="has-arrow" href="" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Students</span></a>
+
+                            <ul class="submenu-angle" aria-expanded="false">
+                               <li><a title="All instrcutors" href="{{route('admin.showStudents')}}"><span class="mini-sub-pro">All Students
+                               </span></a></li>
+
+                           </ul>
+
+                       </li>
                     </ul>
                 </nav>
             </div>

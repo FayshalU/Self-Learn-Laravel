@@ -25,6 +25,7 @@ Route::get('/admin/deleteCourses','AdminController@deleteCourses')->name('admin.
 Route::get('/admin/profile','AdminController@profile')->name('admin.profile');
 Route::get('/admin/showCourses','AdminController@showCourses')->name('admin.showCourses');
 Route::get('/admin/showInstructors','AdminController@showInstructors')->name('admin.showInstructors');
+Route::get('/admin/showStudents','AdminController@showStudents')->name('admin.showStudents');
 Route::resource('/admin','AdminController');
 
 

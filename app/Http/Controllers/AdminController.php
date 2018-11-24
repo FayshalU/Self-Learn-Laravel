@@ -33,6 +33,16 @@ class AdminController extends Controller
         return view('admin.showCourses');
     }
 
+    public function showInstructors()
+    {
+        return view('admin.instructor');
+    }
+
+    public function showStudents()
+    {
+        return view('admin.student');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
