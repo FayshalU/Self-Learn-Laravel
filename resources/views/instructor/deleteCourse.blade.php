@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Edit Course</title>
+    <title>Delete Coures</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <base href="/">
@@ -72,7 +72,7 @@
                 <nav class="sidebar-nav left-sidebar-menu-pro">
                     <ul class="metismenu" id="menu1">
                         <li class="active">
-                            <a class="has-arrow" href="/admin">
+                            <a class="has-arrow" href="">
           								   <span class="educate-icon educate-home icon-wrap"></span>
           								   <span class="mini-click-non">Education</span>
           								</a>
@@ -80,19 +80,17 @@
                         </li>
 
                         <li>
-                            <a class="has-arrow" href="all-courses.html" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Courses</span></a>
+                            <a class="has-arrow" href="" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Courses</span></a>
 
                              <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="All Courses" href="/admin/course"><span class="mini-sub-pro">All Courses
+                                <li><a title="All Courses" href="{{route('instructor.myCourses')}}"><span class="mini-sub-pro">All Courses
                                 </span></a></li>
 
                             </ul>
                             <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="Add Courses" href="/admin/addCourses"><span class="mini-sub-pro">Add Courses</span></a></li>
+                                <li><a title="All Courses" href="{{route('instructor.create')}}"><span class="mini-sub-pro">Add Courses</span></a></li>
 
                             </ul>
-
-
                         </li>
 
 
@@ -160,12 +158,12 @@
                         														</a>
                                                     <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
 
-                                                        <li><a href="admin/profile"><span class="edu-icon edu-user-rounded author-log-ic"></span>My Profile</a>
+                                                        <li><a href="{{route('instructor.profile')}}"><span class="edu-icon edu-user-rounded author-log-ic"></span>My Profile</a>
                                                         </li>
 
                                                         <li><a href=""><span class="edu-icon edu-settings author-log-ic"></span>Settings</a>
                                                         </li>
-                                                        <li><a href="/logout"><span class="edu-icon edu-locked author-log-ic"></span>Log Out</a>
+                                                        <li><a href="{{route('logout.index')}}"><span class="edu-icon edu-locked author-log-ic"></span>Log Out</a>
                                                         </li>
                                                     </ul>
                                               </li>
@@ -179,7 +177,9 @@
                     </div>
                 </div>
             </div>
-            <div class="breadcome-area">
+        </div>
+
+        <div class="breadcome-area">
                 <div class="container-fluid">
                   <h2></h2>
                     <div class="row">
@@ -201,8 +201,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-
 
 
       <div class="single-pro-review-area mt-t-30 mg-b-15">
@@ -211,7 +209,7 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="product-payment-inner-st">
                             <ul id="myTabedu1" class="tab-review-design">
-                                <li class="active"><a href="#description">Courses Details</a></li>
+                                <li class="active"><a href="#description">course.name</a></li>
 
                             </ul>
                             <div id="myTabContent" class="tab-content custom-product-edit">
@@ -220,49 +218,26 @@
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="review-content-section">
                                                 <div id="dropzone1" class="pro-ad addcoursepro">
-                                                    <form  method="post" action="admin/editCourses" onsubmit="return checkInfo()" class="dropzone dropzone-custom needsclick addcourse" id="demo1-upload">
+                                                    <form  method="post" class="dropzone dropzone-custom needsclick addcourse" id="demo1-upload">
                                                         <div class="row">
                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                <input type="hidden" name="id" value="<%= course.course_id %>"/>
+
+
                                                                 <div class="form-group">
-                                                                  <label for="coursename">Name</label>
-                                                                    <input name="coursename" type="text" class="form-control" id="coursename" placeholder="Course Name" value="course.name">
-                                                                    <h4 id="h1" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4>
-                                                                </div><br>
-                                                                <!-- <div class="form-group">
-                                                                  <label for="chapter">Chapter</label>
-                                                                    <input name="chapter" id="chapter" type="text" class="form-control" placeholder="Chapter" value="course.chapter">
-                                                                    <h4 id="h2" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4>
-                                                                </div> -->
-
-                                                                <li id="chapter1" style="">
-                                                                  <label for="chapter1">Chapter-1</label><br>
-                                                                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                    <div class="form-group">
-                                                                        <input name="chapter1Name" type="text" class="form-control" id="chapter1Name" placeholder="Name" value="chapter1Name">
-                                                                        <!-- <h4 id="h1" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4> -->
-                                                                    </div>
-                                                                  </div>
-                                                                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                    <div class="form-group">
-                                                                        <input name="chapter1Content" type="text" class="form-control" id="chapter1Content" placeholder="Content" value="chapter1Content">
-                                                                        <!-- <h4 id="h1" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4> -->
-                                                                    </div>
-                                                                  </div>
-                                                                </li>
-
-
-
-                                                            </div>
-
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-lg-12">
-                                                                <div class="payment-adress">
-                                                                    <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
+                                                                 <h4>Are you sure you want to delete this course?</h4>
                                                                 </div>
+                                                                <div class="form-group">
+                                                                  <input type="hidden" name="id" value="<%=course.course_id %>"/>
+                                                                   <input name="yes" type="submit" class="form-control" value="Yes" ><br>
+                                                                   <input name="no" type="submit" class="form-control" value="No" >
+                                                                </div>
+
+
+
                                                             </div>
+
                                                         </div>
+
                                                     </form>
                                                 </div>
                                             </div>
@@ -281,7 +256,7 @@
 
 
         <!-- jquery
-        ============================================ -->
+    		============================================ -->
         <script src="build/js/jquery-1.12.4.js"></script>
 
         <!-- <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
@@ -290,54 +265,55 @@
         <!-- <script src="../course.js"></script> -->
 
         <!-- bootstrap JS
-        ============================================ -->
+    		============================================ -->
         <script src="build/js/bootstrap.min.js"></script>
         <!-- wow JS
-        ============================================ -->
+    		============================================ -->
         <script src="build/js/wow.min.js"></script>
         <!-- price-slider JS
-        ============================================ -->
+    		============================================ -->
         <script src="build/js/jquery-price-slider.js"></script>
         <!-- meanmenu JS
-        ============================================ -->
+    		============================================ -->
         <script src="build/js/jquery.meanmenu.js"></script>
         <!-- owl.carousel JS
-        ============================================ -->
+    		============================================ -->
         <script src="build/js/owl.carousel.min.js"></script>
         <!-- sticky JS
-        ============================================ -->
+    		============================================ -->
         <script src="build/js/jquery.sticky.js"></script>
         <!-- scrollUp JS
-        ============================================ -->
+    		============================================ -->
         <script src="build/js/jquery.scrollUp.min.js"></script>
         <!-- mCustomScrollbar JS
-        ============================================ -->
+    		============================================ -->
         <script src="build/js/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
         <script src="build/js/scrollbar/mCustomScrollbar-active.js"></script>
         <!-- metisMenu JS
-        ============================================ -->
+    		============================================ -->
         <script src="build/js/metisMenu/metisMenu.min.js"></script>
         <script src="build/js/metisMenu/metisMenu-active.js"></script>
         <!-- morrisjs JS
-        ============================================ -->
+    		============================================ -->
         <script src="build/js/sparkline/jquery.sparkline.min.js"></script>
         <script src="build/js/sparkline/jquery.charts-sparkline.js"></script>
         <script src="build/js/sparkline/sparkline-active.js"></script>
 
         <!-- icheck JS
-        ============================================ -->
+    		============================================ -->
         <script src="build/js/icheck/icheck.min.js"></script>
         <script src="build/js/icheck/icheck-active.js"></script>
 
 
         <!-- plugins JS
-        ============================================ -->
+    		============================================ -->
         <script src="build/js/plugins.js"></script>
         <!-- main JS
-        ============================================ -->
+    		============================================ -->
         <script src="build/js/main.js"></script>
 
         <script src="build/js/addCourse.js"></script>
+
 
 </body>
 

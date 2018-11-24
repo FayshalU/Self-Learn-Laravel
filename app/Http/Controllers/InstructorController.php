@@ -17,6 +17,38 @@ class InstructorController extends Controller
         return view('instructor.index');
     }
 
+   public function myCourses(Request $request)
+    {
+        // return "string";
+        return view('instructor.myCourses');
+    }
+
+    
+    public function addQuiz(Request $request)
+    {
+        // return "string";
+        return view('instructor.addQuiz');
+    }
+
+    public function profile(Request $request)
+    {
+        // return "string";
+        return view('instructor.profile');
+    }
+
+    public function editCourse(Request $request)
+    {
+        // return "string";
+        return view('instructor.editCourse');
+    }
+    public function deleteCourse(Request $request)
+    {
+        // return "string";
+        return view('instructor.deleteCourse');
+    }
+
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -24,7 +56,7 @@ class InstructorController extends Controller
      */
     public function create()
     {
-        //
+        return view('instructor.addCourses');
     }
 
     /**
@@ -57,7 +89,8 @@ class InstructorController extends Controller
      */
     public function edit(instructor $instructor)
     {
-        //
+        // return "sdvdsfbsdfb";
+        // return view('instructor.editCourse');
     }
 
     /**
@@ -80,6 +113,6 @@ class InstructorController extends Controller
      */
     public function destroy(instructor $instructor)
     {
-        //
+        // return view('instructor.deleteCourse');
     }
 }
