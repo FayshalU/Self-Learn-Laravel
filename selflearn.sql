@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 23, 2018 at 08:48 PM
+-- Generation Time: Dec 14, 2018 at 01:33 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.10
 
@@ -99,39 +99,68 @@ CREATE TABLE `comment` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `course`
+-- Table structure for table `courses`
 --
 
-CREATE TABLE `course` (
+CREATE TABLE `courses` (
   `course_id` int(50) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `chapter` int(50) NOT NULL
+  `info` varchar(300) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `course`
+-- Dumping data for table `courses`
 --
 
-INSERT INTO `course` (`course_id`, `name`, `chapter`) VALUES
-(1, 'Programming Language 1', 12),
-(2, 'Programming Language 2', 10),
-(4, 'New course', 23),
-(6, 'Data Structure', 8),
-(8, 'Web Technologies ', 15),
-(9, 'math1', 7);
+INSERT INTO `courses` (`course_id`, `name`, `info`) VALUES
+(1, 'Programming Language 1', 'C is a general-purpose, procedural, imperative computer programming language developed in 1972 by Dennis M. Ritchie at the Bell Telephone Laboratories to develop the UNIX operating system. C is the most widely used computer language. It keeps fluctuating at number one scale of popularity along with '),
+(2, 'Programming Language 2', ''),
+(4, 'New course', ''),
+(6, 'Data Structure', ''),
+(8, 'Web Technologies ', ''),
+(9, 'math1', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `instructor`
+-- Table structure for table `courses_taken`
 --
 
-CREATE TABLE `instructor` (
+CREATE TABLE `courses_taken` (
+  `id` int(100) NOT NULL,
+  `course_id` int(100) NOT NULL,
+  `student_id` varchar(100) NOT NULL,
+  `status` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `courses_taken`
+--
+
+INSERT INTO `courses_taken` (`id`, `course_id`, `student_id`, `status`) VALUES
+(1, 1, 'aa', 'running'),
+(5, 1, 'bb', 'running');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `instructors`
+--
+
+CREATE TABLE `instructors` (
   `id` varchar(100) NOT NULL,
   `name` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL
+  `password` varchar(100) NOT NULL,
+  `joined` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `instructors`
+--
+
+INSERT INTO `instructors` (`id`, `name`, `email`, `password`, `joined`) VALUES
+('dd', 'Instructor1', 'instructor@outlook.com', 'dd', '2018-12-05');
 
 -- --------------------------------------------------------
 
@@ -164,7 +193,8 @@ CREATE TABLE `login` (
 INSERT INTO `login` (`id`, `password`, `type`) VALUES
 ('aa', 'aa', 'admin'),
 ('bb', 'bb', 'student'),
-('cc', 'cc', 'instructor');
+('cc', 'cccc', 'student'),
+('dd', 'dd', 'instructor');
 
 -- --------------------------------------------------------
 
@@ -184,9 +214,8 @@ CREATE TABLE `post` (
 --
 
 INSERT INTO `post` (`post_id`, `user_id`, `user_name`, `text`) VALUES
-(2, 'bb', 'Adam Levine', 'I have scored 1 on Home of Programming Language 1'),
 (3, 'cc', 'Student', 'I have scored 2 on Home of Programming Language 1'),
-(4, 'bb', 'Adam Levine', 'I have scored 0 on Home of Programming Language 1');
+(5, 'bb', 'Adam Levine', 'I have scored 2 on Home of Programming Language 1');
 
 -- --------------------------------------------------------
 
@@ -216,6 +245,26 @@ INSERT INTO `quiz` (`quiz_id`, `chapter_id`, `question`, `op1`, `op2`, `op3`, `o
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `quiz_result`
+--
+
+CREATE TABLE `quiz_result` (
+  `id` int(100) NOT NULL,
+  `chapter_id` varchar(100) NOT NULL,
+  `student_id` varchar(100) NOT NULL,
+  `score` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `quiz_result`
+--
+
+INSERT INTO `quiz_result` (`id`, `chapter_id`, `student_id`, `score`) VALUES
+(3, '1', 'bb', '2');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `rank`
 --
 
@@ -236,16 +285,17 @@ CREATE TABLE `students` (
   `id` varchar(50) NOT NULL,
   `name` varchar(50) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `password` varchar(50) NOT NULL
+  `password` varchar(50) NOT NULL,
+  `joined` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`id`, `name`, `email`, `password`) VALUES
-('bb', 'Adam Levine', 'adam@gmail.com', 'bb'),
-('cc', 'Student', 'student2@gmail.com', 'cccc');
+INSERT INTO `students` (`id`, `name`, `email`, `password`, `joined`) VALUES
+('bb', 'Adam Levine', 'adam@gmail.com', 'bb', '2018-12-06'),
+('cc', 'Student', 'student2@gmail.com', 'cccc', '2018-12-01');
 
 --
 -- Indexes for dumped tables
@@ -276,15 +326,21 @@ ALTER TABLE `comment`
   ADD PRIMARY KEY (`comment_id`);
 
 --
--- Indexes for table `course`
+-- Indexes for table `courses`
 --
-ALTER TABLE `course`
+ALTER TABLE `courses`
   ADD PRIMARY KEY (`course_id`);
 
 --
--- Indexes for table `instructor`
+-- Indexes for table `courses_taken`
 --
-ALTER TABLE `instructor`
+ALTER TABLE `courses_taken`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `instructors`
+--
+ALTER TABLE `instructors`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -312,6 +368,12 @@ ALTER TABLE `quiz`
   ADD PRIMARY KEY (`quiz_id`);
 
 --
+-- Indexes for table `quiz_result`
+--
+ALTER TABLE `quiz_result`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `rank`
 --
 ALTER TABLE `rank`
@@ -334,22 +396,34 @@ ALTER TABLE `chapter_info`
   MODIFY `chapter_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `course`
+-- AUTO_INCREMENT for table `courses`
 --
-ALTER TABLE `course`
+ALTER TABLE `courses`
   MODIFY `course_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `courses_taken`
+--
+ALTER TABLE `courses_taken`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `post_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `post_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `quiz`
 --
 ALTER TABLE `quiz`
   MODIFY `quiz_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `quiz_result`
+--
+ALTER TABLE `quiz_result`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

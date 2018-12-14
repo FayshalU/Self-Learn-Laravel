@@ -75,13 +75,20 @@
             <div class="left-custom-menu-adp-wrap comment-scrollbar">
                 <nav class="sidebar-nav left-sidebar-menu-pro">
                     <ul class="metismenu" id="menu1">
-                        <li>
-                            <a class="has-arrow" href="{{route('student.index')}}">
-            								   <span class="educate-icon educate-home icon-wrap"></span>
-            								   <span class="mini-click-non">Education</span>
-            								</a>
+                      <li>
+                          <a class="has-arrow" href="/student">
+                             <span class="educate-icon educate-home icon-wrap"></span>
+                             <span class="mini-click-non">Education</span>
+                          </a>
 
-                        </li>
+                      </li>
+                      <li>
+                          <a class="has-arrow" href="" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Courses</span></a>
+                          <ul class="submenu-angle" aria-expanded="false">
+                            <li><a title="All Courses" href="{{route('student.course')}}"><span class="mini-sub-pro">All Courses</span></a></li>
+                            <li><a title="My Courses" href="{{route('student.myCourse')}}"><span class="mini-sub-pro">My Courses</span></a></li>
+                          </ul>
+                      </li>
 
                     </ul>
                 </nav>
@@ -133,7 +140,7 @@
                                                 <li class="nav-item">
                                                     <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
                         															<!-- <img src="img/product/pro4.jpg" alt="" /> -->
-                        															<span class="admin-name">NEW STUDENT</span>
+                        															<span class="admin-name">{{$user->name}}</span>
                         															<i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
                         														</a>
                                                     <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
@@ -182,7 +189,8 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div class="breadcome-heading nav-item">
-                                          <form method="post" action="/student/showCourse">
+                                          <form method="post" action="{{route('student.showCoursePost')}}">
+                                            {{@csrf_field()}}
                                             <input type="text" name="src" id="search" placeholder="Search..." class="" >
                                             <a href="" id="srcbtn" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"></a>
                                             <button type="submit" name="button"><i class="fa fa-search"></i></button>
@@ -214,30 +222,25 @@
             <div class="container-fluid">
                 <div class="row">
 
-                  <!-- <%
-                    for(var i=0; i< course.length; i++){ %> -->
+            <?php for($i=0; $i< count($courses); $i++){ ?>
 
-                      <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                          <div class="courses-inner res-mg-b-30">
-                              <div class="courses-title">
-                                  <h2>Programming Language 1</h2>
-                              </div>
+                  <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                      <div class="courses-inner res-mg-b-30">
+                          <div class="courses-title">
+                              <h2>{{$courses[$i]->name}}</h2>
+                          </div>
 
-                              <div class="course-des">
-                                  <p><span><i class="fa fa-clock"></i></span> <b>Chapter:</b> 12</p>
-                              </div>
-                              <div class="product-buttons">
+                          <div class="course-des">
+                              <p><span><i class="fa fa-clock"></i></span> <b>Chapter:</b> {{$chapters[$i]}}</p>
+                          </div>
+                          <div class="product-buttons">
 
-                                  <a href="{{route('student.showCourse')}}"><button type="button" class="button-default cart-btn">Read More</button></a>
-                              </div>
+                              <a href="{{route('student.showCourse',[$courses[$i]->course_id])}}"><button type="button" class="button-default cart-btn">Read More</button></a>
                           </div>
                       </div>
+                  </div>
 
-                    <!-- <% } %> -->
-
-
-
-
+            <?php } ?>
 
 
                 </div>
@@ -263,7 +266,7 @@
 		============================================ -->
     <script src="build/js/vendor/jquery-1.12.4.min.js"></script>
 
-    <!-- <script src="../course.js"></script> -->
+    <script src="js/course.js"></script>
 
     <!-- bootstrap JS
 		============================================ -->

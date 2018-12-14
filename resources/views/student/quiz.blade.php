@@ -59,6 +59,12 @@
 		============================================ -->
     <script src="build/js/vendor/modernizr-2.8.3.min.js"></script>
 
+    <!-- jquery
+		============================================ -->
+    <script src="build/js/vendor/jquery-1.12.4.min.js"></script>
+
+    <script src="js/quiz.js"></script>
+
 </head>
 
 <body>
@@ -82,20 +88,14 @@
             								</a>
 
                         </li>
-                        <li>
+                        <!-- <li>
                             <a class="has-arrow" href="" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Chapters</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
 
-                              <!-- chapter name -->
-                                <!-- <%
-                                  for(var i=0; i< chapter.length; i++){ %>
-
-                                    <li><a title="All Courses" href="student/chapter/<%= chapter[i].name %>"><span class="mini-sub-pro"><%= chapter[i].name %></span></a></li>
-
-                                  <% } %> -->
+                                  <li><a title="All Courses" href="{{route('student.chapter',[$course->course_id, $chapter->chapter_id])}}"><span class="mini-sub-pro">{{ $chapter->name }}</span></a></li>
 
                             </ul>
-                        </li>
+                        </li> -->
                     </ul>
                 </nav>
             </div>
@@ -144,21 +144,21 @@
 
 
                                                 <li class="nav-item">
-                                                    <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
-                        															<!-- <img src="img/product/pro4.jpg" alt="" /> -->
-                        															<span class="admin-name">user name</span>
-                        															<i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
-                        														</a>
-                                                    <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
+                                                  <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
+                                                    <!-- <img src="img/product/pro4.jpg" alt="" /> -->
+                                                    <span class="admin-name">{{$user->name}}</span>
+                                                    <i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
+                                                  </a>
+                                                  <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
 
-                                                        <li><a href="{{route('student.profile')}}"><span class="edu-icon edu-user-rounded author-log-ic"></span>My Profile</a>
-                                                        </li>
+                                                      <li><a href="{{route('student.profile')}}"><span class="edu-icon edu-user-rounded author-log-ic"></span>My Profile</a>
+                                                      </li>
 
-                                                        <li><a href=""><span class="edu-icon edu-settings author-log-ic"></span>Settings</a>
-                                                        </li>
-                                                        <li><a href="{{route('logout.index')}}"><span class="edu-icon edu-locked author-log-ic"></span>Log Out</a>
-                                                        </li>
-                                                    </ul>
+                                                      <li><a href=""><span class="edu-icon edu-settings author-log-ic"></span>Settings</a>
+                                                      </li>
+                                                      <li><a href="{{route('logout.index')}}"><span class="edu-icon edu-locked author-log-ic"></span>Log Out</a>
+                                                      </li>
+                                                  </ul>
                                                 </li>
 
                                             </ul>
@@ -196,7 +196,7 @@
                                 <div class="row">
                                   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                       <div class="breadcome-heading nav-item">
-                                        <h6 style="text-align: center;font-weight: 300;height: 20px;font-size: 40px;">course.name</h6>
+                                        <h6 style="text-align: center;font-weight: 300;height: 20px;font-size: 40px;">{{$course->name}}</h6>
 
                                       </div>
 
@@ -222,32 +222,42 @@
                                     <form class="" action="" method="post">
                                       <div class="blog-details blog-sig-details">
 
-                                          <h1><a class="blog-ht" href="#">chapter.name</a></h1>
+                                          <h1><a class="blog-ht" href="#">{{$chapter->name}}</a></h1>
                                           <br>
 
                                           <!-- quizes -->
 
-                                          <!-- <%
-                                            for(var i=0; i< quiz.length; i++){ %> -->
+                                    <?php for($i=0; $i< count($quiz); $i++){ ?>
 
-                                              <label class="login2">(<%=(i+1)%>) <%=quiz[i].question%></label><br>
+                                              <label class="login2">({{$i+1}}) {{$quiz[$i]->question}}</label><br>
 
-                                              <input type="radio" name="<%=i%>" value="<%=quiz[i].op1%>"> <%=quiz[i].op1%> <br>
-                                              <input type="radio" name="<%=i%>" value="<%=quiz[i].op2%>"> <%=quiz[i].op2%> <br>
-                                              <input type="radio" name="<%=i%>" value="<%=quiz[i].op3%>"> <%=quiz[i].op3%> <br>
-                                              <input type="radio" name="<%=i%>" value="<%=quiz[i].op4%>"> <%=quiz[i].op4%> <br><br>
+                                              <input type="radio" name="{{$i}}" value="{{$quiz[$i]->op1}}"> {{$quiz[$i]->op1}} <br>
+                                              <input type="radio" name="{{$i}}" value="{{$quiz[$i]->op2}}"> {{$quiz[$i]->op2}} <br>
+                                              <input type="radio" name="{{$i}}" value="{{$quiz[$i]->op3}}"> {{$quiz[$i]->op3}} <br>
+                                              <input type="radio" name="{{$i}}" value="{{$quiz[$i]->op4}}"> {{$quiz[$i]->op4}} <br><br>
 
-                                              <!-- <p class="answer">Answer: <span class="<%=i%>"><%=quiz[i].answer%></span></p> -->
+                                              <p class="answer" hidden>Answer: <span class="{{$i}}">{{$quiz[$i]->answer}}</span></p>
 
-                                            <!-- <% } %> -->
+                                        <?php } ?>
 
                                           <br><br>
                                       </div>
                                       <div class="product-buttons">
-                                          <!-- <span id="chapter"><%=selectedchapter.chapter_id%></span> -->
+                                          <span id="chapter" hidden>{{$chapter->chapter_id}}</span>
                                           <p id="score"></p>
-                                          <button type="button" id="submitbtn" class="button-default cart-btn">Submit</button>
-                                          <button type="button" id="sharebtn" class="button-default cart-btn">Share</button>
+
+                                          <?php  if ($data->status == true) { ?>
+
+                                                  <h5>You have already attained quiz of this chapter</h4>
+                                                  <button type="button" id="showbtn" class="button-default cart-btn">Show Answers</button>
+
+                                          <?php } else{ ?>
+
+                                                <button type="button" id="submitbtn" class="button-default cart-btn">Submit</button>
+
+                                          <?php } ?>
+
+                                          <button type="button" id="sharebtn" class="button-default cart-btn" hidden>Share</button>
                                       </div>
                                       </form>
                                   </div>
@@ -280,7 +290,7 @@
 		============================================ -->
     <script src="build/js/vendor/jquery-1.12.4.min.js"></script>
 
-    <!-- <script src="../course.js"></script> -->
+    <!-- <script src="js/quiz.js"></script> -->
 
     <!-- bootstrap JS
 		============================================ -->

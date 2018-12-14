@@ -11,12 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return redirect()->route('login.index');
-});
+Route::get('/','HomeController@index')->name('home.index');
+Route::get('/{id}/courses','HomeController@course')->name('home.courses');
+Route::get('/searchCourse/{id}','HomeController@searchCourse')->name('home.searchCourse');
+Route::post('/coursesPost','HomeController@coursePost')->name('home.coursePost');
 
 Route::get('/login','loginController@index')->name('login.index');
 Route::post('/login','loginController@verify')->name('login.verify');
+
+Route::get('/register','RegistrationController@index')->name('register.index');
+Route::post('/register','RegistrationController@verify')->name('register.verify');
 
 Route::get('/logout','logoutController@index')->name('logout.index');
 
@@ -32,8 +36,15 @@ Route::resource('/admin','AdminController');
 
 
 Route::get('/student/course','StudentController@allCourse')->name('student.course');
-Route::get('/student/showCourse','StudentController@showCourse')->name('student.showCourse');
-Route::get('/student/quiz','StudentController@quiz')->name('student.quiz');
+Route::get('/student/searchCourse/{id}','StudentController@searchCourse')->name('student.searchCourse');
+Route::get('/student/{id}/showCourse','StudentController@showCourse')->name('student.showCourse');
+Route::post('/student/showCoursePost','StudentController@showCoursePost')->name('student.showCoursePost');
+Route::get('/student/myCourse','StudentController@myCourse')->name('student.myCourse');
+Route::get('/student/chapter/{id}/{id2?}','StudentController@chapter')->name('student.chapter');
+Route::get('/student/{id}/enroll','StudentController@enroll')->name('student.enroll');
+Route::get('/student/{id}/quiz','StudentController@quiz')->name('student.quiz');
+Route::get('/student/quizResult/{id}','StudentController@storeResult')->name('student.storeResult');
+Route::get('/student/share/{id}','StudentController@share')->name('student.share');
 Route::get('/student/profile','StudentController@profile')->name('student.profile');
 Route::resource('/student','StudentController');
 

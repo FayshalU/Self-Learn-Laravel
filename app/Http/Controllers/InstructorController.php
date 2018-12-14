@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\instructor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class InstructorController extends Controller
 {
@@ -23,7 +24,7 @@ class InstructorController extends Controller
         return view('instructor.myCourses');
     }
 
-    
+
     public function addQuiz(Request $request)
     {
         // return "string";

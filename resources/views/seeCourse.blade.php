@@ -82,19 +82,7 @@
             								</a>
 
                         </li>
-                        <!-- <li>
-                            <a class="has-arrow" href="" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Chapters</span></a>
-                            <ul class="submenu-angle" aria-expanded="false">
-
-                                <%
-                                  for(var i=0; i< chapter.length; i++){ %>
-
-                                    <li><a title="All Courses" href="student/chapter/<%= chapter[i].name %>"><span class="mini-sub-pro"><%= chapter[i].name %></span></a></li>
-
-                                  <% } %>
-
-                            </ul>
-                        </li> -->
+                        
                     </ul>
                 </nav>
             </div>
@@ -127,11 +115,11 @@
                                     <div class="col-lg-6 col-md-7 col-sm-6 col-xs-12">
                                         <div class="header-top-menu tabl-d-n">
                                             <ul class="nav navbar-nav mai-top-nav">
-                                                <li class="nav-item"><a href="{{route('student.index')}}" class="nav-link">Home</a>
+                                                <li class="nav-item"><a href="{{route('home.index')}}" class="nav-link">Home</a>
                                                 </li>
                                                 <li class="nav-item"><a href="" class="nav-link">About</a>
                                                 </li>
-                                                <li class="nav-item"><a href="{{route('student.course')}}" class="nav-link">Courses</a>
+                                                <li class="nav-item"><a href="{{route('home.index')}}" class="nav-link">Courses</a>
                                                 </li>
 
                                             </ul>
@@ -141,24 +129,9 @@
                                         <div class="header-right-info">
                                             <ul class="nav navbar-nav mai-top-nav header-right-menu">
 
-
-                                                <li class="nav-item">
-                                                    <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
-                        															<!-- <img src="img/product/pro4.jpg" alt="" /> -->
-                        															<span class="admin-name">{{$user->name}}</span>
-                        															<i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
-                        														</a>
-                                                    <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
-
-                                                        <li><a href="{{route('student.profile')}}"><span class="edu-icon edu-user-rounded author-log-ic"></span>My Profile</a>
-                                                        </li>
-
-                                                        <li><a href=""><span class="edu-icon edu-settings author-log-ic"></span>Settings</a>
-                                                        </li>
-                                                        <li><a href="{{route('logout.index')}}"><span class="edu-icon edu-locked author-log-ic"></span>Log Out</a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
+                                              <li class="nav-item"><a href="{{route('login.index')}}" class="nav-link">Login</a>
+                                              </li>
+                                              <li class="nav-item"><a href="{{route('register.index')}}" class="nav-link">Registration</a>
 
                                             </ul>
                                         </div>
@@ -227,15 +200,7 @@
                                       <br>
                                       <div class="product-buttons">
 
-                                    <?php  if ($data->status == true) { ?>
-
-                                            <h5>You have already enrolled to this course</h4>
-
-                                    <?php } else{ ?>
-
-                                          <a href="{{route('student.enroll',[$course->course_id])}}"><button type="button" class="button-default cart-btn">Enroll</button></a>
-
-                                      <?php } ?>
+                                    <a href="{{route('login.index')}}"><button type="button" class="button-default cart-btn">Login to Enroll</button></a>
 
 
                                       </div>

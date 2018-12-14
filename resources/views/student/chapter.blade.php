@@ -82,19 +82,18 @@
             								</a>
 
                         </li>
-                        <!-- <li>
+                        <li>
                             <a class="has-arrow" href="" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Chapters</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
 
-                                <%
-                                  for(var i=0; i< chapter.length; i++){ %>
+                                @foreach($chapters as $chapter)
 
-                                    <li><a title="All Courses" href="student/chapter/<%= chapter[i].name %>"><span class="mini-sub-pro"><%= chapter[i].name %></span></a></li>
+                                    <li><a title="All Courses" href="{{route('student.chapter',[$course->course_id, $chapter->chapter_id])}}"><span class="mini-sub-pro">{{ $chapter->name }}</span></a></li>
 
-                                  <% } %>
+                                  @endforeach
 
                             </ul>
-                        </li> -->
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -221,23 +220,12 @@
 
                                       <div class="blog-details blog-sig-details">
 
-                                          <h1><a class="blog-ht" href="#">Overview</a></h1>
-                                          <p style="font-size: 20px;">{{$course->info}}</p>
+                                          <h1><a class="blog-ht" href="#">{{$selectedChapter->name}}</a></h1>
+                                          <p style="font-size: 20px;">{{$selectedChapter->content}}</p>
                                       </div>
-                                      <br>
                                       <div class="product-buttons">
 
-                                    <?php  if ($data->status == true) { ?>
-
-                                            <h5>You have already enrolled to this course</h4>
-
-                                    <?php } else{ ?>
-
-                                          <a href="{{route('student.enroll',[$course->course_id])}}"><button type="button" class="button-default cart-btn">Enroll</button></a>
-
-                                      <?php } ?>
-
-
+                                          <a href="{{route('student.quiz',[$selectedChapter->chapter_id])}}"><button type="button" class="button-default cart-btn">Quiz</button></a>
                                       </div>
                                   </div>
                               </div>

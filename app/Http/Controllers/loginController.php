@@ -13,7 +13,10 @@ class loginController extends Controller
 {
     public function index(Request $request)
     {
-    	return view('login');
+      $error = (object) ['status'=>1];
+
+     return view('login')
+                 ->with('error',$error);
     }
     public function verify(Request $request)
     {
@@ -27,7 +30,7 @@ class loginController extends Controller
 
     	if($user!=null)
     	{
-    		$request->session()->put('userid',$user->id);
+    		$request->session()->put('user_id',$user->id);
         if ($user->type == 'admin') {
           return redirect()->route('admin.index');
         }

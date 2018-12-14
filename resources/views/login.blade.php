@@ -17,8 +17,8 @@
                   <input type="password" name="password" id="logpass" placeholder="Password"/><br>
 
                   <!-- //error check login -->
-                  <!-- <h4 style="text-align: center;color: #ff0000;font-weight: 200;" id="empty">UserID or Password Can't be Empty</h4><br>
-                  <%
+                   <h4 style="text-align: center;color: #ff0000;font-weight: 200;" id="empty">UserID or Password Can't be Empty</h4><br>
+                  <!--<%
                     if (error.id == 1) { %>
                       <h4 style="text-align: center;color: #ff0000;font-weight: 200;">UserID or Password Can't be Empty</h4><br/>
                     <% }
@@ -26,8 +26,8 @@
                       <h4 style="text-align: center;color: #ff0000;font-weight: 200;">UserID and Password does not match</h4><br>
                     <% }
                   %> -->
-                  
-                  <h4 style="text-align: center;color: #ff0000;font-weight: 200;" id="empty">{{session('logmsg')}}</h4><br>
+
+                  <h4 style="text-align: center;color: #ff0000;font-weight: 200;">{{session('logmsg')}}</h4><br>
                   <button type="submit">LOGIN</button>
                   <!-- <input type="submit" value="LOGIN" /> -->
                 </form>
@@ -35,60 +35,41 @@
 
             <div id="signupform">
                 <h1>SIGN UP</h1>
-                <form method="post" action="/registration" onsubmit="return checkRegInfo()">
+                <form method="post" action="/register" onsubmit="return checkRegInfo()">
                   {{@csrf_field()}}
-                  <input type="text" name="name" id="name" placeholder="Full Name"/><br>
+                  <input type="text" name="name" id="name" placeholder="Full Name*"/><br>
 
                   <!-- //name error -->
-                  <!-- <h4 id="h1" style="text-align: center;color: #ff0000;font-weight: 200;"></h4>
-                  <%
-                    if (error.id == 3) { %>
-                      <h4 style="text-align: center;color: #ff0000;font-weight: 200;">Name can't be empty</h4>
-                    <% }
-                    else if (error.id == 4) { %>
-                      <h4 style="text-align: center;color: #ff0000;font-weight: 200;">Invalid Name</h4>
-                    <% }
-                  %> -->
-                  <input type="text" name="userid" id="userid" placeholder="User ID"/><br>
+                  <h4 id="h1" style="text-align: center;color: #ff0000;font-weight: 200;"></h4>
+                  <input type="text" name="userid" id="userid" placeholder="User ID*"/><br>
 
 
                   <!-- //id error -->
-                  <!--
+
                   <h4 id="h2" style="text-align: center;color: #ff0000;font-weight: 200;"></h4>
-                  <%
-                    if (error.id == 5) { %>
-                      <h4 style="text-align: center;color: #ff0000;font-weight: 200;">User ID can't be empty</h4><br/>
-                    <% }
-                    else if (error.id == 6) { %>
-                      <h4 style="text-align: center;color: #ff0000;font-weight: 200;">User ID is not available</h4><br>
-                    <% }
-                  %> -->
-                  <input type="email" name="email" id="email" placeholder="Email"/><br>
+
+                  <input type="email" name="email" id="email" placeholder="Email*"/><br>
 
 
                   <!-- //email error -->
-                  <!--<h4 id="h3" style="text-align: center;color: #ff0000;font-weight: 200;"></h4>
-                   <%
-                    if (error.id == 7) { %>
-                      <h4 style="text-align: center;color: #ff0000;font-weight: 200;">Email can't be empty</h4><br/>
-                    <% }
-                    else if (error.id == 8) { %>
-                      <h4 style="text-align: center;color: #ff0000;font-weight: 200;">Invalid Email</h4><br>
-                    <% }
-                  %> -->
-                  <input type="password" name="password" id="password" placeholder="Password"/><br>
+                  <h4 id="h3" style="text-align: center;color: #ff0000;font-weight: 200;"></h4>
+
+                  <input type="password" name="password" id="password" placeholder="Password*"/><br>
 
 
                   <!-- //password error -->
-                  <!--<h4 id="h4" style="text-align: center;color: #ff0000;font-weight: 200;"></h4>
-                   <%
-                    if (error.id == 9) { %>
-                      <h4 style="text-align: center;color: #ff0000;font-weight: 200;">Password can't be empty</h4><br/>
-                    <% }
-                    else if (error.id == 10) { %>
-                      <h4 style="text-align: center;color: #ff0000;font-weight: 200;">Password length must be at least 4</h4><br>
-                    <% }
-                  %> -->
+                  <h4 id="h4" style="text-align: center;color: #ff0000;font-weight: 200;"></h4>
+
+                  <select name="type" id="type">
+                    <option value="type">Type*</option>
+                    <option value="student">Student</option>
+                    <option value="instructor">Instructor</option>
+                  </select>
+
+                  <!-- //Type error -->
+                  <h4 id="h5" style="text-align: center;color: #ff0000;font-weight: 200;"></h4>
+
+                  <h4 style="text-align: center;color: #ff0000;font-weight: 200;">{{session('regmsg')}}</h4>
                   <button type="submit">SIGN UP</button>
                 </form>
             </div>
@@ -96,22 +77,32 @@
             <div id="login_msg">Have an account?</div>
             <div id="signup_msg">Don't have an account?</div>
 
-            <button id="login_btn">LOGIN</button>
-            <button id="signup_btn">SIGN UP</button>
+            <button id="login_btn" onclick="window.location.href='{{route('login.index')}}'">LOGIN</button>
+            <button id="signup_btn" onclick="register()">SIGN UP</button>
 
         </div>
 
 
         <!-- change button -->
-        <!-- <%
-          if(error.status == 2){ %>
-            <script>
-              $(document).ready(function(){
-                $("#signup_btn").click();
-              });
-            </script>
+        <?php
+            if($error->status == 2){ ?>
+              <script>
+                $(document).ready(function(){
+                  $("#signup_btn").click();
+                });
+              </script>
 
-        <%  }%> -->
+        <?php } ?>
+
+        <script>
+          function register() {
+            <?php
+                if($_SERVER['REQUEST_URI'] != "/register"){ ?>
+                    window.location.href="{{route('register.index')}}";
+
+            <?php } ?>
+          }
+        </script>
 
         <script type="text/javascript" src="js/login.js"></script>
 

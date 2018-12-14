@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>{{$course->name}}</title>
+    <title>Self Learn</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <base href="/">
@@ -76,25 +76,13 @@
                 <nav class="sidebar-nav left-sidebar-menu-pro">
                     <ul class="metismenu" id="menu1">
                         <li>
-                            <a class="has-arrow" href="{{route('student.index')}}">
+                            <a class="has-arrow" href="{{route('home.index')}}">
             								   <span class="educate-icon educate-home icon-wrap"></span>
             								   <span class="mini-click-non">Education</span>
             								</a>
 
                         </li>
-                        <!-- <li>
-                            <a class="has-arrow" href="" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Chapters</span></a>
-                            <ul class="submenu-angle" aria-expanded="false">
 
-                                <%
-                                  for(var i=0; i< chapter.length; i++){ %>
-
-                                    <li><a title="All Courses" href="student/chapter/<%= chapter[i].name %>"><span class="mini-sub-pro"><%= chapter[i].name %></span></a></li>
-
-                                  <% } %>
-
-                            </ul>
-                        </li> -->
                     </ul>
                 </nav>
             </div>
@@ -127,11 +115,11 @@
                                     <div class="col-lg-6 col-md-7 col-sm-6 col-xs-12">
                                         <div class="header-top-menu tabl-d-n">
                                             <ul class="nav navbar-nav mai-top-nav">
-                                                <li class="nav-item"><a href="{{route('student.index')}}" class="nav-link">Home</a>
+                                                <li class="nav-item"><a href="{{route('home.index')}}" class="nav-link">Home</a>
                                                 </li>
                                                 <li class="nav-item"><a href="" class="nav-link">About</a>
                                                 </li>
-                                                <li class="nav-item"><a href="{{route('student.course')}}" class="nav-link">Courses</a>
+                                                <li class="nav-item"><a href="#" class="nav-link">Courses</a>
                                                 </li>
 
                                             </ul>
@@ -141,24 +129,9 @@
                                         <div class="header-right-info">
                                             <ul class="nav navbar-nav mai-top-nav header-right-menu">
 
-
-                                                <li class="nav-item">
-                                                    <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
-                        															<!-- <img src="img/product/pro4.jpg" alt="" /> -->
-                        															<span class="admin-name">{{$user->name}}</span>
-                        															<i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
-                        														</a>
-                                                    <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
-
-                                                        <li><a href="{{route('student.profile')}}"><span class="edu-icon edu-user-rounded author-log-ic"></span>My Profile</a>
-                                                        </li>
-
-                                                        <li><a href=""><span class="edu-icon edu-settings author-log-ic"></span>Settings</a>
-                                                        </li>
-                                                        <li><a href="{{route('logout.index')}}"><span class="edu-icon edu-locked author-log-ic"></span>Log Out</a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
+                                              <li class="nav-item"><a href="{{route('login.index')}}" class="nav-link">Login</a>
+                                              </li>
+                                              <li class="nav-item"><a href="{{route('register.index')}}" class="nav-link">Registration</a>
 
                                             </ul>
                                         </div>
@@ -170,7 +143,6 @@
                 </div>
             </div>
             <!-- Mobile Menu start -->
-
             <div class="mobile-menu-area">
                 <div class="container">
                     <div class="row">
@@ -185,23 +157,37 @@
                 </div>
             </div>
 
+
             <!-- Mobile Menu end -->
             <div class="breadcome-area">
                 <div class="container-fluid">
-                  <h2></h2>
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="breadcome-list">
                                 <div class="row">
-                                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                      <div class="breadcome-heading nav-item">
-                                        <h6 style="text-align: center;font-weight: 300;height: 20px;font-size: 40px;">{{$course->name}}</h6>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="breadcome-heading nav-item">
+                                          <form method="post" action="{{route('home.coursePost')}}">
+                                            {{@csrf_field()}}
+                                            <input type="text" name="src" id="search" placeholder="Search..." class="" >
+                                            <a href="" id="srcbtn" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"></a>
+                                            <button type="submit" name="button"><i class="fa fa-search"></i></button>
 
-                                      </div>
+                                            <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn" id="ul">
 
-                                  </div>
+                                            </ul>
+                                          </form>
 
+                                        </div>
 
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <ul class="breadcome-menu">
+                                            <li><a href="{{route('home.index')}}">Home</a> <span class="bread-slash">/</span>
+                                            </li>
+
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -213,38 +199,26 @@
             <div class="container-fluid">
                 <div class="row">
 
-                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                      <div class="blog-details-inner">
-                          <div class="row">
-                              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                  <div class="latest-blog-single blog-single-full-view">
+          <?php for($i=0; $i< count($courses); $i++){ ?>
 
-                                      <div class="blog-details blog-sig-details">
-
-                                          <h1><a class="blog-ht" href="#">Overview</a></h1>
-                                          <p style="font-size: 20px;">{{$course->info}}</p>
-                                      </div>
-                                      <br>
-                                      <div class="product-buttons">
-
-                                    <?php  if ($data->status == true) { ?>
-
-                                            <h5>You have already enrolled to this course</h4>
-
-                                    <?php } else{ ?>
-
-                                          <a href="{{route('student.enroll',[$course->course_id])}}"><button type="button" class="button-default cart-btn">Enroll</button></a>
-
-                                      <?php } ?>
-
-
-                                      </div>
-                                  </div>
-                              </div>
+                  <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                      <div class="courses-inner res-mg-b-30">
+                          <div class="courses-title">
+                              <h2>{{$courses[$i]->name}}</h2>
                           </div>
 
+                          <div class="course-des">
+                              <p><span><i class="fa fa-clock"></i></span> <b>Chapter:</b> {{$chapters[$i]}}</p>
+                          </div>
+                          <div class="product-buttons">
+
+                              <a href="{{route('home.courses',[$courses[$i]->course_id])}}"><button type="button" class="button-default cart-btn">Read More</button></a>
+                          </div>
                       </div>
                   </div>
+
+            <?php } ?>
+
 
                 </div>
 
@@ -269,7 +243,7 @@
 		============================================ -->
     <script src="build/js/vendor/jquery-1.12.4.min.js"></script>
 
-    <!-- <script src="../course.js"></script> -->
+    <script src="js/course.js"></script>
 
     <!-- bootstrap JS
 		============================================ -->

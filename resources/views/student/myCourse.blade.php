@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>{{$course->name}}</title>
+    <title>My Courses</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <base href="/">
@@ -82,19 +82,7 @@
             								</a>
 
                         </li>
-                        <!-- <li>
-                            <a class="has-arrow" href="" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Chapters</span></a>
-                            <ul class="submenu-angle" aria-expanded="false">
 
-                                <%
-                                  for(var i=0; i< chapter.length; i++){ %>
-
-                                    <li><a title="All Courses" href="student/chapter/<%= chapter[i].name %>"><span class="mini-sub-pro"><%= chapter[i].name %></span></a></li>
-
-                                  <% } %>
-
-                            </ul>
-                        </li> -->
                     </ul>
                 </nav>
             </div>
@@ -170,7 +158,6 @@
                 </div>
             </div>
             <!-- Mobile Menu start -->
-
             <div class="mobile-menu-area">
                 <div class="container">
                     <div class="row">
@@ -185,23 +172,29 @@
                 </div>
             </div>
 
+
             <!-- Mobile Menu end -->
             <div class="breadcome-area">
                 <div class="container-fluid">
-                  <h2></h2>
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="breadcome-list">
                                 <div class="row">
-                                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                      <div class="breadcome-heading nav-item">
-                                        <h6 style="text-align: center;font-weight: 300;height: 20px;font-size: 40px;">{{$course->name}}</h6>
-
-                                      </div>
-
-                                  </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="breadcome-heading nav-item">
 
 
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <ul class="breadcome-menu">
+                                            <li><a href="{{route('student.index')}}">Home</a> <span class="bread-slash">/</span>
+                                            </li>
+                                            <li><span class="bread-blod">All Courses</span>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -213,38 +206,26 @@
             <div class="container-fluid">
                 <div class="row">
 
-                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                      <div class="blog-details-inner">
-                          <div class="row">
-                              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                  <div class="latest-blog-single blog-single-full-view">
+            <?php for($i=0; $i< count($courses); $i++){ ?>
 
-                                      <div class="blog-details blog-sig-details">
-
-                                          <h1><a class="blog-ht" href="#">Overview</a></h1>
-                                          <p style="font-size: 20px;">{{$course->info}}</p>
-                                      </div>
-                                      <br>
-                                      <div class="product-buttons">
-
-                                    <?php  if ($data->status == true) { ?>
-
-                                            <h5>You have already enrolled to this course</h4>
-
-                                    <?php } else{ ?>
-
-                                          <a href="{{route('student.enroll',[$course->course_id])}}"><button type="button" class="button-default cart-btn">Enroll</button></a>
-
-                                      <?php } ?>
-
-
-                                      </div>
-                                  </div>
-                              </div>
+                  <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                      <div class="courses-inner res-mg-b-30">
+                          <div class="courses-title">
+                              <h2>{{$courses[$i]->name}}</h2>
                           </div>
 
+                          <div class="course-des">
+                              <p><span><i class="fa fa-clock"></i></span> <b>Chapter:</b> {{$chapters[$i]}}</p>
+                          </div>
+                          <div class="product-buttons">
+
+                              <a href="{{route('student.chapter',[$courses[$i]->course_id])}}"><button type="button" class="button-default cart-btn">Read...</button></a>
+                          </div>
                       </div>
                   </div>
+
+              <?php } ?>
+
 
                 </div>
 
