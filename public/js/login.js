@@ -145,11 +145,11 @@ function checkRegInfo() {
 
   $("h4").hide();
 
-  //checkName();
-  //checkUser();
-  //checkEmail();
-  //checkPassword();
-  //checkType();
+  checkName();
+  checkUser();
+  checkEmail();
+  checkPassword();
+  checkType();
 
   if(!isValid){
     return false;

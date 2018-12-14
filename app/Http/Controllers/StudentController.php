@@ -36,11 +36,97 @@ class StudentController extends Controller
           $chapters[$i] = count($chapter);
         }
 
+        $instructors = [];
+
+        for ($i=0; $i < count($courses); $i++) {
+          $instructor = DB::table('instructors')
+                      ->where('id',$courses[$i]->instructor_id)->first();
+          if ($instructor!=null) {
+            $instructors[$i] = $instructor->name;
+          }
+          else {
+            $instructors[$i] = null;
+          }
+
+        }
+
         //print_r($user[0]);
 
         return view('student.course')->with('courses',$courses)
                                     ->with('user',$user[0])
-                                    ->with('chapters',$chapters);
+                                    ->with('chapters',$chapters)
+                                    ->with('instructors',$instructors);
+    }
+
+    public function popular(Request $request)
+    {
+      $user=DB::table('students')
+              ->where('id',$request->session()->get('user_id'))->get();
+
+      $courses=DB::table('courses')->get();
+
+      $length = count($courses);
+
+      $count = [];
+      for ($i=0; $i < $length; $i++) {
+        $temp = DB::table('courses_taken')
+                    ->where('course_id',$courses[$i]->course_id)->get();
+        $count[$i] = count($temp);
+      }
+
+      $count2 = $count;
+      rsort($count2);
+      // print_r($count2);
+
+      $popular = [];
+      $check = [];
+      for ($i=0; $i <$length ; $i++) {
+        for ($j=0; $j <$length ; $j++) {
+          if (($count2[$i] == $count[$j]) && (!in_array($j, $check)) ) {
+              $popular[$i] = $courses[$j];
+              $check[$i] = $j;
+              break;
+          }
+        }
+      }
+
+      // print_r($popular);
+
+      $instructor = [];
+      for ($i=0; $i < $length; $i++) {
+        $instructor[$i] = DB::table('instructors')
+                              ->where('id',$popular[$i]->instructor_id)->first();
+      }
+
+      // print_r($instructor[0][0]->name);
+
+      $finish = [];
+      for ($i=0; $i < $length; $i++) {
+        $temp = DB::table('courses_taken')
+                    ->where('course_id',$popular[$i]->course_id)
+                    ->where('status',"finished")->get();
+        $finish[$i] = count($temp);
+      }
+
+      $rate = [];
+      for ($i=0; $i < $length; $i++) {
+
+        if ($count2[$i] != 0) {
+          $rate[$i] = ($finish[$i] / $count2[$i]) * 100;
+        }
+        else {
+          $rate[$i] = 0;
+        }
+
+
+      }
+
+      return view('student.popular')->with('popular',$popular)
+                                    ->with('user',$user[0])
+                                    ->with('instructor',$instructor)
+                                    ->with('count',$count2)
+                                    ->with('finish',$finish)
+                                    ->with('rate',$rate);
     }
 
     public function searchCourse(Request $request, $id)
@@ -242,8 +328,94 @@ class StudentController extends Controller
 
     public function profile(Request $request)
     {
-        // return "string";
-        return view('student.profile');
+      $user=DB::table('students')
+              ->where('id',$request->session()->get('user_id'))->get();
+
+
+      $temp=DB::table('courses_taken')
+              ->where('student_id',$request->session()->get('user_id'))->get();
+
+      $data = (object)['course'=>count($temp)];
+
+        return view('student.profile')->with('user',$user[0])
+                                      ->with('data',$data);
+    }
+
+    public function editInfo(Request $request)
+    {
+      if($request->name=="")
+       {
+         //EMPTY:::::::::::::::;
+         $request->session()->flash('msg','Name can not be empty');
+         return redirect()->route('student.profile');
+       }
+       else if(strpbrk($request->name , '1234567890') !== false)
+       {
+        $request->session()->flash('msg','Name can not contain numbers');
+         return redirect()->route('student.profile');
+       }
+       else if($request->email=="")
+       {
+         //EMPTY:::::::::::::::;
+        $request->session()->flash('msg','Email can not be empty');
+         return redirect()->route('student.profile');
+       }
+       else if(!filter_var($request->email, FILTER_VALIDATE_EMAIL))
+       {
+        $request->session()->flash('msg','Invalid Email');
+         return redirect()->route('student.profile');
+       }
+       else {
+         DB::table('students')
+            ->where('id', $request->session()->get('user_id'))
+            ->update(['name' => $request->name, 'email' => $request->email]);
+
+        $request->session()->flash('msg','Information updated successfully');
+         return redirect()->route('student.profile');
+       }
+    }
+
+    public function editPass(Request $request)
+    {
+      $user=DB::table('students')
+              ->where('id',$request->session()->get('user_id'))->get();
+
+
+      if($request->current=="")
+       {
+         //EMPTY:::::::::::::::;
+         $request->session()->flash('msg','Current password can not be empty');
+         return redirect()->route('student.profile');
+       }
+       else if($request->current!=$user[0]->password)
+        {
+          $request->session()->flash('msg','Current password does not match');
+          return redirect()->route('student.profile');
+        }
+        else if($request->new=="")
+         {
+           //EMPTY:::::::::::::::;
+           $request->session()->flash('msg','New password can not be empty');
+           return redirect()->route('student.profile');
+         }
+        else if(strlen($request->new) <4)
+       	{
+          $request->session()->flash('msg','New Password length must be at least 4');
+       		return redirect()->route('student.profile');
+       	}
+        else {
+          DB::table('students')
+             ->where('id', $request->session()->get('user_id'))
+             ->update(['password' => $request->new]);
+
+         DB::table('login')
+            ->where('id', $request->session()->get('user_id'))
+            ->update(['password' => $request->new]);
+
+         $request->session()->flash('msg','Password updated successfully');
+          return redirect()->route('student.profile');
+        }
+
     }
 
     /**

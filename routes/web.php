@@ -36,6 +36,7 @@ Route::resource('/admin','AdminController');
 
 
 Route::get('/student/course','StudentController@allCourse')->name('student.course');
+Route::get('/student/popular','StudentController@popular')->name('student.popular');
 Route::get('/student/searchCourse/{id}','StudentController@searchCourse')->name('student.searchCourse');
 Route::get('/student/{id}/showCourse','StudentController@showCourse')->name('student.showCourse');
 Route::post('/student/showCoursePost','StudentController@showCoursePost')->name('student.showCoursePost');
@@ -46,6 +47,8 @@ Route::get('/student/{id}/quiz','StudentController@quiz')->name('student.quiz');
 Route::get('/student/quizResult/{id}','StudentController@storeResult')->name('student.storeResult');
 Route::get('/student/share/{id}','StudentController@share')->name('student.share');
 Route::get('/student/profile','StudentController@profile')->name('student.profile');
+Route::post('/student/editInfo','StudentController@editInfo')->name('student.editInfo');
+Route::post('/student/editPass','StudentController@editPass')->name('student.editPass');
 Route::resource('/student','StudentController');
 
 

@@ -86,6 +86,7 @@
                           <a class="has-arrow" href="" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Courses</span></a>
                           <ul class="submenu-angle" aria-expanded="false">
                             <li><a title="All Courses" href="{{route('student.course')}}"><span class="mini-sub-pro">All Courses</span></a></li>
+                            <li><a title="Popular Courses" href="{{route('student.popular')}}"><span class="mini-sub-pro">Popular Courses</span></a></li>
                             <li><a title="My Courses" href="{{route('student.myCourse')}}"><span class="mini-sub-pro">My Courses</span></a></li>
                           </ul>
                       </li>
@@ -232,6 +233,7 @@
 
                           <div class="course-des">
                               <p><span><i class="fa fa-clock"></i></span> <b>Chapter:</b> {{$chapters[$i]}}</p>
+                              <p><span><i class="fa fa-clock"></i></span> <b>Instrcutor:</b> {{$instructors[$i]}}</p>
                           </div>
                           <div class="product-buttons">
 

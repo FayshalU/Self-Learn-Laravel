@@ -209,6 +209,7 @@
 
                           <div class="course-des">
                               <p><span><i class="fa fa-clock"></i></span> <b>Chapter:</b> {{$chapters[$i]}}</p>
+                              <p><span><i class="fa fa-clock"></i></span> <b>Instrcutor:</b> {{$instructors[$i]}}</p>
                           </div>
                           <div class="product-buttons">
 

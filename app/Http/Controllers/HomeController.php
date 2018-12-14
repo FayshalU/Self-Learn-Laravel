@@ -27,8 +27,23 @@ class HomeController extends Controller
         $chapters[$i] = count($chapter);
       }
 
+      $instructors = [];
+
+      for ($i=0; $i < count($courses); $i++) {
+        $instructor = DB::table('instructors')
+                    ->where('id',$courses[$i]->instructor_id)->first();
+        if ($instructor!=null) {
+          $instructors[$i] = $instructor->name;
+        }
+        else {
+          $instructors[$i] = null;
+        }
+
+      }
+
       return view('index')->with('courses',$courses)
-                          ->with('chapters',$chapters);
+                          ->with('chapters',$chapters)
+                          ->with('instructors',$instructors);
     }
 
     public function course(Request $request,$id)

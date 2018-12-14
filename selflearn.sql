@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 14, 2018 at 01:33 PM
+-- Generation Time: Dec 14, 2018 at 07:34 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.10
 
@@ -104,6 +104,7 @@ CREATE TABLE `comment` (
 
 CREATE TABLE `courses` (
   `course_id` int(50) NOT NULL,
+  `instructor_id` varchar(100) NOT NULL,
   `name` varchar(50) NOT NULL,
   `info` varchar(300) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -112,13 +113,13 @@ CREATE TABLE `courses` (
 -- Dumping data for table `courses`
 --
 
-INSERT INTO `courses` (`course_id`, `name`, `info`) VALUES
-(1, 'Programming Language 1', 'C is a general-purpose, procedural, imperative computer programming language developed in 1972 by Dennis M. Ritchie at the Bell Telephone Laboratories to develop the UNIX operating system. C is the most widely used computer language. It keeps fluctuating at number one scale of popularity along with '),
-(2, 'Programming Language 2', ''),
-(4, 'New course', ''),
-(6, 'Data Structure', ''),
-(8, 'Web Technologies ', ''),
-(9, 'math1', '');
+INSERT INTO `courses` (`course_id`, `instructor_id`, `name`, `info`) VALUES
+(1, 'dd', 'Programming Language 1', 'C is a general-purpose, procedural, imperative computer programming language developed in 1972 by Dennis M. Ritchie at the Bell Telephone Laboratories to develop the UNIX operating system. C is the most widely used computer language. It keeps fluctuating at number one scale of popularity along with '),
+(2, 'ee', 'Programming Language 2', ''),
+(4, 'dd', 'New course', ''),
+(6, 'ff', 'Data Structure', ''),
+(8, 'ee', 'Web Technologies ', ''),
+(9, 'dd', 'math1', '');
 
 -- --------------------------------------------------------
 
@@ -138,8 +139,9 @@ CREATE TABLE `courses_taken` (
 --
 
 INSERT INTO `courses_taken` (`id`, `course_id`, `student_id`, `status`) VALUES
-(1, 1, 'aa', 'running'),
-(5, 1, 'bb', 'running');
+(1, 1, 'bb', 'running'),
+(5, 1, 'cc', 'finished'),
+(6, 6, 'bb', 'running');
 
 -- --------------------------------------------------------
 
@@ -160,7 +162,9 @@ CREATE TABLE `instructors` (
 --
 
 INSERT INTO `instructors` (`id`, `name`, `email`, `password`, `joined`) VALUES
-('dd', 'Instructor1', 'instructor@outlook.com', 'dd', '2018-12-05');
+('dd', 'Instructor1', 'instructor@outlook.com', 'dd', '2018-12-05'),
+('ee', 'Instructor2', 'Instructor2@mail.com', 'ee', '2018-12-14'),
+('ff', 'Instructor3', 'Instructor3@mail.com', 'ff', '2018-12-15');
 
 -- --------------------------------------------------------
 
@@ -194,7 +198,9 @@ INSERT INTO `login` (`id`, `password`, `type`) VALUES
 ('aa', 'aa', 'admin'),
 ('bb', 'bb', 'student'),
 ('cc', 'cccc', 'student'),
-('dd', 'dd', 'instructor');
+('dd', 'dd', 'instructor'),
+('ee', 'ee', 'instructor'),
+('ff', 'ff', 'instructor');
 
 -- --------------------------------------------------------
 
@@ -295,7 +301,7 @@ CREATE TABLE `students` (
 
 INSERT INTO `students` (`id`, `name`, `email`, `password`, `joined`) VALUES
 ('bb', 'Adam Levine', 'adam@gmail.com', 'bb', '2018-12-06'),
-('cc', 'Student', 'student2@gmail.com', 'cccc', '2018-12-01');
+('cc', 'New Student', 'student2@gmail.com', 'cccc', '2018-12-01');
 
 --
 -- Indexes for dumped tables
@@ -405,7 +411,7 @@ ALTER TABLE `courses`
 -- AUTO_INCREMENT for table `courses_taken`
 --
 ALTER TABLE `courses_taken`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `post`
