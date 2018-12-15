@@ -160,18 +160,39 @@ class StudentController extends Controller
         }
 
         $chapters = [];
+        $complete = [];
 
         for ($i=0; $i < count($courses); $i++) {
           $chapter = DB::table('chapter_info')
                       ->where('course_id',$courses[$i]->course_id)->get();
           $chapters[$i] = count($chapter);
+
+          $temp=0;
+          for ($j=0; $j < count($chapter); $j++) {
+            $quiz = DB::table('quiz_result')
+                        ->where('chapter_id',$chapter[$j]->chapter_id)
+                        ->where('student_id',$request->session()->get('user_id'))->get();
+            if (count($quiz)>0) {
+              $temp++;
+              // print_r($quiz);
+            }
+          }
+          if ($temp==0) {
+            $complete[$i] = 0;
+          }
+          else {
+            // print_r($temp);
+            $complete[$i] = ($temp / count($chapter)) *100 ;
+          }
+
         }
 
         //print_r($courses);
 
         return view('student.myCourse')->with('courses',$courses)
                                         ->with('user',$user[0])
-                                        ->with('chapters',$chapters);
+                                        ->with('chapters',$chapters)
+                                        ->with('complete',$complete);
     }
 
     public function showCourse(Request $request,$id)

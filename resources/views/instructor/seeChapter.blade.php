@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>My Courses</title>
+    <title>{{$course->name}}</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <base href="/">
@@ -76,27 +76,24 @@
                 <nav class="sidebar-nav left-sidebar-menu-pro">
                     <ul class="metismenu" id="menu1">
                         <li>
-                            <a class="has-arrow" href="">
+                            <a class="has-arrow" href="{{route('instructor.index')}}">
             								   <span class="educate-icon educate-home icon-wrap"></span>
             								   <span class="mini-click-non">Education</span>
             								</a>
 
                         </li>
                         <li>
-                            <a class="has-arrow" href="" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Courses</span></a>
-
-                             <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="All Courses" href=""><span class="mini-sub-pro">My Courses
-                                </span></a></li>
-
-                            </ul>
+                            <a class="has-arrow" href="" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Chapters</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="Add Course" href="{{route('instructor.create')}}"><span class="mini-sub-pro">Add Courses
-                                </span></a></li>
+
+                                @foreach($chapters as $chapter)
+
+                                    <li><a title="All Courses" href="{{route('instructor.chapter',[$course->course_id, $chapter->chapter_id])}}"><span class="mini-sub-pro">{{ $chapter->name }}</span></a></li>
+
+                                  @endforeach
 
                             </ul>
                         </li>
-
                     </ul>
                 </nav>
             </div>
@@ -172,6 +169,7 @@
                 </div>
             </div>
             <!-- Mobile Menu start -->
+
             <div class="mobile-menu-area">
                 <div class="container">
                     <div class="row">
@@ -186,26 +184,23 @@
                 </div>
             </div>
 
-
             <!-- Mobile Menu end -->
             <div class="breadcome-area">
                 <div class="container-fluid">
+                  <h2></h2>
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="breadcome-list">
                                 <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                        <div class="breadcome-heading nav-item">
+                                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                      <div class="breadcome-heading nav-item">
+                                        <h6 style="text-align: center;font-weight: 300;height: 20px;font-size: 40px;">{{$course->name}}</h6>
+
+                                      </div>
+
+                                  </div>
 
 
-                                        </div>
-
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                        <ul class="breadcome-menu">
-
-                                        </ul>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -217,35 +212,32 @@
             <div class="container-fluid">
                 <div class="row">
 
-                  <!-- Show all courses -->
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                      <div class="blog-details-inner">
+                          <div class="row">
+                              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                  <div class="latest-blog-single blog-single-full-view">
 
-                  <?php for($i=0; $i< count($courses); $i++){ ?>
+                                      <div class="blog-details blog-sig-details">
 
-                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                            <div class="courses-inner res-mg-b-30">
-                                <div class="courses-title">
-                                    <h2>{{$courses[$i]->name}}</h2>
-                                </div>
+                                          <h1><a class="blog-ht" href="#">{{$selectedChapter->name}}</a></h1>
+                                          <p style="font-size: 20px;">{{$selectedChapter->content}}</p>
+                                      </div>
+                                      <div class="product-buttons">
 
-                                <div class="course-des">
-                                    <p><span><i class="fa fa-clock"></i></span> <b>Chapter:</b> {{$chapters[$i]}}</p>
-                                </div>
-                                <div class="product-buttons">
-                                    <a href="{{route('instructor.seeCourse',[$courses[$i]->course_id])}}"><button type="button" class="btn btn-custon-rounded-three btn-warning">Details</button></a>
-                                    <a href="{{route('instructor.addQuiz',[$courses[$i]->course_id])}}"><button type="button" class="btn btn-custon-rounded-three btn-warning">Add Quiz</button></a>
-                                    <a href="{{route('instructor.editCourse',[$courses[$i]->course_id])}}"><button type="button" class="btn btn-custon-rounded-three btn-warning">Edit</button></a>
-                                    <a href="{{route('instructor.deleteCourse',[$courses[$i]->course_id])}}"><button type="button" class="btn btn-custon-rounded-three btn-danger">Delete</button></a>
-                                </div>
-                            </div>
-                        </div>
+                                          <a href="{{route('instructor.quiz',[$selectedChapter->chapter_id])}}"><button type="button" class="button-default cart-btn">See Quiz</button></a>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
 
-                    <?php } ?>
+                      </div>
+                  </div>
 
                 </div>
 
             </div>
         </div>
-      </div>
         <br><br><br><br><br>
         <div class="footer-copyright-area">
             <div class="container-fluid">
@@ -259,66 +251,61 @@
             </div>
         </div>
 
+    </div>
+
+    <!-- jquery
+		============================================ -->
+    <script src="build/js/vendor/jquery-1.12.4.min.js"></script>
+
+    <!-- <script src="../course.js"></script> -->
+
+    <!-- bootstrap JS
+		============================================ -->
+    <script src="build/js/bootstrap.min.js"></script>
+    <!-- wow JS
+		============================================ -->
+    <script src="build/js/wow.min.js"></script>
+    <!-- price-slider JS
+		============================================ -->
+    <script src="build/js/jquery-price-slider.js"></script>
+    <!-- meanmenu JS
+		============================================ -->
+    <script src="build/js/jquery.meanmenu.js"></script>
+    <!-- owl.carousel JS
+		============================================ -->
+    <script src="build/js/owl.carousel.min.js"></script>
+    <!-- sticky JS
+		============================================ -->
+    <script src="build/js/jquery.sticky.js"></script>
+    <!-- scrollUp JS
+		============================================ -->
+    <script src="build/js/jquery.scrollUp.min.js"></script>
+    <!-- mCustomScrollbar JS
+		============================================ -->
+    <script src="build/js/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="build/js/scrollbar/mCustomScrollbar-active.js"></script>
+    <!-- metisMenu JS
+		============================================ -->
+    <script src="build/js/metisMenu/metisMenu.min.js"></script>
+    <script src="build/js/metisMenu/metisMenu-active.js"></script>
+    <!-- morrisjs JS
+		============================================ -->
+    <script src="build/js/sparkline/jquery.sparkline.min.js"></script>
+    <script src="build/js/sparkline/jquery.charts-sparkline.js"></script>
+    <script src="build/js/sparkline/sparkline-active.js"></script>
+
+    <!-- icheck JS
+		============================================ -->
+    <script src="build/js/icheck/icheck.min.js"></script>
+    <script src="build/js/icheck/icheck-active.js"></script>
 
 
-        <!-- jquery
-    		============================================ -->
-        <script src="build/js/jquery-1.12.4.js"></script>
-
-        <!-- <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.sticky/1.0.4/jquery.sticky.js"></script> -->
-
-        <!-- <script src="../course.js"></script> -->
-
-        <!-- bootstrap JS
-    		============================================ -->
-        <script src="build/js/bootstrap.min.js"></script>
-        <!-- wow JS
-    		============================================ -->
-        <script src="build/js/wow.min.js"></script>
-        <!-- price-slider JS
-    		============================================ -->
-        <script src="build/js/jquery-price-slider.js"></script>
-        <!-- meanmenu JS
-    		============================================ -->
-        <script src="build/js/jquery.meanmenu.js"></script>
-        <!-- owl.carousel JS
-    		============================================ -->
-        <script src="build/js/owl.carousel.min.js"></script>
-        <!-- sticky JS
-    		============================================ -->
-        <script src="build/js/jquery.sticky.js"></script>
-        <!-- scrollUp JS
-    		============================================ -->
-        <script src="build/js/jquery.scrollUp.min.js"></script>
-        <!-- mCustomScrollbar JS
-    		============================================ -->
-        <script src="build/js/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
-        <script src="build/js/scrollbar/mCustomScrollbar-active.js"></script>
-        <!-- metisMenu JS
-    		============================================ -->
-        <script src="build/js/metisMenu/metisMenu.min.js"></script>
-        <script src="build/js/metisMenu/metisMenu-active.js"></script>
-        <!-- morrisjs JS
-    		============================================ -->
-        <script src="build/js/sparkline/jquery.sparkline.min.js"></script>
-        <script src="build/js/sparkline/jquery.charts-sparkline.js"></script>
-        <script src="build/js/sparkline/sparkline-active.js"></script>
-
-        <!-- icheck JS
-    		============================================ -->
-        <script src="build/js/icheck/icheck.min.js"></script>
-        <script src="build/js/icheck/icheck-active.js"></script>
-
-
-        <!-- plugins JS
-    		============================================ -->
-        <script src="build/js/plugins.js"></script>
-        <!-- main JS
-    		============================================ -->
-        <script src="build/js/main.js"></script>
-
-        <script src="build/js/addCourse.js"></script>
+    <!-- plugins JS
+		============================================ -->
+    <script src="build/js/plugins.js"></script>
+    <!-- main JS
+		============================================ -->
+    <script src="build/js/main.js"></script>
 
 
 

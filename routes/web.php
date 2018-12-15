@@ -57,6 +57,9 @@ Route::get('/instructor/profile','InstructorController@profile')->name('instruct
 Route::post('/instructor/editInfo','InstructorController@editInfo')->name('instructor.editInfo');
 Route::post('/instructor/editPass','InstructorController@editPass')->name('instructor.editPass');
 Route::get('/instructor/myCourses','InstructorController@myCourses')->name('instructor.myCourses');
+Route::get('/instructor/{id}/seeCourse','InstructorController@seeCourse')->name('instructor.seeCourse');
+Route::get('/instructor/chapter/{id}/{id2?}','InstructorController@chapter')->name('instructor.chapter');
+Route::get('/instructor/{id}/quiz','InstructorController@quiz')->name('instructor.quiz');
 Route::post('/instructor/addCourse','InstructorController@addCourse')->name('instructor.addCourse');
 Route::get('/instructor/{id}/editCourse','InstructorController@editCourse')->name('instructor.editCourse');
 Route::post('/instructor/editCourseInfo','InstructorController@editCourseInfo')->name('instructor.editCourseInfo');

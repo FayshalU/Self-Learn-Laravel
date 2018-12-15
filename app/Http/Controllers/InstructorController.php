@@ -24,7 +24,7 @@ class InstructorController extends Controller
                                     ->with('user',$user[0]);
     }
 
-   public function myCourses(Request $request)
+    public function myCourses(Request $request)
     {
         $user=DB::table('instructors')
               ->where('id',$request->session()->get('user_id'))->get();
@@ -44,6 +44,71 @@ class InstructorController extends Controller
                                         ->with('user',$user[0])
                                         ->with('chapters',$chapters);
     }
+
+    public function seeCourse(Request $request, $id)
+     {
+         $user=DB::table('instructors')
+               ->where('id',$request->session()->get('user_id'))->get();
+
+         $course=DB::table('courses')
+                     ->where('course_id',$id)->first();
+
+         $taken=DB::table('courses_taken')
+                     ->where('course_id',$id)->get();
+
+        $data = (object)['count'=>count($taken)];
+
+         return view('instructor.seeCourse')->with('course',$course)
+                                            ->with('user',$user[0])
+                                            ->with('data',$data);
+     }
+
+     public function chapter(Request $request, $id, $id2=null)
+      {
+        $user=DB::table('instructors')
+              ->where('id',$request->session()->get('user_id'))->get();
+
+        $course=DB::table('courses')
+                    ->where('course_id',$id)->get();
+        $chapters=DB::table('chapter_info')
+                    ->where('course_id',$id)->get();
+
+        $selectedChapter = [];
+        if ($id2 == null) {
+          $selectedChapter=DB::table('chapter_info')
+                      ->where('chapter_id',$chapters[0]->chapter_id)->get();
+        }
+        else {
+          $selectedChapter=DB::table('chapter_info')
+                      ->where('chapter_id',$id2)->get();
+        }
+
+        return view('instructor.seeChapter')->with('course',$course[0])
+                                        ->with('chapters',$chapters)
+                                        ->with('selectedChapter',(object)$selectedChapter[0])
+                                        ->with('user',$user[0]);
+
+      }
+
+      public function quiz(Request $request, $id)
+      {
+
+          $chapter=DB::table('chapter_info')
+                      ->where('chapter_id',$id)->get();
+          $course=DB::table('courses')
+                      ->where('course_id',$chapter[0]->course_id)->get();
+          $quiz=DB::table('quiz')
+                      ->where('chapter_id',$id)->get();
+          $user=DB::table('instructors')
+                  ->where('id',$request->session()->get('user_id'))->get();
+
+
+
+          return view('instructor.seeQuiz')->with('course',$course[0])
+                                      ->with('chapter',$chapter[0])
+                                      ->with('quiz',$quiz)
+                                      ->with('user',$user[0]);
+      }
 
 
     public function addQuiz(Request $request, $id)

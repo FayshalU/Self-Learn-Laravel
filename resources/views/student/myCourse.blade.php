@@ -217,6 +217,9 @@
                           <div class="course-des">
                               <p><span><i class="fa fa-clock"></i></span> <b>Chapter:</b> {{$chapters[$i]}}</p>
                           </div>
+                          <div class="course-des">
+                              <p><span><i class="fa fa-clock"></i></span> <b>Completed:</b> {{$complete[$i]}}%</p>
+                          </div>
                           <div class="product-buttons">
 
                               <a href="{{route('student.chapter',[$courses[$i]->course_id])}}"><button type="button" class="button-default cart-btn">Read...</button></a>
