@@ -147,8 +147,7 @@
                                             <ul class="nav navbar-nav mai-top-nav">
                                                 <li class="nav-item"><a href="{{route('admin.index')}}" class="nav-link">Home</a>
                                                 </li>
-                                                <li class="nav-item"><a href="" class="nav-link">About</a>
-                                                </li>
+                                               
                                                 <li class="nav-item"><a href="{{route('admin.showCourses')}}" class="nav-link">Courses</a>
                                                 </li>
                                                 <li class="nav-item"><a href="#" class="nav-link"></a>
@@ -166,7 +165,7 @@
                                                 <li class="nav-item">
                                                     <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
                         															<img src="img/product/pro4.jpg" alt="" />
-                        															<span class="admin-name">user.name</span>
+                        															<span class="admin-name">{{$user->name}}</span>
                         															<i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
                         														</a>
                                                     <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
