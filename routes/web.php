@@ -25,8 +25,11 @@ Route::post('/register','RegistrationController@verify')->name('register.verify'
 Route::get('/logout','logoutController@index')->name('logout.index');
 
 
-Route::get('/admin/deleteCourses','AdminController@deleteCourses')->name('admin.deleteCourses');
+Route::get('/admin/{id}/deleteCourses','AdminController@deleteCourses')->name('admin.deleteCourses');
+Route::post('/admin/deleteCoursePost','AdminController@deleteCoursePost')->name('admin.deleteCoursePost');
 Route::get('/admin/profile','AdminController@profile')->name('admin.profile');
+Route::post('/admin/editInfo','AdminController@editInfo')->name('admin.editInfo');
+Route::post('/admin/editPass','AdminController@editPass')->name('admin.editPass');
 Route::get('/admin/showCourses','AdminController@showCourses')->name('admin.showCourses');
 Route::get('/admin/showInstructors','AdminController@showInstructors')->name('admin.showInstructors');
 Route::get('/admin/showStudents','AdminController@showStudents')->name('admin.showStudents');

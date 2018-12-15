@@ -90,13 +90,13 @@ class RegistrationController extends Controller
               DB::table('students')->insert(['id' => $request->userid, 'name' => $request->name,'email' => $request->email, 'password' => $request->password, 'joined' => $date]);
 
               $request->session()->put('user_id',$request->userid);
-              return redirect()->route('student.index');
+              return redirect()->route('login.index');
             }
             else {
               DB::table('instructors')->insert(['id' => $request->userid, 'name' => $request->name,'email' => $request->email, 'password' => $request->password, 'joined' => $date]);
 
               $request->session()->put('user_id',$request->userid);
-              return redirect()->route('instructor.index');
+              return redirect()->route('login.index');
             }
 
             //echo "Inserted";
