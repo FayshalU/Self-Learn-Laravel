@@ -41,6 +41,7 @@ Route::get('/student/searchCourse/{id}','StudentController@searchCourse')->name(
 Route::get('/student/{id}/showCourse','StudentController@showCourse')->name('student.showCourse');
 Route::post('/student/showCoursePost','StudentController@showCoursePost')->name('student.showCoursePost');
 Route::get('/student/myCourse','StudentController@myCourse')->name('student.myCourse');
+Route::get('/student/{id}/showCourseTaken','StudentController@showCourseTaken')->name('student.showCourseTaken');
 Route::get('/student/chapter/{id}/{id2?}','StudentController@chapter')->name('student.chapter');
 Route::get('/student/{id}/enroll','StudentController@enroll')->name('student.enroll');
 Route::get('/student/{id}/quiz','StudentController@quiz')->name('student.quiz');
@@ -49,6 +50,7 @@ Route::get('/student/share/{id}','StudentController@share')->name('student.share
 Route::get('/student/profile','StudentController@profile')->name('student.profile');
 Route::post('/student/editInfo','StudentController@editInfo')->name('student.editInfo');
 Route::post('/student/editPass','StudentController@editPass')->name('student.editPass');
+Route::post('/student/addComment','StudentController@addComment')->name('student.addComment');
 Route::resource('/student','StudentController');
 
 
@@ -69,4 +71,5 @@ Route::get('/instructor/{id}/deleteCourse','InstructorController@deleteCourse')-
 Route::post('/instructor/deleteCoursePost','InstructorController@deleteCoursePost')->name('instructor.deleteCoursePost');
 Route::get('/instructor/{id}/addQuiz','InstructorController@addQuiz')->name('instructor.addQuiz');
 Route::post('/instructor/addQuizPost','InstructorController@addQuizPost')->name('instructor.addQuizPost');
+Route::post('/instructor/addComment','InstructorController@addComment')->name('instructor.addComment');
 Route::resource('/instructor','InstructorController');

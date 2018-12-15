@@ -222,7 +222,7 @@
                           </div>
                           <div class="product-buttons">
 
-                              <a href="{{route('student.chapter',[$courses[$i]->course_id])}}"><button type="button" class="button-default cart-btn">Read...</button></a>
+                              <a href="{{route('student.showCourseTaken',[$courses[$i]->course_id])}}"><button type="button" class="button-default cart-btn">See Course</button></a>
                           </div>
                       </div>
                   </div>

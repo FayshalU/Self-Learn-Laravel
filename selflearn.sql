@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 15, 2018 at 03:00 PM
+-- Generation Time: Dec 15, 2018 at 08:57 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.10
 
@@ -91,12 +91,20 @@ INSERT INTO `chapter_info` (`chapter_id`, `name`, `course_id`, `content`) VALUES
 --
 
 CREATE TABLE `comment` (
-  `comment_id` varchar(50) NOT NULL,
-  `post_id` varchar(50) NOT NULL,
+  `comment_id` int(50) NOT NULL,
+  `course_id` varchar(50) NOT NULL,
   `user_id` varchar(50) NOT NULL,
-  `text` varchar(300) NOT NULL,
-  `time` varchar(50) NOT NULL
+  `text` varchar(10000) NOT NULL,
+  `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `comment`
+--
+
+INSERT INTO `comment` (`comment_id`, `course_id`, `user_id`, `text`, `date`) VALUES
+(1, '1', 'bb', 'New Comment', '2018-12-15'),
+(2, '1', 'cc', 'Great Course!', '2018-12-15');
 
 -- --------------------------------------------------------
 
@@ -143,7 +151,8 @@ CREATE TABLE `courses_taken` (
 INSERT INTO `courses_taken` (`id`, `course_id`, `student_id`, `status`) VALUES
 (1, 1, 'bb', 'running'),
 (5, 1, 'cc', 'finished'),
-(6, 6, 'bb', 'running');
+(6, 6, 'bb', 'running'),
+(7, 10, 'cc', 'running');
 
 -- --------------------------------------------------------
 
@@ -202,7 +211,8 @@ INSERT INTO `login` (`id`, `password`, `type`) VALUES
 ('cc', 'cc', 'student'),
 ('dd', 'dd', 'instructor'),
 ('ee', 'ee', 'instructor'),
-('ff', 'ff', 'instructor');
+('ff', 'ff', 'instructor'),
+('fsl', 'ffff', 'student');
 
 -- --------------------------------------------------------
 
@@ -304,7 +314,8 @@ CREATE TABLE `students` (
 
 INSERT INTO `students` (`id`, `name`, `email`, `password`, `joined`) VALUES
 ('bb', 'Adam Levine', 'adam@gmail.com', 'bb', '2018-12-06'),
-('cc', 'New Student', 'student2@gmail.com', 'cc', '2018-12-01');
+('cc', 'New Student', 'student2@gmail.com', 'cc', '2018-12-01'),
+('fsl', 'Faysal', 'faysal@gmail.com', 'ffff', '2018-12-15');
 
 --
 -- Indexes for dumped tables
@@ -405,6 +416,12 @@ ALTER TABLE `chapter_info`
   MODIFY `chapter_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `comment`
+--
+ALTER TABLE `comment`
+  MODIFY `comment_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
@@ -414,7 +431,7 @@ ALTER TABLE `courses`
 -- AUTO_INCREMENT for table `courses_taken`
 --
 ALTER TABLE `courses_taken`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `post`

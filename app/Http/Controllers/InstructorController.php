@@ -33,16 +33,31 @@ class InstructorController extends Controller
                     ->where('instructor_id',$request->session()->get('user_id'))->get();
 
         $chapters = [];
+        $data = [];
 
         for ($i=0; $i < count($courses); $i++) {
           $chapter = DB::table('chapter_info')
                       ->where('course_id',$courses[$i]->course_id)->get();
           $chapters[$i] = count($chapter);
+
+          $taken=DB::table('courses_taken')
+                      ->where('course_id',$courses[$i]->course_id)->get();
+          $data[$i] = count($taken);
         }
+
+        $courseNames = [];
+
+        for ($i=0; $i < count($courses); $i++) {
+          $courseNames[$i] = $courses[$i]->name;
+        }
+
+        // print_r($courseNames);
 
         return view('instructor.myCourses')->with('courses',$courses)
                                         ->with('user',$user[0])
-                                        ->with('chapters',$chapters);
+                                        ->with('chapters',$chapters)
+                                        ->with('data',$data)
+                                        ->with('courseNames',$courseNames);
     }
 
     public function seeCourse(Request $request, $id)
@@ -58,9 +73,21 @@ class InstructorController extends Controller
 
         $data = (object)['count'=>count($taken)];
 
+        //Comment
+        $comments = DB::table('comment')
+                    ->where('course_id',$id)->get();
+        $students= [];
+
+        for ($i=0; $i < count($comments); $i++) {
+          $students[$i] =DB::table('students')
+                              ->where('id',$comments[$i]->user_id)->first();
+        }
+
          return view('instructor.seeCourse')->with('course',$course)
                                             ->with('user',$user[0])
-                                            ->with('data',$data);
+                                            ->with('data',$data)
+                                            ->with('comments',$comments)
+                                            ->with('students',$students);
      }
 
      public function chapter(Request $request, $id, $id2=null)
@@ -447,6 +474,24 @@ class InstructorController extends Controller
        }
 
       // return view('instructor.addCourses')->with('user',$user[0]);
+    }
+
+    public function addComment(Request $request)
+    {
+      $date = Carbon::now();
+
+      if($request->message=="")
+       {
+         //EMPTY:::::::::::::::;
+         $request->session()->flash('msg','Comment can not be empty');
+         return redirect()->route('instructor.seeCourse',$request->course_id);
+       }
+       else {
+         DB::table('comment')->insert(['course_id' => $request->course_id, 'user_id' => $request->session()->get('user_id'), 'date' => $date,'text' => $request->message]);
+
+         // $request->session()->flash('msg','Comment added successfully');
+         return redirect()->route('instructor.seeCourse',$request->course_id);
+       }
     }
 
     /**

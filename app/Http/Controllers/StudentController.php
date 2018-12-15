@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class StudentController extends Controller
 {
@@ -195,6 +196,48 @@ class StudentController extends Controller
                                         ->with('complete',$complete);
     }
 
+    public function showCourseTaken(Request $request,$id)
+    {
+        $course=DB::table('courses')
+                    ->where('course_id',$id)->get();
+
+
+        //print_r($data);
+
+
+        $user=DB::table('students')
+                ->where('id',$request->session()->get('user_id'))->get();
+
+        $chapter = DB::table('chapter_info')
+                    ->where('course_id',$course[0]->course_id)->get();
+
+        $complete = [];
+
+        $temp=0;
+        for ($j=0; $j < count($chapter); $j++) {
+          $quiz = DB::table('quiz_result')
+                      ->where('chapter_id',$chapter[$j]->chapter_id)
+                      ->where('student_id',$request->session()->get('user_id'))->get();
+          if (count($quiz)>0) {
+            $temp++;
+            // print_r($quiz);
+          }
+        }
+        if ($temp==0) {
+          $complete[0] = 0;
+        }
+        else {
+          // print_r($temp);
+          $complete[0] = ($temp / count($chapter)) *100 ;
+        }
+
+
+
+        return view('student.showCourseTaken')->with('course',$course[0])
+                            ->with('user',$user[0])
+                            ->with('complete',$complete);
+    }
+
     public function showCourse(Request $request,$id)
     {
         $course=DB::table('courses')
@@ -216,9 +259,21 @@ class StudentController extends Controller
         $user=DB::table('students')
                 ->where('id',$request->session()->get('user_id'))->get();
 
+        //Comment
+        $comments = DB::table('comment')
+                    ->where('course_id',$id)->get();
+        $students= [];
+
+        for ($i=0; $i < count($comments); $i++) {
+          $students[$i] =DB::table('students')
+                              ->where('id',$comments[$i]->user_id)->first();
+        }
+
         return view('student.showCourse')->with('course',$course[0])
                             ->with('user',$user[0])
-                            ->with('data',$data);
+                            ->with('data',$data)
+                            ->with('comments',$comments)
+                            ->with('students',$students);
     }
 
     public function showCoursePost(Request $request)
@@ -437,6 +492,24 @@ class StudentController extends Controller
           return redirect()->route('student.profile');
         }
 
+    }
+
+    public function addComment(Request $request)
+    {
+      $date = Carbon::now();
+
+      if($request->message=="")
+       {
+         //EMPTY:::::::::::::::;
+         $request->session()->flash('msg','Comment can not be empty');
+         return redirect()->route('student.showCourse',$request->course_id);
+       }
+       else {
+         DB::table('comment')->insert(['course_id' => $request->course_id, 'user_id' => $request->session()->get('user_id'), 'date' => $date,'text' => $request->message]);
+
+         // $request->session()->flash('msg','Comment added successfully');
+         return redirect()->route('student.showCourse',$request->course_id);
+       }
     }
 
     /**

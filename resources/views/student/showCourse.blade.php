@@ -243,6 +243,59 @@
                               </div>
                           </div>
 
+                          <div class="row">
+                              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                  <div class="comment-head">
+                                      <h3>Comments</h3>
+                                  </div>
+                              </div>
+                          </div>
+
+                    <?php for($i=0; $i< count($comments); $i++){ ?>
+
+                          <div class="row">
+                              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                  <div class="user-comment">
+                                      <!-- <img src="img/contact/1.jpg" alt=""> -->
+                                      <div class="comment-details">
+                                          <h4><strong>{{$students[$i]->name}}</strong> ({{$comments[$i]->date}})</h4>
+                                          <p>{{$comments[$i]->text}}</p>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+
+                    <?php } ?>
+
+                          <br>
+                          <div class="row">
+                              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                  <div class="lead-head">
+                                      <h3>Leave A Comment</h3>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="coment-area">
+                                  <form id="comment" method="post" action="/student/addComment" class="comment"  onsubmit="return checkComment()" novalidate="novalidate">
+                                    {{@csrf_field()}}
+
+                                    <input type="hidden" name="course_id" value="{{$course->course_id}}">
+
+                                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                          <div class="form-group">
+                                              <textarea name="message" id="message" cols="30" rows="10" placeholder="Message"></textarea>
+                                          </div>
+                                          <h4 style="text-align: center;color: #ff0000;font-weight: 200;" id="empty"></h4><br>
+                                          <h4 style="text-align: center;color: #ff0000;font-weight: 200;">{{session('msg')}}</h4><br>
+                                          <div class="payment-adress comment-stn">
+                                              <button type="submit" class="btn btn-primary waves-effect waves-light">Send</button>
+                                          </div>
+                                      </div>
+                                  </form>
+                              </div>
+                          </div>
+
                       </div>
                   </div>
 
@@ -269,7 +322,7 @@
 		============================================ -->
     <script src="build/js/vendor/jquery-1.12.4.min.js"></script>
 
-    <!-- <script src="../course.js"></script> -->
+    <script src="js/comment.js"></script>
 
     <!-- bootstrap JS
 		============================================ -->
