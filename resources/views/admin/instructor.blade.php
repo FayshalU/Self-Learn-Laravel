@@ -91,45 +91,46 @@
             <div class="left-custom-menu-adp-wrap comment-scrollbar">
                 <nav class="sidebar-nav left-sidebar-menu-pro">
                     <ul class="metismenu" id="menu1">
-                      <li>
-                          <a class="has-arrow" href="/student">
-                             <span class="educate-icon educate-home icon-wrap"></span>
-                             <span class="mini-click-non">Education</span>
-                          </a>
+                      <li class="active">
+                          <a class="has-arrow" href="{{route('admin.index')}}">
+                           <span class="educate-icon educate-home icon-wrap"></span>
+                           <span class="mini-click-non">Education</span>
+                        </a>
 
                       </li>
-                     
+
+                      <li>
+                          <a class="has-arrow" href="" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Courses</span></a>
+                          <ul class="submenu-angle" aria-expanded="false">
+                              <li><a title="All Courses" href="{{route('admin.showCourses')}}"><span class="mini-sub-pro">All Courses</span></a></li>
+                              <li><a title="Popular Courses" href="{{route('admin.popular')}}"><span class="mini-sub-pro">Popular Courses</span></a></li>
+
+
+                          </ul>
+
+                      </li>
+
                        <li>
-                            <a class="has-arrow" href="" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Courses</span></a>
-                            <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="All Courses" href="{{route('admin.showCourses')}}"><span class="mini-sub-pro">All Courses
-                                </span></a></li>
+                          <a class="has-arrow" href="" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Instructors</span></a>
 
-                            </ul>
+                           <ul class="submenu-angle" aria-expanded="false">
+                              <li><a title="All instrcutors" href="{{route('admin.showInstructors')}}"><span class="mini-sub-pro">All Instructors
+                              </span></a></li>
 
-                        </li>
+                          </ul>
 
-                         <li>
-                            <a class="has-arrow" href="" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Instructors</span></a>
+                      </li>
 
-                             <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="All instrcutors" href="{{route('admin.showInstructors')}}"><span class="mini-sub-pro">All Instructors
-                                </span></a></li>
+                      <li>
+                         <a class="has-arrow" href="" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Students</span></a>
 
-                            </ul>
+                          <ul class="submenu-angle" aria-expanded="false">
+                             <li><a title="All instrcutors" href="{{route('admin.showStudents')}}"><span class="mini-sub-pro">All Students
+                             </span></a></li>
 
-                        </li>
+                         </ul>
 
-                        <li>
-                           <a class="has-arrow" href="" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Students</span></a>
-
-                            <ul class="submenu-angle" aria-expanded="false">
-                               <li><a title="All instrcutors" href="{{route('admin.showStudents')}}"><span class="mini-sub-pro">All Students
-                               </span></a></li>
-
-                           </ul>
-
-                       </li>
+                     </li>
 
                     </ul>
                 </nav>
@@ -163,11 +164,13 @@
                                     <div class="col-lg-6 col-md-7 col-sm-6 col-xs-12">
                                         <div class="header-top-menu tabl-d-n">
                                             <ul class="nav navbar-nav mai-top-nav">
-                                                <li class="nav-item"><a href="{{route('admin.index')}}" class="nav-link">Home</a>
-                                                </li>
-                                               
-                                                <li class="nav-item"><a href="{{route('admin.showCourses')}}" class="nav-link">Courses</a>
-                                                </li>
+                                              <li class="nav-item"><a href="{{route('admin.index')}}" class="nav-link">Home</a>
+                                              </li>
+
+                                              <li class="nav-item"><a href="{{route('admin.showCourses')}}" class="nav-link">Courses</a>
+                                              </li>
+                                              <li class="nav-item"><a href="#" class="nav-link"></a>
+                                              </li>
 
                                             </ul>
                                         </div>
@@ -179,10 +182,10 @@
 
                                                 <li class="nav-item">
                                                     <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
-                                                                                    <!-- <img src="img/product/pro4.jpg" alt="" /> -->
-                                                                                    <span class="admin-name">{{$user->name}}</span>
-                                                                                    <i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
-                                                                                </a>
+                                                        <!-- <img src="img/product/pro4.jpg" alt="" /> -->
+                                                        <span class="admin-name">{{$user->name}}</span>
+                                                        <i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
+                                                    </a>
                                                     <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
 
                                                         <li><a href="{{route('admin.profile')}}"><span class="edu-icon edu-user-rounded author-log-ic"></span>My Profile</a>
@@ -271,25 +274,25 @@
                                                 <th data-field="name" data-editable="false">Instrcutor Name</th>
                                                 <th data-field="email" data-editable="false">Email</th>
                                                 <th data-field="joined" data-editable="false">Joined</th>
-                                               
-
+                                                <th data-field="joined" data-editable="false">Courses offered</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
 
-                                          @foreach($instructors as $instructor)
+                                      <?php for($i=0; $i< count($instructors); $i++){ ?>
 
                                             <tr>
-                                                <td>{{$instructor->id}}</td>
-                                                <td><a href="{{route('admin.showInstructors',[$instructor->id])}}">{{$instructor->name}}</a></td>
-                                                <td>{{$instructor->email}}</td>
-                                                <td>{{$instructor->joined}}</td>
-                                               
-                                                
+                                                <td>{{$instructors[$i]->id}}</td>
+                                                <td>{{$instructors[$i]->name}}</td>
+                                                <td>{{$instructors[$i]->email}}</td>
+                                                <td>{{$instructors[$i]->joined}}</td>
+                                                <td>{{$data[$i]}}</td>
+                                                <td><a href="{{route('admin.deleteInstructor',$instructors[$i]->id)}}"><button type="button" class="button-default cart-btn" name="button" value="Remove">Remove</button></a></td>
 
                                             </tr>
 
-                                          @endforeach
+                                      <?php } ?>
 
                                         </tbody>
                                     </table>

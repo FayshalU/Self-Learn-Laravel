@@ -4,88 +4,88 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>All Students</title>
+    <title>Popular Courses</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <base href="/">
 
     <!-- favicon
-        ============================================ -->
+		============================================ -->
     <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
     <!-- Google Fonts
-        ============================================ -->
+		============================================ -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
     <!-- Bootstrap CSS
-        ============================================ -->
+		============================================ -->
     <link rel="stylesheet" href="build/css/bootstrap.min.css">
     <!-- Bootstrap CSS
-        ============================================ -->
+		============================================ -->
     <link rel="stylesheet" href="build/css/font-awesome.min.css">
     <!-- owl.carousel CSS
-        ============================================ -->
+		============================================ -->
     <link rel="stylesheet" href="build/css/owl.carousel.css">
     <link rel="stylesheet" href="build/css/owl.theme.css">
     <link rel="stylesheet" href="build/css/owl.transitions.css">
     <!-- animate CSS
-        ============================================ -->
+		============================================ -->
     <link rel="stylesheet" href="build/css/animate.css">
     <!-- normalize CSS
-        ============================================ -->
+		============================================ -->
     <link rel="stylesheet" href="build/css/normalize.css">
     <!-- meanmenu icon CSS
-        ============================================ -->
+		============================================ -->
     <link rel="stylesheet" href="build/css/meanmenu.min.css">
     <!-- main CSS
-        ============================================ -->
+		============================================ -->
     <link rel="stylesheet" href="build/css/main.css">
     <!-- educate icon CSS
-        ============================================ -->
+		============================================ -->
     <link rel="stylesheet" href="build/css/educate-custon-icon.css">
     <!-- morrisjs CSS
-        ============================================ -->
+		============================================ -->
     <link rel="stylesheet" href="build/css/morrisjs/morris.css">
     <!-- mCustomScrollbar CSS
-        ============================================ -->
+		============================================ -->
     <link rel="stylesheet" href="build/css/scrollbar/jquery.mCustomScrollbar.min.css">
     <!-- metisMenu CSS
-        ============================================ -->
+		============================================ -->
     <link rel="stylesheet" href="build/css/metisMenu/metisMenu.min.css">
     <link rel="stylesheet" href="build/css/metisMenu/metisMenu-vertical.css">
     <!-- calendar CSS
-        ============================================ -->
+		============================================ -->
     <link rel="stylesheet" href="build/css/calendar/fullcalendar.min.css">
     <link rel="stylesheet" href="build/css/calendar/fullcalendar.print.min.css">
     <!-- x-editor CSS
-        ============================================ -->
+		============================================ -->
     <link rel="stylesheet" href="build/css/editor/select2.css">
     <link rel="stylesheet" href="build/css/editor/datetimepicker.css">
     <link rel="stylesheet" href="build/css/editor/bootstrap-editable.css">
     <link rel="stylesheet" href="build/css/editor/x-editor-style.css">
     <!-- normalize CSS
-        ============================================ -->
+		============================================ -->
     <link rel="stylesheet" href="build/css/data-table/bootstrap-table.css">
     <link rel="stylesheet" href="build/css/data-table/bootstrap-editable.css">
     <!-- style CSS
-        ============================================ -->
+		============================================ -->
     <link rel="stylesheet" href="build/css/style.css">
     <!-- responsive CSS
-        ============================================ -->
+		============================================ -->
     <link rel="stylesheet" href="build/css/responsive.css">
     <!-- modernizr JS
-        ============================================ -->
+		============================================ -->
     <script src="build/js/vendor/modernizr-2.8.3.min.js"></script>
 
 </head>
 
 <body>
     <!--[if lt IE 8]>
-        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
+		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+	<![endif]-->
     <!-- Start Left menu area -->
     <div class="left-sidebar-pro">
         <nav id="sidebar" class="">
             <div class="sidebar-header">
-                <a href="#"></a>
+                <a href="index.html"></a>
                 <strong><a href="index.html"></a></strong>
             </div>
             <div class="left-custom-menu-adp-wrap comment-scrollbar">
@@ -164,11 +164,13 @@
                                     <div class="col-lg-6 col-md-7 col-sm-6 col-xs-12">
                                         <div class="header-top-menu tabl-d-n">
                                             <ul class="nav navbar-nav mai-top-nav">
-                                                <li class="nav-item"><a href="{{route('admin.index')}}" class="nav-link">Home</a>
-                                                </li>
+                                              <li class="nav-item"><a href="{{route('admin.index')}}" class="nav-link">Home</a>
+                                              </li>
 
-                                                <li class="nav-item"><a href="{{route('admin.showCourses')}}" class="nav-link">Courses</a>
-                                                </li>
+                                              <li class="nav-item"><a href="{{route('admin.showCourses')}}" class="nav-link">Courses</a>
+                                              </li>
+                                              <li class="nav-item"><a href="#" class="nav-link"></a>
+                                              </li>
 
                                             </ul>
                                         </div>
@@ -180,18 +182,19 @@
 
                                                 <li class="nav-item">
                                                     <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
-                                                        <!-- <img src="img/product/pro4.jpg" alt="" /> -->
-                                                        <span class="admin-name">{{$user->name}}</span>
-                                                        <i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
-                                                    </a>
+                        															<!-- <img src="img/product/pro4.jpg" alt="" /> -->
+                        															<span class="admin-name">{{$user->name}}</span>
+                        															<i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
+                        														</a>
                                                     <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
 
-                                                        <li><a href="{{route('admin.profile')}}"><span class="edu-icon edu-user-rounded author-log-ic"></span>My Profile</a>
-                                                        </li>
+                                                      <li><a href="{{route('admin.profile')}}"><span class="edu-icon edu-user-rounded author-log-ic"></span>My Profile</a>
+                                                      </li>
 
-
-                                                        <li><a href="{{route('logout.index')}}"><span class="edu-icon edu-locked author-log-ic"></span>Log Out</a>
-                                                        </li>
+                                                      <li><a href=""><span class="edu-icon edu-settings author-log-ic"></span>Settings</a>
+                                                      </li>
+                                                      <li><a href="{{route('logout.index')}}"><span class="edu-icon edu-locked author-log-ic"></span>Log Out</a>
+                                                      </li>
                                                     </ul>
                                                 </li>
 
@@ -238,7 +241,7 @@
                                         <ul class="breadcome-menu">
                                             <li><a href="{{route('admin.index')}}">Home</a> <span class="bread-slash">/</span>
                                             </li>
-                                            <li><span class="bread-blod">students</span>
+                                            <li><span class="bread-blod">Popular Courses</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -257,7 +260,7 @@
                         <div class="sparkline13-list">
                             <div class="sparkline13-hd">
                                 <div class="main-sparkline13-hd">
-                                    <h1>Students</h1>
+                                    <h1>Popular Courses</h1>
                                 </div>
                             </div>
                             <div class="sparkline13-graph">
@@ -268,26 +271,29 @@
                                         <thead>
                                             <tr>
                                                 <th data-field="id">ID</th>
-                                                <th data-field="name" data-editable="false">Student Name</th>
-                                                <th data-field="email" data-editable="false">Email</th>
-                                                <th data-field="joined" data-editable="false">Joined</th>
-                                                <th data-field="joined" data-editable="false">Courses Taken</th>
-                                                <th>Action</th>
+                                                <th data-field="name" data-editable="false">Course Name</th>
+                                                <th data-field="email" data-editable="false">Instrcutor</th>
+                                                <th data-field="phone" data-editable="false">Enrolled</th>
+                                                <th data-field="price" data-editable="false">Finished</th>
+                                                <th data-field="complete" data-editable="false">Completed</th>
+                                                <th data-field="task" data-editable="false">Rate</th>
+
                                             </tr>
                                         </thead>
                                         <tbody>
 
-                                          <?php for($i=0; $i< count($students); $i++){ ?>
+                                          <?php for($i=0; $i< count($popular); $i++){ ?>
 
-                                                <tr>
-                                                    <td>{{$students[$i]->id}}</td>
-                                                    <td>{{$students[$i]->name}}</td>
-                                                    <td>{{$students[$i]->email}}</td>
-                                                    <td>{{$students[$i]->joined}}</td>
-                                                    <td>{{$data[$i]}}</td>
-                                                    <td><a href="{{route('admin.deleteStudent',$students[$i]->id)}}"><button type="button" class="button-default cart-btn" name="button" value="Remove">Remove</button></a></td>
+                                            <tr>
+                                                <td>{{$popular[$i]->course_id}}</td>
+                                                <td>{{$popular[$i]->name}}</td>
+                                                <td>{{$instructor[$i]->name}}</td>
+                                                <td>{{$count[$i]}}</td>
+                                                <td>{{$finish[$i]}}</td>
+                                                <td class="datatable-ct"><span class="pie">{{$finish[$i]}}/{{$count[$i]}}</span></td>
+                                                <td>{{$rate[$i]}}%</td>
 
-                                                </tr>
+                                            </tr>
 
                                           <?php } ?>
 
@@ -316,39 +322,39 @@
     </div>
 
     <!-- jquery
-        ============================================ -->
+		============================================ -->
     <script src="build/js/vendor/jquery-1.12.4.min.js"></script>
     <!-- bootstrap JS
-        ============================================ -->
+		============================================ -->
     <script src="build/js/bootstrap.min.js"></script>
     <!-- wow JS
-        ============================================ -->
+		============================================ -->
     <script src="build/js/wow.min.js"></script>
     <!-- price-slider JS
-        ============================================ -->
+		============================================ -->
     <script src="build/js/jquery-price-slider.js"></script>
     <!-- meanmenu JS
-        ============================================ -->
+		============================================ -->
     <script src="build/js/jquery.meanmenu.js"></script>
     <!-- owl.carousel JS
-        ============================================ -->
+		============================================ -->
     <script src="build/js/owl.carousel.min.js"></script>
     <!-- sticky JS
-        ============================================ -->
+		============================================ -->
     <script src="build/js/jquery.sticky.js"></script>
     <!-- scrollUp JS
-        ============================================ -->
+		============================================ -->
     <script src="build/js/jquery.scrollUp.min.js"></script>
     <!-- mCustomScrollbar JS
-        ============================================ -->
+		============================================ -->
     <script src="build/js/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="build/js/scrollbar/mCustomScrollbar-active.js"></script>
     <!-- metisMenu JS
-        ============================================ -->
+		============================================ -->
     <script src="build/js/metisMenu/metisMenu.min.js"></script>
     <script src="build/js/metisMenu/metisMenu-active.js"></script>
     <!-- data table JS
-        ============================================ -->
+		============================================ -->
     <script src="build/js/data-table/bootstrap-table.js"></script>
     <script src="build/js/data-table/tableExport.js"></script>
     <script src="build/js/data-table/data-table-active.js"></script>
@@ -358,7 +364,7 @@
     <script src="build/js/data-table/colResizable-1.5.source.js"></script>
     <script src="build/js/data-table/bootstrap-table-export.js"></script>
     <!--  editable JS
-        ============================================ -->
+		============================================ -->
     <script src="build/js/editable/jquery.mockjax.js"></script>
     <script src="build/js/editable/mock-active.js"></script>
     <script src="build/js/editable/select2.js"></script>
@@ -367,17 +373,17 @@
     <script src="build/js/editable/bootstrap-editable.js"></script>
     <script src="build/js/editable/xediable-active.js"></script>
     <!-- Chart JS
-        ============================================ -->
+		============================================ -->
     <script src="build/js/chart/jquery.peity.min.js"></script>
     <script src="build/js/peity/peity-active.js"></script>
     <!-- tab JS
-        ============================================ -->
+		============================================ -->
     <script src="build/js/tab.js"></script>
     <!-- plugins JS
-        ============================================ -->
+		============================================ -->
     <script src="build/js/plugins.js"></script>
     <!-- main JS
-        ============================================ -->
+		============================================ -->
     <script src="build/js/main.js"></script>
 
 

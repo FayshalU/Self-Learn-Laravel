@@ -75,21 +75,46 @@
             <div class="left-custom-menu-adp-wrap comment-scrollbar">
                 <nav class="sidebar-nav left-sidebar-menu-pro">
                     <ul class="metismenu" id="menu1">
-                      <li>
-                          <a class="has-arrow" href="/student">
-                             <span class="educate-icon educate-home icon-wrap"></span>
-                             <span class="mini-click-non">Education</span>
-                          </a>
+                      <li class="active">
+                          <a class="has-arrow" href="{{route('admin.index')}}">
+                           <span class="educate-icon educate-home icon-wrap"></span>
+                           <span class="mini-click-non">Education</span>
+                        </a>
 
                       </li>
+
                       <li>
                           <a class="has-arrow" href="" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Courses</span></a>
                           <ul class="submenu-angle" aria-expanded="false">
-                            <li><a title="All Courses" href="{{route('student.course')}}"><span class="mini-sub-pro">All Courses</span></a></li>
-                            <li><a title="Popular Courses" href="{{route('student.popular')}}"><span class="mini-sub-pro">Popular Courses</span></a></li>
-                           
+                              <li><a title="All Courses" href="{{route('admin.showCourses')}}"><span class="mini-sub-pro">All Courses</span></a></li>
+                              <li><a title="Popular Courses" href="{{route('admin.popular')}}"><span class="mini-sub-pro">Popular Courses</span></a></li>
+
+
                           </ul>
+
                       </li>
+
+                       <li>
+                          <a class="has-arrow" href="" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Instructors</span></a>
+
+                           <ul class="submenu-angle" aria-expanded="false">
+                              <li><a title="All instrcutors" href="{{route('admin.showInstructors')}}"><span class="mini-sub-pro">All Instructors
+                              </span></a></li>
+
+                          </ul>
+
+                      </li>
+
+                      <li>
+                         <a class="has-arrow" href="" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Students</span></a>
+
+                          <ul class="submenu-angle" aria-expanded="false">
+                             <li><a title="All instrcutors" href="{{route('admin.showStudents')}}"><span class="mini-sub-pro">All Students
+                             </span></a></li>
+
+                         </ul>
+
+                     </li>
 
                     </ul>
                 </nav>
@@ -123,12 +148,13 @@
                                     <div class="col-lg-6 col-md-7 col-sm-6 col-xs-12">
                                         <div class="header-top-menu tabl-d-n">
                                             <ul class="nav navbar-nav mai-top-nav">
-                                                <li class="nav-item"><a href="{{route('student.index')}}" class="nav-link">Home</a>
-                                                </li>
-                                                <li class="nav-item"><a href="" class="nav-link">About</a>
-                                                </li>
-                                                <li class="nav-item"><a href="{{route('student.course')}}" class="nav-link">Courses</a>
-                                                </li>
+                                              <li class="nav-item"><a href="{{route('admin.index')}}" class="nav-link">Home</a>
+                                              </li>
+
+                                              <li class="nav-item"><a href="{{route('admin.showCourses')}}" class="nav-link">Courses</a>
+                                              </li>
+                                              <li class="nav-item"><a href="#" class="nav-link"></a>
+                                              </li>
 
                                             </ul>
                                         </div>
@@ -140,13 +166,13 @@
 
                                                 <li class="nav-item">
                                                     <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
-                                                                                    <!-- <img src="img/product/pro4.jpg" alt="" /> -->
-                                                                                    <span class="admin-name">{{$user->name}}</span>
-                                                                                    <i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
-                                                                                </a>
+                                                        <!-- <img src="img/product/pro4.jpg" alt="" /> -->
+                                                        <span class="admin-name">{{$user->name}}</span>
+                                                        <i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
+                                                    </a>
                                                     <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
 
-                                                        <li><a href="{{route('student.profile')}}"><span class="edu-icon edu-user-rounded author-log-ic"></span>My Profile</a>
+                                                        <li><a href="{{route('admin.profile')}}"><span class="edu-icon edu-user-rounded author-log-ic"></span>My Profile</a>
                                                         </li>
 
                                                         <li><a href=""><span class="edu-icon edu-settings author-log-ic"></span>Settings</a>
@@ -190,7 +216,7 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div class="breadcome-heading nav-item">
-                                          <form method="post" action="{{route('student.showCoursePost')}}">
+                                          <!-- <form method="post" action="{{route('student.showCoursePost')}}">
                                             {{@csrf_field()}}
                                             <input type="text" name="src" id="search" placeholder="Search..." class="" >
                                             <a href="" id="srcbtn" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"></a>
@@ -199,14 +225,14 @@
                                             <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn" id="ul">
 
                                             </ul>
-                                          </form>
+                                          </form> -->
 
                                         </div>
 
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <ul class="breadcome-menu">
-                                            <li><a href="{{route('student.index')}}">Home</a> <span class="bread-slash">/</span>
+                                            <li><a href="{{route('admin.index')}}">Home</a> <span class="bread-slash">/</span>
                                             </li>
                                             <li><span class="bread-blod">All Courses</span>
                                             </li>
@@ -232,7 +258,7 @@
                           </div>
 
                           <div class="course-des">
-                              
+
                               <p><span><i class="fa fa-clock"></i></span> <b>Instrcutor:</b> {{$course->instructor_id}}</p>
                           </div>
                           <div class="product-buttons">

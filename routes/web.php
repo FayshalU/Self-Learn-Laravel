@@ -31,8 +31,13 @@ Route::get('/admin/profile','AdminController@profile')->name('admin.profile');
 Route::post('/admin/editInfo','AdminController@editInfo')->name('admin.editInfo');
 Route::post('/admin/editPass','AdminController@editPass')->name('admin.editPass');
 Route::get('/admin/showCourses','AdminController@showCourses')->name('admin.showCourses');
+Route::get('/admin/popular','AdminController@popular')->name('admin.popular');
 Route::get('/admin/showInstructors','AdminController@showInstructors')->name('admin.showInstructors');
+Route::get('/admin/{id}/deleteInstructor','AdminController@deleteInstructor')->name('admin.deleteInstructor');
+Route::post('/admin/deleteInstructorPost','AdminController@deleteInstructorPost')->name('admin.deleteInstructorPost');
 Route::get('/admin/showStudents','AdminController@showStudents')->name('admin.showStudents');
+Route::get('/admin/{id}/deleteStudent','AdminController@deleteStudent')->name('admin.deleteStudent');
+Route::post('/admin/deleteStudentPost','AdminController@deleteStudentPost')->name('admin.deleteStudentPost');
 Route::resource('/admin','AdminController');
 
 

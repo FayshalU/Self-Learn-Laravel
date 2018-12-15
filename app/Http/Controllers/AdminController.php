@@ -29,70 +29,132 @@ class AdminController extends Controller
         $user=DB::table('admins')
               ->where('id',$request->session()->get('user_id'))->get();
 
-             
-      
-
-       
-      
-      
          $instructors = DB::table('instructors')
                         ->get();
-    
 
-      
-        return view('admin.instructor')
-                                    ->with('instructors',$instructors)
-                                    ->with('user',$user[0]);
+        $data = [];
+
+        for ($i=0; $i < count($instructors); $i++) {
+          $temp=DB::table('courses')
+                  ->where('instructor_id',$instructors[$i]->id)->get();
+
+          $data[$i] = count($temp);
+        }
+
+        return view('admin.instructor')->with('instructors',$instructors)
+                                    ->with('user',$user[0])
+                                    ->with('data',$data);
     }
 
-
-
-
- public function showStudents(Request $request){
+    public function showStudents(Request $request){
 
         $user=DB::table('admins')
               ->where('id',$request->session()->get('user_id'))->get();
 
-             
-      
-
-       
-      
-      
          $students = DB::table('students')
                         ->get();
-    
 
-      
+        $data = [];
+
+        for ($i=0; $i < count($students); $i++) {
+          $temp=DB::table('courses_taken')
+                  ->where('student_id',$students[$i]->id)->get();
+
+          $data[$i] = count($temp);
+        }
+
         return view('admin.student')
                                     ->with('students',$students)
-                                    ->with('user',$user[0]);
+                                    ->with('user',$user[0])
+                                    ->with('data',$data);
     }
 
     public function showCourses(Request $request)
     {
-    
-
 
       $user=DB::table('admins')
               ->where('id',$request->session()->get('user_id'))->get();
 
-             
-      
-
-       
-      
-      
          $courses = DB::table('courses')
                         ->get();
-    
 
-      
         return view('admin.showCourses')
                                     ->with('courses',$courses)
                                     ->with('user',$user[0]);
 
-       }
+    }
+
+    public function popular(Request $request)
+    {
+      // echo "string";
+      $user=DB::table('admins')
+              ->where('id',$request->session()->get('user_id'))->get();
+
+      $courses=DB::table('courses')->get();
+
+      $length = count($courses);
+
+      $count = [];
+      for ($i=0; $i < $length; $i++) {
+        $temp = DB::table('courses_taken')
+                    ->where('course_id',$courses[$i]->course_id)->get();
+        $count[$i] = count($temp);
+      }
+
+      $count2 = $count;
+      rsort($count2);
+      // print_r($count2);
+
+      $popular = [];
+      $check = [];
+      for ($i=0; $i <$length ; $i++) {
+        for ($j=0; $j <$length ; $j++) {
+          if (($count2[$i] == $count[$j]) && (!in_array($j, $check)) ) {
+              $popular[$i] = $courses[$j];
+              $check[$i] = $j;
+              break;
+          }
+        }
+      }
+
+      // print_r($popular);
+
+      $instructor = [];
+      for ($i=0; $i < $length; $i++) {
+        $instructor[$i] = DB::table('instructors')
+                              ->where('id',$popular[$i]->instructor_id)->first();
+      }
+
+      // print_r($instructor[0][0]->name);
+
+      $finish = [];
+      for ($i=0; $i < $length; $i++) {
+        $temp = DB::table('courses_taken')
+                    ->where('course_id',$popular[$i]->course_id)
+                    ->where('status',"finished")->get();
+        $finish[$i] = count($temp);
+      }
+
+      $rate = [];
+      for ($i=0; $i < $length; $i++) {
+
+        if ($count2[$i] != 0) {
+          $rate[$i] = ($finish[$i] / $count2[$i]) * 100;
+        }
+        else {
+          $rate[$i] = 0;
+        }
+
+
+      }
+
+      return view('admin.popular')->with('popular',$popular)
+                                    ->with('user',$user[0])
+                                    ->with('instructor',$instructor)
+                                    ->with('count',$count2)
+                                    ->with('finish',$finish)
+                                    ->with('rate',$rate);
+    }
 
 
     public function deleteCourses(Request $request,$id)
@@ -118,6 +180,62 @@ class AdminController extends Controller
         }
         else {
           return redirect()->route('admin.showCourses');
+        }
+
+    }
+
+    public function deleteInstructor(Request $request,$id)
+    {
+       $user=DB::table('admins')
+              ->where('id',$request->session()->get('user_id'))->get();
+
+        $instructor=DB::table('instructors')
+                    ->where('id',$id)->get();
+
+
+        return view('admin.deleteInstructor')->with('instructor',$instructor[0])
+                                              ->with('user',$user[0]);
+    }
+
+    public function deleteInstructorPost(Request $request)
+    {
+        $id = $request->id;
+
+        if (isset($_POST['yes'])) {
+          DB::table('instructors')->where('id', $id)->delete();
+          DB::table('login')->where('id', $id)->delete();
+          return redirect()->route('admin.showInstructors');
+        }
+        else {
+          return redirect()->route('admin.showInstructors');
+        }
+
+    }
+
+    public function deleteStudent(Request $request,$id)
+    {
+       $user=DB::table('admins')
+              ->where('id',$request->session()->get('user_id'))->get();
+
+        $students=DB::table('students')
+                    ->where('id',$id)->get();
+
+
+        return view('admin.deleteStudent')->with('students',$students[0])
+                                              ->with('user',$user[0]);
+    }
+
+    public function deleteStudentPost(Request $request)
+    {
+        $id = $request->id;
+
+        if (isset($_POST['yes'])) {
+          DB::table('students')->where('id', $id)->delete();
+          DB::table('login')->where('id', $id)->delete();
+          return redirect()->route('admin.showStudents');
+        }
+        else {
+          return redirect()->route('admin.showStudents');
         }
 
     }
@@ -214,14 +332,14 @@ class AdminController extends Controller
 
     }
 
-    
+
 
     // public function showInstructors()
     // {
     //     return view('admin.instructor');
     // }
 
-   
+
 
     /**
      * Show the form for creating a new resource.

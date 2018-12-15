@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Delete Course</title>
+    <title>Delete Student</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <base href="/">
@@ -223,7 +223,7 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="product-payment-inner-st">
                             <ul id="myTabedu1" class="tab-review-design">
-                                <li class="active"><a href="#description">{{$course->name}}</a></li>
+                                <li class="active"><a href="#description">{{$students->name}}</a></li>
 
                             </ul>
                             <div id="myTabContent" class="tab-content custom-product-edit">
@@ -232,17 +232,17 @@
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="review-content-section">
                                                 <div id="dropzone1" class="pro-ad addcoursepro">
-                                                    <form  method="post" action="/admin/deleteCoursePost" class="dropzone dropzone-custom needsclick addcourse" id="demo1-upload">
+                                                    <form  method="post" action="/admin/deleteStudentPost" class="dropzone dropzone-custom needsclick addcourse" id="demo1-upload">
                                                       {{@csrf_field()}}
                                                         <div class="row">
                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 
 
                                                                 <div class="form-group">
-                                                                 <h4>Are you sure you want to delete this course?</h4>
+                                                                 <h4>Are you sure you want to delete this instructor?</h4>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                  <input type="hidden" name="id" value=" {{$course->course_id}} "/>
+                                                                  <input type="hidden" name="id" value=" {{$students->id}} "/>
                                                                    <input name="yes" type="submit" class="form-control btn btn-danger" value="Yes" ><br>
                                                                    <input name="no" type="submit" class="form-control btn btn-green" value="No" >
                                                                 </div>

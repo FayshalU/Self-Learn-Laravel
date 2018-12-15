@@ -81,8 +81,9 @@
                         <li>
                             <a class="has-arrow" href="" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Courses</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="All Courses" href="{{route('admin.showCourses')}}"><span class="mini-sub-pro">All Courses
-                                </span></a></li>
+                                <li><a title="All Courses" href="{{route('admin.showCourses')}}"><span class="mini-sub-pro">All Courses</span></a></li>
+                                <li><a title="Popular Courses" href="{{route('admin.popular')}}"><span class="mini-sub-pro">Popular Courses</span></a></li>
+
 
                             </ul>
 
@@ -147,7 +148,7 @@
                                             <ul class="nav navbar-nav mai-top-nav">
                                                 <li class="nav-item"><a href="{{route('admin.index')}}" class="nav-link">Home</a>
                                                 </li>
-                                               
+
                                                 <li class="nav-item"><a href="{{route('admin.showCourses')}}" class="nav-link">Courses</a>
                                                 </li>
                                                 <li class="nav-item"><a href="#" class="nav-link"></a>
@@ -224,15 +225,14 @@
 
                                       <div class="blog-details blog-sig-details">
 
-                                        <!-- User Post -->
+                                        <!-- post loop -->
 
-                                        <!-- <%
-                                          for(var i=0; i< post.length; i++){ %>
+                                        @foreach($posts as $post)
 
-                                            <h1><a class="blog-ht" href="#"><%= post[i].user_name %></a></h1>
-                                            <p style="font-size: 20px;"><%= post[i].text %></p><br>
+                                        <h1><a class="blog-ht" href="">{{ $post->user_name }}</a></h1>
+                                        <p style="font-size: 20px;">{{ $post->text }}</p><br>
 
-                                        <% } %> -->
+                                    		@endforeach
 
                                       </div>
                                       <div class="product-buttons">
