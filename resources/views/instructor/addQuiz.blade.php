@@ -91,7 +91,7 @@
                                 <li><a title="All Courses" href="{{route('instructor.create')}}"><span class="mini-sub-pro">Add Courses</span></a></li>
 
                             </ul>
-                            
+
                         </li>
 
 
@@ -137,7 +137,7 @@
                                                 </li>
                                                 <li class="nav-item"><a href="" class="nav-link">About</a>
                                                 </li>
-                                                <li class="nav-item"><a href="/admin/course" class="nav-link">Courses</a>
+                                                <li class="nav-item"><a href="{{route('instructor.myCourses')}}" class="nav-link">Courses</a>
                                                 </li>
                                                 <li class="nav-item"><a href="#" class="nav-link"></a>
                                                 </li>
@@ -154,12 +154,12 @@
                                                 <li class="nav-item">
                                                     <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
                         															<img src="img/product/pro4.jpg" alt="" />
-                        															<span class="admin-name">user name</span>
+                        															<span class="admin-name">{{$user->name}}</span>
                         															<i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
                         														</a>
                                                     <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
 
-                                                        <li><a href="/admin/profile"><span class="edu-icon edu-user-rounded author-log-ic"></span>My Profile</a>
+                                                        <li><a href="{{route('instructor.profile')}}"><span class="edu-icon edu-user-rounded author-log-ic"></span>My Profile</a>
                                                         </li>
 
                                                         <li><a href=""><span class="edu-icon edu-settings author-log-ic"></span>Settings</a>
@@ -189,7 +189,7 @@
                                 <div class="row">
                                   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                       <div class="breadcome-heading nav-item">
-                                        <h6 style="text-align: center;font-weight: 300;height: 10px;font-size: 40px;">Course Name</h6>
+                                        <h6 style="text-align: center;font-weight: 300;height: 10px;font-size: 40px;">{{$course->name}}</h6>
 
                                       </div>
 
@@ -220,25 +220,27 @@
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="review-content-section">
                                                 <div id="dropzone1" class="pro-ad addcoursepro">
-                                                    <form  method="post"  onsubmit="return checkInfo()" class="dropzone dropzone-custom needsclick addcourse" id="demo1-upload">
+                                                    <form  method="post" action="/instructor/addQuizPost"  onsubmit="return checkInfo()" class="dropzone dropzone-custom needsclick addcourse" id="demo1-upload">
+                                                      {{@csrf_field()}}
                                                         <div class="row">
                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 
+                                                              <input type="hidden" name="course_id" id="course_id" value="{{$course->course_id}}">
+                                                              <input type="hidden" name="chapter_id" id="chapter_id" value="{{$chapters[0]->chapter_id}}">
 
                                                               <div class="form-group">
                                                                 <label for="chapter">Chapter Name</label>
                                                                   <select class="form-control"  name="chapter" id="chapter">
-                                                                    <option value="1">Programming Language 1</option>
-                                                                    <option value="2">Programming Language 1</option>
-                                                                    <option value="3">Programming Language 1</option>
-                                                                    <option value="4">Programming Language 1</option>
-                                                                    <option value="5">Programming Language 1</option>
 
+                                                            <?php for($i=0; $i< count($chapters); $i++){ ?>
+
+                                                                      <option value="{{$i}}">{{$chapters[$i]->name}}</option>
+
+                                                              <?php } ?>
 
 
                                                                   </select>
-                                                                  <!-- <input name="chapter" id="chapter" type="text" class="form-control" placeholder="Chapter" value=""> -->
-                                                                  <h4 id="h2" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4>
+
 
                                                               </div>
                                                             </div>
@@ -255,27 +257,42 @@
 
                                                                       <div class="form-group">
 
-                                                                        <input class="form-control"  type="text" name="question" value="" placeholder="Question">
+                                                                        <input class="form-control"  type="text" name="question" id="question" value="" placeholder="Question">
                                                                       </div>
+                                                                      <h4 id="h1" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4>
                                                                     </div>
                                                                     <br><br>
 
                                                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                                                                       <label for="op1">Option-1</label><br>
                                                                       <input name="op1" type="text" class="form-control" id="op1" placeholder="Option-1" value="">
+                                                                      <h4 id="h2" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4>
                                                                     </div>
                                                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                                                                       <label for="op2">Option-2</label><br>
                                                                       <input name="op2" type="text" class="form-control" id="op2" placeholder="Option-2" value="">
+                                                                      <h4 id="h3" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4>
                                                                     </div>
                                                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                                                                       <label for="op3">Option-3</label><br>
                                                                       <input name="op3" type="text" class="form-control" id="op3" placeholder="Option-3" value="">
+                                                                      <h4 id="h4" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4>
                                                                     </div>
                                                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                                                                       <label for="op4">Option-4</label><br>
                                                                       <input name="op4" type="text" class="form-control" id="op4" placeholder="Option-4" value="">
+                                                                      <h4 id="h5" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4>
                                                                     </div>
+
+                                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                                                                      <div class="form-group">
+                                                                        <label for="answer">Answer</label><br>
+                                                                        <input name="answer" type="text" class="form-control" id="answer" placeholder="Answer" value="">
+                                                                      </div>
+                                                                      <h4 id="h6" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4>
+                                                                    </div>
+
                                                                   </li>
 
 
@@ -284,7 +301,8 @@
 
 
 
-
+                                                          <!-- Quiz message -->
+                                                          <h4 style="text-align: center;color: #ff0000;font-weight: 200;">{{session('msg')}}</h4><br>
 
                                                         <br><br>
                                                         <div class="row">
@@ -318,7 +336,26 @@
         <!-- <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.sticky/1.0.4/jquery.sticky.js"></script> -->
 
-        <!-- <script src="../course.js"></script> -->
+        <script>
+
+        $("#chapter").on('change', function (){
+
+            console.log("Changed");
+
+            var data = $("#chapter").val();
+            console.log(data);
+
+            var array = <?php echo json_encode($chapters);?> ;
+
+            console.log(array[data].chapter_id);
+
+            $("#chapter_id").val(array[data].chapter_id);
+
+          });
+
+        </script>
+
+        <script src="js/addQuiz.js"></script>
 
         <!-- bootstrap JS
         ============================================ -->
@@ -368,7 +405,6 @@
         ============================================ -->
         <script src="build/js/main.js"></script>
 
-        <script src="build/js/addCourse.js"></script>
 
 </body>
 

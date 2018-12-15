@@ -7,8 +7,6 @@ $(document).ready(function(){
 
 function checkName(){
 
-    var re = /^[A-Z a-z0-9]+$/;
-
     var data = $("#coursename").val();
     if(!isValid){
       return;
@@ -18,11 +16,7 @@ function checkName(){
         $("#h1").show();
         isValid = false;
     }
-    else if(!re.test(data)){
-        $("#h1").text("Can not contain numbers or special characters");
-        $("#h1").show();
-        isValid = false;
-    }
+
     else{
         $("#h1").text("");
         $("#h1").hide();
@@ -30,21 +24,14 @@ function checkName(){
     }
 }
 
-function checkChapter(){
+function checkDesc(){
 
-    var re = /^[0-9]+$/;
-
-    var data = $("#chapter").val();
+    var data = $("#desc").val();
     if(!isValid){
       return;
     }
     else if(data == ""){
-        $("#h2").text("Chapter can't be empty");
-        $("#h2").show();
-        isValid = false;
-    }
-    else if(!re.test(data)){
-        $("#h2").text("Invalid input");
+        $("#h2").text("Description can't be empty");
         $("#h2").show();
         isValid = false;
     }
@@ -62,7 +49,113 @@ function checkInfo() {
   $("h4").hide();
 
   checkName();
-  checkChapter();
+  checkDesc();
+
+  if(!isValid){
+    return false;
+  }
+
+  return true;
+}
+
+function checkNameNew(){
+
+    var data = $("#chapterNameNew").val();
+    if(!isValid){
+      return;
+    }
+    else if(data == ""){
+        $("#h5").text("Chapter name can't be empty");
+        $("#h5").show();
+        isValid = false;
+    }
+
+    else{
+        $("#h5").text("");
+        $("#h5").hide();
+        isValid = true;
+    }
+}
+
+function checkContentNew(){
+
+    var data = $("#contentNew").val();
+    if(!isValid){
+      return;
+    }
+    else if(data == ""){
+        $("#h6").text("Content can't be empty");
+        $("#h6").show();
+        isValid = false;
+    }
+    else{
+        $("#h6").text("");
+        $("#h6").hide();
+        isValid = true;
+    }
+}
+
+function addChapter() {
+
+  isValid = true;
+
+  $("h4").hide();
+
+  checkNameNew();
+  checkContentNew();
+
+  if(!isValid){
+    return false;
+  }
+
+  return true;
+}
+
+function checkChapterName(){
+
+    var data = $("#chapterName").val();
+    if(!isValid){
+      return;
+    }
+    else if(data == ""){
+        $("#h3").text("Chapter name can't be empty");
+        $("#h3").show();
+        isValid = false;
+    }
+
+    else{
+        $("#h3").text("");
+        $("#h3").hide();
+        isValid = true;
+    }
+}
+
+function checkContent(){
+
+    var data = $("#content").val();
+    if(!isValid){
+      return;
+    }
+    else if(data == ""){
+        $("#h4").text("Content can't be empty");
+        $("#h4").show();
+        isValid = false;
+    }
+    else{
+        $("#h4").text("");
+        $("#h4").hide();
+        isValid = true;
+    }
+}
+
+function checkChapter(){
+
+  isValid = true;
+
+  $("h4").hide();
+
+  //checkChapterName();
+  //checkContent();
 
   if(!isValid){
     return false;

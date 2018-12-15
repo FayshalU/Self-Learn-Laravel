@@ -75,23 +75,20 @@
             <div class="left-custom-menu-adp-wrap comment-scrollbar">
                 <nav class="sidebar-nav left-sidebar-menu-pro">
                     <ul class="metismenu" id="menu1">
-                        <li>
-                            <a class="has-arrow" href="{{route('instructor.index')}}">
-            								   <span class="educate-icon educate-home icon-wrap"></span>
-            								   <span class="mini-click-non">Education</span>
-            								</a>
+                      <li>
+                          <a class="has-arrow" href="/student">
+                             <span class="educate-icon educate-home icon-wrap"></span>
+                             <span class="mini-click-non">Education</span>
+                          </a>
 
-                        </li>
-                        <li>
-                            <a class="has-arrow" href="" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Courses</span></a>
-                            <ul class="submenu-angle" aria-expanded="false">
-                              <li><a title="All Courses" href="{{route('instructor.myCourses')}}"><span class="mini-sub-pro">My Courses</span></a></li>
-                            </ul>
-                            <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="All Courses" href="{{route('instructor.create')}}"><span class="mini-sub-pro">Add Courses</span></a></li>
-
-                            </ul>
-                        </li>
+                      </li>
+                      <li>
+                          <a class="has-arrow" href="" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Courses</span></a>
+                          <ul class="submenu-angle" aria-expanded="false">
+                            <li><a title="All Courses" href="{{route('instructor.myCourses')}}"><span class="mini-sub-pro">My Courses</span></a></li>
+                            <li><a title="My Courses" href="{{route('instructor.create')}}"><span class="mini-sub-pro">Add Course</span></a></li>
+                          </ul>
+                      </li>
                     </ul>
                 </nav>
             </div>
@@ -128,7 +125,7 @@
                                                 </li>
                                                 <li class="nav-item"><a href="#" class="nav-link">About</a>
                                                 </li>
-                                                <li class="nav-item"><a href="{{route('instructor.myCourses')}}" class="nav-link"> My Courses</a>
+                                                <li class="nav-item"><a href="{{route('instructor.myCourses')}}" class="nav-link">Courses</a>
                                                 </li>
 
                                             </ul>
@@ -142,15 +139,15 @@
                                                 <li class="nav-item">
                                                     <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
                         															<!-- <img src="img/product/pro4.jpg" alt="" /> -->
-                        															<span class="admin-name">user name</span>
+                        															<span class="admin-name">{{$user->name}}</span>
                         															<i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
                         														</a>
                                                     <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
 
-                                                        <li><a href="{{route('instructor.profile')}}"><span class="edu-icon edu-user-rounded author-log-ic"></span>My Profile</a>
+                                                        <li><a href=""><span class="edu-icon edu-user-rounded author-log-ic"></span>My Profile</a>
                                                         </li>
 
-                                                        <li><a href="#"><span class="edu-icon edu-settings author-log-ic"></span>Settings</a>
+                                                        <li><a href=""><span class="edu-icon edu-settings author-log-ic"></span>Settings</a>
                                                         </li>
                                                         <li><a href="{{route('logout.index')}}"><span class="edu-icon edu-locked author-log-ic"></span>Log Out</a>
                                                         </li>
@@ -230,7 +227,7 @@
                                             <div class="row">
                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                     <div class="address-hr">
-                                                        <p><b>Name</b><br>user name</p>
+                                                        <p><b>Name</b><br>{{$user->name}}</p>
                                                     </div>
                                                 </div>
 
@@ -238,19 +235,19 @@
                                             <div class="row">
                                                 <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
                                                     <div class="address-hr">
-                                                        <p><b>Email ID</b><br>user email</p>
+                                                        <p><b>Email ID</b><br>{{$user->email}}</p>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
                                                     <div class="address-hr tb-sm-res-d-n dps-tb-ntn">
-                                                        <p><b>Course added</b><br>5</p>
+                                                        <p><b>Course Offered</b><br>{{$data->course}}</p>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-12">
                                                     <div class="address-hr">
-                                                        <p><b>Address</b><br> E104, catn-2, Chandlodia Ahmedabad Gujarat, UK.</p>
+                                                        <p><b>Joined</b><br> {{$user->joined}}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -258,14 +255,8 @@
                                             <br>
 
                                             <!-- profile message -->
-                                            <!-- <%
-                                              if (error.id == 13) { %>
-                                                <h4 style="text-align: center;color: green;font-weight: 50;height:20px;font-size: 25px;">Information Updated</h4>
-                                              <% }
-                                              else if (error.id == 14) { %>
-                                                <h4 style="text-align: center;color: green;font-weight: 50;height:20px;font-size: 25px;">Password Updated</h4>
-                                              <% }
-                                            %> -->
+
+                                            <h4 style="text-align: center;color: #ff0000;font-weight: 200;">{{session('msg')}}</h4><br>
                                         </div>
                                     </div>
                                   </div>
@@ -277,17 +268,18 @@
                               <div class="product-tab-list tab-pane fade" id="INFORMATION">
                                   <div class="row">
                                       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <form class="" action="student/edit" method="post" onsubmit="return checkInfo()">
+                                        <form class="" action="instructor/editInfo" method="post" onsubmit="return checkInfo()">
+                                          {{@csrf_field()}}
                                             <div class="review-content-section">
                                                 <div class="row">
                                                     <div class="col-lg-6">
                                                         <div class="form-group">
-                                                            <input name="name" id="name" type="text" class="form-control" placeholder="Full Name" value="user name">
+                                                            <input name="name" id="name" type="text" class="form-control" placeholder="Full Name" value="{{$user->name}}">
 
                                                             <!-- name error -->
 
-                                                            <!-- <h4 id="h1" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4>
-                                                            <%
+                                                            <h4 id="h1" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4>
+                                                            <!-- <%
                                                               if (error.id == 3) { %>
                                                                 <h4 style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;">Name can't be empty</h4>
                                                               <% }
@@ -298,12 +290,12 @@
                                                         </div>
 
                                                         <div class="form-group">
-                                                            <input type="email" id="email" name="email" class="form-control" placeholder="Email" value="user email">
+                                                            <input type="email" id="email" name="email" class="form-control" placeholder="Email" value="{{$user->email}}">
 
                                                             <!-- email error -->
 
-                                                            <!-- <h4 id="h2" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4>
-                                                            <%
+                                                            <h4 id="h2" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4>
+                                                            <!-- <%
                                                               if (error.id == 7) { %>
                                                                 <h4 style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;">Email can't be empty</h4><br/>
                                                               <% }
@@ -332,7 +324,8 @@
                               <div class="product-tab-list tab-pane fade" id="Password">
                                   <div class="row">
                                       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <form class="" action="student/editpass" method="post" onsubmit="return checkPass()">
+                                        <form class="" action="instructor/editPass" method="post" onsubmit="return checkPass()">
+                                          {{@csrf_field()}}
                                             <div class="review-content-section">
                                                 <div class="row">
                                                     <div class="col-lg-6">
@@ -341,8 +334,8 @@
 
                                                             <!-- current password error -->
 
-                                                            <!-- <h4 id="h3" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4>
-                                                            <%
+                                                            <h4 id="h3" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4>
+                                                            <!-- <%
                                                               if (error.id == 11) { %>
                                                                 <h4 style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;">Password can't be empty</h4><br/>
                                                               <% }
@@ -357,8 +350,8 @@
 
                                                             <!-- new password error -->
 
-                                                            <!-- <h4 id="h4" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4>
-                                                            <%
+                                                            <h4 id="h4" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4>
+                                                            <!-- <%
                                                               if (error.id == 9) { %>
                                                                 <h4 style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;">New Password can't be empty</h4><br/>
                                                               <% }
@@ -406,12 +399,9 @@
 
         <!-- jquery
     		============================================ -->
-        <script src="build/js/jquery-1.12.4.js"></script>
+        <script src="build/js/vendor/jquery-1.12.4.min.js"></script>
 
-        <!-- <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.sticky/1.0.4/jquery.sticky.js"></script> -->
-
-        <!-- <script src="../course.js"></script> -->
+        <script src="js/profile.js"></script>
 
         <!-- bootstrap JS
     		============================================ -->
@@ -461,7 +451,7 @@
     		============================================ -->
         <script src="build/js/main.js"></script>
 
-        <script src="js/profile.js"></script>
+
 
 
 

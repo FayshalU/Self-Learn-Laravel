@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 14, 2018 at 07:34 PM
+-- Generation Time: Dec 15, 2018 at 03:00 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.10
 
@@ -71,7 +71,7 @@ CREATE TABLE `chapter_info` (
   `chapter_id` int(50) NOT NULL,
   `name` varchar(50) NOT NULL,
   `course_id` varchar(50) NOT NULL,
-  `content` varchar(300) NOT NULL
+  `content` varchar(10000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -80,7 +80,9 @@ CREATE TABLE `chapter_info` (
 
 INSERT INTO `chapter_info` (`chapter_id`, `name`, `course_id`, `content`) VALUES
 (1, 'Home', '1', 'C is a general-purpose, procedural, imperative computer programming language developed in 1972 by Dennis M. Ritchie at the Bell Telephone Laboratories to develop the UNIX operating system. C is the most widely used computer language. It keeps fluctuating at number one scale of popularity along with '),
-(2, 'Overview', '1', 'C is a general-purpose, high-level language that was originally developed by Dennis M. Ritchie to develop the UNIX operating system at Bell Labs. C was originally first implemented on the DEC PDP-11 computer in 1972.  In 1978, Brian Kernighan and Dennis Ritchie produced the first publicly availabl');
+(2, 'Overview', '1', 'C is a general-purpose, high-level language that was originally developed by Dennis M. Ritchie to develop the UNIX operating system at Bell Labs. C was originally first implemented on the DEC PDP-11 computer in 1972.  In 1978, Brian Kernighan and Dennis Ritchie produced the first publicly availabl'),
+(3, 'About', '10', 'Java is a general-purpose computer-programming language that is concurrent, class-based, object-oriented, and specifically designed to have as few implementation dependencies as possible. It is intended to let application developers \"write once, run anywhere\", meaning that compiled Java code can run on all platforms that support Java without the need for recompilation.'),
+(4, 'History', '10', 'In publishing and graphic design, lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content. Replacing the actual content with placeholder text allows designers to design the form of the content before the content itself has been produced.');
 
 -- --------------------------------------------------------
 
@@ -106,7 +108,7 @@ CREATE TABLE `courses` (
   `course_id` int(50) NOT NULL,
   `instructor_id` varchar(100) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `info` varchar(300) NOT NULL
+  `info` varchar(10000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -116,10 +118,10 @@ CREATE TABLE `courses` (
 INSERT INTO `courses` (`course_id`, `instructor_id`, `name`, `info`) VALUES
 (1, 'dd', 'Programming Language 1', 'C is a general-purpose, procedural, imperative computer programming language developed in 1972 by Dennis M. Ritchie at the Bell Telephone Laboratories to develop the UNIX operating system. C is the most widely used computer language. It keeps fluctuating at number one scale of popularity along with '),
 (2, 'ee', 'Programming Language 2', ''),
-(4, 'dd', 'New course', ''),
 (6, 'ff', 'Data Structure', ''),
 (8, 'ee', 'Web Technologies ', ''),
-(9, 'dd', 'math1', '');
+(9, 'dd', 'math1', ''),
+(10, 'dd', 'Java Programming', 'Java is a general-purpose computer-programming language that is concurrent, class-based, object-oriented, and specifically designed to have as few implementation dependencies as possible. It is intended to let application developers \"write once, run anywhere\", meaning that compiled Java code can run on all platforms that support Java without the need for recompilation.');
 
 -- --------------------------------------------------------
 
@@ -162,7 +164,7 @@ CREATE TABLE `instructors` (
 --
 
 INSERT INTO `instructors` (`id`, `name`, `email`, `password`, `joined`) VALUES
-('dd', 'Instructor1', 'instructor@outlook.com', 'dd', '2018-12-05'),
+('dd', 'John', 'john@outlook.com', 'dd', '2018-12-05'),
 ('ee', 'Instructor2', 'Instructor2@mail.com', 'ee', '2018-12-14'),
 ('ff', 'Instructor3', 'Instructor3@mail.com', 'ff', '2018-12-15');
 
@@ -197,7 +199,7 @@ CREATE TABLE `login` (
 INSERT INTO `login` (`id`, `password`, `type`) VALUES
 ('aa', 'aa', 'admin'),
 ('bb', 'bb', 'student'),
-('cc', 'cccc', 'student'),
+('cc', 'cc', 'student'),
 ('dd', 'dd', 'instructor'),
 ('ee', 'ee', 'instructor'),
 ('ff', 'ff', 'instructor');
@@ -246,7 +248,8 @@ CREATE TABLE `quiz` (
 
 INSERT INTO `quiz` (`quiz_id`, `chapter_id`, `question`, `op1`, `op2`, `op3`, `op4`, `answer`) VALUES
 (1, 1, 'Which is valid C expression?', 'int my_num = 100,000;', 'int my_num = 100000;', 'int my num = 1000;', 'int $my_num = 10000;', 'int my_num = 100000;'),
-(2, 1, 'Which among the following is NOT a logical or relational operator?', '!=', '==', '||', '=', '=');
+(2, 1, 'Which among the following is NOT a logical or relational operator?', '!=', '==', '||', '=', '='),
+(3, 3, 'evbebvebve', 'svs', 'vsdbdfb', 'svsfd', 'svfdb', 'svs');
 
 -- --------------------------------------------------------
 
@@ -301,7 +304,7 @@ CREATE TABLE `students` (
 
 INSERT INTO `students` (`id`, `name`, `email`, `password`, `joined`) VALUES
 ('bb', 'Adam Levine', 'adam@gmail.com', 'bb', '2018-12-06'),
-('cc', 'New Student', 'student2@gmail.com', 'cccc', '2018-12-01');
+('cc', 'New Student', 'student2@gmail.com', 'cc', '2018-12-01');
 
 --
 -- Indexes for dumped tables
@@ -399,13 +402,13 @@ ALTER TABLE `students`
 -- AUTO_INCREMENT for table `chapter_info`
 --
 ALTER TABLE `chapter_info`
-  MODIFY `chapter_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `chapter_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `course_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `course_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `courses_taken`
@@ -423,7 +426,7 @@ ALTER TABLE `post`
 -- AUTO_INCREMENT for table `quiz`
 --
 ALTER TABLE `quiz`
-  MODIFY `quiz_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `quiz_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `quiz_result`

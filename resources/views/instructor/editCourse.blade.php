@@ -80,15 +80,17 @@
                         </li>
 
                         <li>
-                            <a class="has-arrow" href="all-courses.html" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Courses</span></a>
+                            <a class="has-arrow" href="" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Courses</span></a>
 
-                            
-                            <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="Add Courses" href="{{route('instructor.create')}}"><span class="mini-sub-pro">Add Courses</span></a></li>
+                             <ul class="submenu-angle" aria-expanded="false">
+                                <li><a title="All Courses" href="{{route('instructor.myCourses')}}"><span class="mini-sub-pro"> My Courses
+                                </span></a></li>
 
                             </ul>
+                            <ul class="submenu-angle" aria-expanded="false">
+                                <li><a title="All Courses" href="{{route('instructor.create')}}"><span class="mini-sub-pro">Add Courses</span></a></li>
 
-
+                            </ul>
                         </li>
 
 
@@ -151,7 +153,7 @@
                                                 <li class="nav-item">
                                                     <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
                         															<img src="img/product/pro4.jpg" alt="" />
-                        															<span class="admin-name">user name</span>
+                        															<span class="admin-name">{{$user->name}}</span>
                         															<i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
                         														</a>
                                                     <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
@@ -175,7 +177,9 @@
                     </div>
                 </div>
             </div>
-            <div class="breadcome-area">
+        </div>
+
+        <div class="breadcome-area">
                 <div class="container-fluid">
                   <h2></h2>
                     <div class="row">
@@ -184,7 +188,7 @@
                                 <div class="row">
                                   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                       <div class="breadcome-heading nav-item">
-                                        <h6 style="text-align: center;font-weight: 300;height: 10px;font-size: 40px;"></h6>
+                                        <h6 style="text-align: center;font-weight: 300;height: 10px;font-size: 40px;">Edit Course</h6>
 
                                       </div>
 
@@ -197,7 +201,6 @@
                     </div>
                 </div>
             </div>
-        </div>
 
 
 
@@ -208,7 +211,8 @@
                         <div class="product-payment-inner-st">
                             <ul id="myTabedu1" class="tab-review-design">
                                 <li class="active"><a href="#description">Courses Details</a></li>
-
+                                <li class=""><a href="#chapterTab">Chapter Details</a></li>
+                                <li class=""><a href="#addchapter">Add Chapter</a></li>
                             </ul>
                             <div id="myTabContent" class="tab-content custom-product-edit">
                                 <div class="product-tab-list tab-pane fade active in" id="description">
@@ -216,42 +220,120 @@
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="review-content-section">
                                                 <div id="dropzone1" class="pro-ad addcoursepro">
-                                                    <form  method="post" action="admin/editCourses" onsubmit="return checkInfo()" class="dropzone dropzone-custom needsclick addcourse" id="demo1-upload">
+                                                    <form  method="post" action="/instructor/editCourseInfo"  onsubmit="return checkInfo()" class="dropzone dropzone-custom needsclick addcourse" id="demo1-upload">
+                                                      {{@csrf_field()}}
                                                         <div class="row">
+                                                            <input type="hidden" name="course_id" id="course_id" value="{{$course->course_id}}">
                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                <input type="hidden" name="id" value="<%= course.course_id %>"/>
-                                                                <div class="form-group">
-                                                                  <label for="coursename">Name</label>
-                                                                    <input name="coursename" type="text" class="form-control" id="coursename" placeholder="Course Name" value="course.name">
-                                                                    <h4 id="h1" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4>
-                                                                </div><br>
-                                                                <!-- <div class="form-group">
-                                                                  <label for="chapter">Chapter</label>
-                                                                    <input name="chapter" id="chapter" type="text" class="form-control" placeholder="Chapter" value="course.chapter">
-                                                                    <h4 id="h2" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4>
-                                                                </div> -->
+                                                              <div class="form-group">
+                                                                <label for="coursename">Name</label>
+                                                                  <input name="coursename" type="text" class="form-control" id="coursename" placeholder="Course Name" value="{{$course->name}}">
+                                                                  <h4 id="h1" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4>
+                                                              </div>
 
-                                                                <li id="chapter1" style="">
-                                                                  <label for="chapter1">Chapter-1</label><br>
-                                                                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                    <div class="form-group">
-                                                                        <input name="chapter1Name" type="text" class="form-control" id="chapter1Name" placeholder="Name" value="chapter1Name">
-                                                                        <!-- <h4 id="h1" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4> -->
-                                                                    </div>
-                                                                  </div>
-                                                                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                    <div class="form-group">
-                                                                        <input name="chapter1Content" type="text" class="form-control" id="chapter1Content" placeholder="Content" value="chapter1Content">
-                                                                        <!-- <h4 id="h1" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4> -->
-                                                                    </div>
-                                                                  </div>
-                                                                </li>
+                                                              <div class="form-group">
+                                                                <label for="desc">Description</label>
+                                                                  <textarea name="desc" type="text" class="form-control" id="desc" placeholder="Description" value="{{$course->info}}">{{$course->info}}</textarea>
+                                                                  <h4 id="h2" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4>
+                                                              </div>
 
-
-
+                                                              <!-- Course message -->
+                                                              <h4 style="text-align: center;color: #ff0000;font-weight: 200;">{{session('msg')}}</h4><br>
+                                                            </div>
                                                             </div>
 
+                                                        <br><br>
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                <div class="payment-adress">
+                                                                    <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
+                                                                </div>
+                                                            </div>
                                                         </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="product-tab-list tab-pane fade" id="chapterTab">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="review-content-section">
+                                                <div id="dropzone1" class="pro-ad addcoursepro">
+                                                    <form  method="post" action="/instructor/editChapter" onsubmit="return checkChapter()" class="dropzone dropzone-custom needsclick addcourse" id="demo1-upload">
+                                                      {{@csrf_field()}}
+                                                        <div class="row">
+                                                          <input type="hidden" name="course_id" id="course_id" value="{{$course->course_id}}">
+                                                          <input type="hidden" name="chapter_id" id="chapter_id" value="{{$chapters[0]->chapter_id}}">
+                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+                                                              <div class="form-group">
+                                                                <label for="chapter">Select Chapter</label>
+                                                                  <select class="form-control"  name="chapter" id="chapter">
+
+                                                          <?php for($i=0; $i< count($chapters); $i++){ ?>
+
+                                                                    <option value="{{$i}}">{{$chapters[$i]->name}}</option>
+
+                                                            <?php } ?>
+
+                                                                  </select>
+
+                                                              </div>
+                                                              <div class="form-group">
+                                                                <label for="chapterName">Name</label>
+                                                                  <input name="chapterName" type="text" class="form-control" id="chapterName" placeholder="Chapter Name" value="{{$chapters[0]->name}}">
+                                                                  <h4 id="h3" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4>
+                                                              </div>
+
+                                                              <div class="form-group">
+                                                                <label for="content">Content</label>
+                                                                  <textarea name="content" type="text" class="form-control" id="content" placeholder="Content" value="{{$chapters[0]->content}}">{{$chapters[0]->content}}</textarea>
+                                                                  <h4 id="h4" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4>
+                                                              </div>
+                                                            </div>
+                                                            </div>
+
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                <div class="payment-adress">
+                                                                    <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="product-tab-list tab-pane fade" id="addchapter">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="review-content-section">
+                                                <div id="dropzone1" class="pro-ad addcoursepro">
+                                                    <form  method="post" action="/instructor/addChapterEdit" onsubmit="return addChapter()" class="dropzone dropzone-custom needsclick addcourse" id="demo1-upload">
+                                                      {{@csrf_field()}}
+                                                        <div class="row">
+                                                          <input type="hidden" name="course_id" value="{{$course->course_id}}">
+                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                              <div class="form-group">
+                                                                <label for="chapterNameNew">Name</label>
+                                                                  <input name="chapterNameNew" type="text" class="form-control" id="chapterNameNew" placeholder="Chapter Name" value="">
+                                                                  <h4 id="h5" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4>
+                                                              </div>
+
+                                                              <div class="form-group">
+                                                                <label for="contentNew">Content</label>
+                                                                  <textarea name="contentNew" type="text" class="form-control" id="contentNew" placeholder="Content" value=""></textarea>
+                                                                  <h4 id="h6" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4>
+                                                              </div>
+                                                            </div>
+                                                            </div>
+                                                        <br><br>
                                                         <div class="row">
                                                             <div class="col-lg-12">
                                                                 <div class="payment-adress">
@@ -273,67 +355,87 @@
                     </div>
                 </div>
             </div>
-            </div>
+
+        </div>
+
+      <!-- jquery
+      ============================================ -->
+      <script src="build/js/jquery-1.12.4.js"></script>
+
+      <script>
+
+      $("#chapter").on('change', function (){
+
+          console.log("Changed");
+
+          var data = $("#chapter").val();
+          console.log(data);
+
+          var array = <?php echo json_encode($chapters);?> ;
+
+          console.log(array[data].chapter_id);
+
+          $("#chapter_id").val(array[data].chapter_id);
+          $("#chapterName").val(array[data].name);
+          $("#content").val(array[data].content);
+
+        });
+
+      </script>
+
+      <!-- <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.sticky/1.0.4/jquery.sticky.js"></script> -->
+
+      <script src="js/editCourse.js"></script>
+
+      <!-- bootstrap JS
+      ============================================ -->
+      <script src="build/js/bootstrap.min.js"></script>
+      <!-- wow JS
+      ============================================ -->
+      <script src="build/js/wow.min.js"></script>
+      <!-- price-slider JS
+      ============================================ -->
+      <script src="build/js/jquery-price-slider.js"></script>
+      <!-- meanmenu JS
+      ============================================ -->
+      <script src="build/js/jquery.meanmenu.js"></script>
+      <!-- owl.carousel JS
+      ============================================ -->
+      <script src="build/js/owl.carousel.min.js"></script>
+      <!-- sticky JS
+      ============================================ -->
+      <script src="build/js/jquery.sticky.js"></script>
+      <!-- scrollUp JS
+      ============================================ -->
+      <script src="build/js/jquery.scrollUp.min.js"></script>
+      <!-- mCustomScrollbar JS
+      ============================================ -->
+      <script src="build/js/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+      <script src="build/js/scrollbar/mCustomScrollbar-active.js"></script>
+      <!-- metisMenu JS
+      ============================================ -->
+      <script src="build/js/metisMenu/metisMenu.min.js"></script>
+      <script src="build/js/metisMenu/metisMenu-active.js"></script>
+      <!-- morrisjs JS
+      ============================================ -->
+      <script src="build/js/sparkline/jquery.sparkline.min.js"></script>
+      <script src="build/js/sparkline/jquery.charts-sparkline.js"></script>
+      <script src="build/js/sparkline/sparkline-active.js"></script>
+
+      <!-- icheck JS
+      ============================================ -->
+      <script src="build/js/icheck/icheck.min.js"></script>
+      <script src="build/js/icheck/icheck-active.js"></script>
 
 
-        <!-- jquery
-        ============================================ -->
-        <script src="build/js/jquery-1.12.4.js"></script>
+      <!-- plugins JS
+      ============================================ -->
+      <script src="build/js/plugins.js"></script>
+      <!-- main JS
+      ============================================ -->
+      <script src="build/js/main.js"></script>
 
-        <!-- <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.sticky/1.0.4/jquery.sticky.js"></script> -->
-
-        <!-- <script src="../course.js"></script> -->
-
-        <!-- bootstrap JS
-        ============================================ -->
-        <script src="build/js/bootstrap.min.js"></script>
-        <!-- wow JS
-        ============================================ -->
-        <script src="build/js/wow.min.js"></script>
-        <!-- price-slider JS
-        ============================================ -->
-        <script src="build/js/jquery-price-slider.js"></script>
-        <!-- meanmenu JS
-        ============================================ -->
-        <script src="build/js/jquery.meanmenu.js"></script>
-        <!-- owl.carousel JS
-        ============================================ -->
-        <script src="build/js/owl.carousel.min.js"></script>
-        <!-- sticky JS
-        ============================================ -->
-        <script src="build/js/jquery.sticky.js"></script>
-        <!-- scrollUp JS
-        ============================================ -->
-        <script src="build/js/jquery.scrollUp.min.js"></script>
-        <!-- mCustomScrollbar JS
-        ============================================ -->
-        <script src="build/js/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
-        <script src="build/js/scrollbar/mCustomScrollbar-active.js"></script>
-        <!-- metisMenu JS
-        ============================================ -->
-        <script src="build/js/metisMenu/metisMenu.min.js"></script>
-        <script src="build/js/metisMenu/metisMenu-active.js"></script>
-        <!-- morrisjs JS
-        ============================================ -->
-        <script src="build/js/sparkline/jquery.sparkline.min.js"></script>
-        <script src="build/js/sparkline/jquery.charts-sparkline.js"></script>
-        <script src="build/js/sparkline/sparkline-active.js"></script>
-
-        <!-- icheck JS
-        ============================================ -->
-        <script src="build/js/icheck/icheck.min.js"></script>
-        <script src="build/js/icheck/icheck-active.js"></script>
-
-
-        <!-- plugins JS
-        ============================================ -->
-        <script src="build/js/plugins.js"></script>
-        <!-- main JS
-        ============================================ -->
-        <script src="build/js/main.js"></script>
-
-        <script src="build/js/addCourse.js"></script>
 
 </body>
 

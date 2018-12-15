@@ -31,6 +31,7 @@ class loginController extends Controller
     	if($user!=null)
     	{
     		$request->session()->put('user_id',$user->id);
+        
         if ($user->type == 'admin') {
           return redirect()->route('admin.index');
         }

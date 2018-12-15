@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>All Courses</title>
+    <title>My Courses</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <base href="/">
@@ -86,12 +86,12 @@
                             <a class="has-arrow" href="" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Courses</span></a>
 
                              <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="All Courses" href="{{route('instructor.myCourses')}}"><span class="mini-sub-pro">All Courses
+                                <li><a title="All Courses" href=""><span class="mini-sub-pro">My Courses
                                 </span></a></li>
 
                             </ul>
                             <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="All Courses" href="{{route('instructor.create')}}"><span class="mini-sub-pro">Add Courses
+                                <li><a title="Add Course" href="{{route('instructor.create')}}"><span class="mini-sub-pro">Add Courses
                                 </span></a></li>
 
                             </ul>
@@ -147,7 +147,7 @@
                                                 <li class="nav-item">
                                                     <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
                         															<!-- <img src="img/product/pro4.jpg" alt="" /> -->
-                        															<span class="admin-name">user name</span>
+                        															<span class="admin-name">{{$user->name}}</span>
                         															<i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
                         														</a>
                                                     <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
@@ -218,48 +218,28 @@
                 <div class="row">
 
                   <!-- Show all courses -->
-                  <!-- <%
-                    for(var i=0; i< course.length; i++){ %> -->
 
-                      <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                          <div class="courses-inner res-mg-b-30">
-                              <div class="courses-title">
-                                  <h2><h2>Programming Language 1</h2></h2>
-                              </div>
+                  <?php for($i=0; $i< count($courses); $i++){ ?>
 
-                              <div class="course-des">
-                                  <p><span><i class="fa fa-clock"></i></span> <b>Chapter:</b> </p>
-                              </div>
-                              <div class="button-style-three">
-                                  <a href="{{route('instructor.editCourse',1)}}"><button type="button" class="btn btn-custon-rounded-three btn-warning">Edit</button></a>
-                                  <a href="{{route('instructor.deleteCourse',1)}}"><button type="button" class="btn btn-custon-rounded-three btn-danger">Delete</button></a>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="courses-inner res-mg-b-30">
+                                <div class="courses-title">
+                                    <h2>{{$courses[$i]->name}}</h2>
+                                </div>
 
-                              </div>
-                          </div>
-                      </div>
-                      <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                          <div class="courses-inner res-mg-b-30">
-                              <div class="courses-title">
-                                  <h2><h2>Programming Language 2</h2></h2>
-                              </div>
+                                <div class="course-des">
+                                    <p><span><i class="fa fa-clock"></i></span> <b>Chapter:</b> {{$chapters[$i]}}</p>
+                                </div>
+                                <div class="product-buttons">
 
-                              <div class="course-des">
-                                  <p><span><i class="fa fa-clock"></i></span> <b>Chapter:</b> </p>
-                              </div>
-                              <div class="button-style-three">
-                                  <a href="{{route('instructor.editCourse')}}"><button type="button" class="btn btn-custon-rounded-three btn-warning">Edit</button></a>
-                                  <a href="{{route('instructor.deleteCourse',1)}}"><button type="button" class="btn btn-custon-rounded-three btn-danger">Delete</button></a>
+                                    <a href="{{route('instructor.addQuiz',[$courses[$i]->course_id])}}"><button type="button" class="btn btn-custon-rounded-three btn-warning">Add Quiz</button></a>
+                                    <a href="{{route('instructor.editCourse',[$courses[$i]->course_id])}}"><button type="button" class="btn btn-custon-rounded-three btn-warning">Edit</button></a>
+                                    <a href="{{route('instructor.deleteCourse',[$courses[$i]->course_id])}}"><button type="button" class="btn btn-custon-rounded-three btn-danger">Delete</button></a>
+                                </div>
+                            </div>
+                        </div>
 
-                              </div>
-                          </div>
-                      </div>
-
-                    <!-- <% } %> -->
-
-
-
-
-
+                    <?php } ?>
 
                 </div>
 

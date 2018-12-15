@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Delete Coures</title>
+    <title>Delete Course</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <base href="/">
@@ -83,12 +83,12 @@
                             <a class="has-arrow" href="" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Courses</span></a>
 
                              <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="All Courses" href="{{route('instructor.myCourses')}}"><span class="mini-sub-pro">All Courses
+                                <li><a title="My Courses" href="{{route('instructor.myCourses')}}"><span class="mini-sub-pro">My Courses
                                 </span></a></li>
 
                             </ul>
                             <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="All Courses" href="{{route('instructor.create')}}"><span class="mini-sub-pro">Add Courses</span></a></li>
+                                <li><a title="Add Courses" href="{{route('instructor.create')}}"><span class="mini-sub-pro">Add Courses</span></a></li>
 
                             </ul>
                         </li>
@@ -136,7 +136,7 @@
                                                 </li>
                                                 <li class="nav-item"><a href="" class="nav-link">About</a>
                                                 </li>
-                                                <li class="nav-item"><a href="admin/course" class="nav-link">Courses</a>
+                                                <li class="nav-item"><a href="{{route('instructor.myCourses')}}" class="nav-link">Courses</a>
                                                 </li>
                                                 <li class="nav-item"><a href="#" class="nav-link"></a>
                                                 </li>
@@ -153,7 +153,7 @@
                                                 <li class="nav-item">
                                                     <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
                         															<img src="img/product/pro4.jpg" alt="" />
-                        															<span class="admin-name">user name</span>
+                        															<span class="admin-name">{{$user->name}}</span>
                         															<i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
                         														</a>
                                                     <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
@@ -209,7 +209,7 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="product-payment-inner-st">
                             <ul id="myTabedu1" class="tab-review-design">
-                                <li class="active"><a href="#description">course.name</a></li>
+                                <li class="active"><a href="#description">{{$course->name}}</a></li>
 
                             </ul>
                             <div id="myTabContent" class="tab-content custom-product-edit">
@@ -218,7 +218,8 @@
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="review-content-section">
                                                 <div id="dropzone1" class="pro-ad addcoursepro">
-                                                    <form  method="post" class="dropzone dropzone-custom needsclick addcourse" id="demo1-upload">
+                                                    <form  method="post" action="/instructor/deleteCoursePost" class="dropzone dropzone-custom needsclick addcourse" id="demo1-upload">
+                                                      {{@csrf_field()}}
                                                         <div class="row">
                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 
@@ -227,9 +228,9 @@
                                                                  <h4>Are you sure you want to delete this course?</h4>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                  <input type="hidden" name="id" value="<%=course.course_id %>"/>
-                                                                   <input name="yes" type="submit" class="form-control" value="Yes" ><br>
-                                                                   <input name="no" type="submit" class="form-control" value="No" >
+                                                                  <input type="hidden" name="id" value=" {{$course->course_id}} "/>
+                                                                   <input name="yes" type="submit" class="form-control btn btn-danger" value="Yes" ><br>
+                                                                   <input name="no" type="submit" class="form-control btn btn-green" value="No" >
                                                                 </div>
 
 

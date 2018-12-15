@@ -54,8 +54,16 @@ Route::resource('/student','StudentController');
 
 
 Route::get('/instructor/profile','InstructorController@profile')->name('instructor.profile');
+Route::post('/instructor/editInfo','InstructorController@editInfo')->name('instructor.editInfo');
+Route::post('/instructor/editPass','InstructorController@editPass')->name('instructor.editPass');
 Route::get('/instructor/myCourses','InstructorController@myCourses')->name('instructor.myCourses');
-Route::get('/instructor/editCourse','InstructorController@editCourse')->name('instructor.editCourse');
-Route::get('/instructor/deleteCourse','InstructorController@deleteCourse')->name('instructor.deleteCourse');
-Route::get('/instructor/addQuiz','InstructorController@addQuiz')->name('instrcutor.addQuiz');
+Route::post('/instructor/addCourse','InstructorController@addCourse')->name('instructor.addCourse');
+Route::get('/instructor/{id}/editCourse','InstructorController@editCourse')->name('instructor.editCourse');
+Route::post('/instructor/editCourseInfo','InstructorController@editCourseInfo')->name('instructor.editCourseInfo');
+Route::post('/instructor/editChapter','InstructorController@editChapter')->name('instructor.editChapter');
+Route::post('/instructor/addChapterEdit','InstructorController@addChapterEdit')->name('instructor.addChapterEdit');
+Route::get('/instructor/{id}/deleteCourse','InstructorController@deleteCourse')->name('instructor.deleteCourse');
+Route::post('/instructor/deleteCoursePost','InstructorController@deleteCoursePost')->name('instructor.deleteCoursePost');
+Route::get('/instructor/{id}/addQuiz','InstructorController@addQuiz')->name('instructor.addQuiz');
+Route::post('/instructor/addQuizPost','InstructorController@addQuizPost')->name('instructor.addQuizPost');
 Route::resource('/instructor','InstructorController');

@@ -153,7 +153,7 @@
                                                 <li class="nav-item">
                                                     <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
                         															<img src="img/product/pro4.jpg" alt="" />
-                        															<span class="admin-name">user name</span>
+                        															<span class="admin-name">{{$user->name}}</span>
                         															<i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
                         														</a>
                                                     <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
@@ -212,6 +212,7 @@
                             <ul id="myTabedu1" class="tab-review-design">
                                 <li class="active"><a href="#description">Courses Details</a></li>
 
+
                             </ul>
                             <div id="myTabContent" class="tab-content custom-product-edit">
                                 <div class="product-tab-list tab-pane fade active in" id="description">
@@ -219,7 +220,8 @@
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="review-content-section">
                                                 <div id="dropzone1" class="pro-ad addcoursepro">
-                                                    <form  method="post"  onsubmit="return checkInfo()" class="dropzone dropzone-custom needsclick addcourse" id="demo1-upload">
+                                                    <form  method="post" action="/instructor/addCourse"  onsubmit="return checkInfo()" class="dropzone dropzone-custom needsclick addcourse" id="demo1-upload">
+                                                      {{@csrf_field()}}
                                                         <div class="row">
                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                               <div class="form-group">
@@ -229,364 +231,50 @@
                                                               </div>
 
                                                               <div class="form-group">
-                                                                <label for="chapter">Chapters</label>
-                                                                  <select class="form-control"  name="chapter" id="chapter">
-                                                                    <option value="0">0</option>
-                                                                    <option value="1">1</option>
-                                                                    <option value="2">2</option>
-                                                                    <option value="3">3</option>
-                                                                    <option value="4">4</option>
-                                                                    <option value="5">5</option>
-                                                                    <option value="6">6</option>
-                                                                    <option value="7">7</option>
-                                                                    <option value="8">8</option>
-                                                                    <option value="9">9</option>
-                                                                    <option value="10">10</option>
-                                                                    <option value="12">11</option>
-                                                                    <option value="12">12</option>
-                                                                    <option value="13">13</option>
-                                                                    <option value="14">14</option>
-                                                                    <option value="15">15</option>
-                                                                    <option value="16">16</option>
-                                                                    <option value="17">17</option>
-                                                                    <option value="18">18</option>
-                                                                    <option value="19">19</option>
-                                                                    <option value="20">20</option>
-
-
-                                                                  </select>
-                                                                  <!-- <input name="chapter" id="chapter" type="text" class="form-control" placeholder="Chapter" value=""> -->
+                                                                <label for="desc">Description</label>
+                                                                  <textarea name="desc" type="text" class="form-control" id="desc" placeholder="Description" value=""></textarea>
                                                                   <h4 id="h2" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4>
                                                               </div>
+
+                                                              <input type="hidden" name="data" id="data" value="">
+                                                              <!-- Course message -->
+
+                                                              <h4 style="text-align: center;color: #ff0000;font-weight: 200;">{{session('msg')}}</h4><br>
                                                             </div>
-                                                            </div>
 
-                                                              <div class="form-group" >
-                                                                <ul id="data">
-
-                                                                  <li id="chapter1" style="">
-                                                                    <label for="chapter1">Chapter-1</label><br>
-                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                      <div class="form-group">
-                                                                          <input name="chapter1Name" type="text" class="form-control" id="chapter1Name" placeholder="Name" value="">
-                                                                          <!-- <h4 id="h1" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4> -->
-                                                                      </div>
-                                                                    </div>
-                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                      <div class="form-group">
-                                                                          <input name="chapter1Content" type="text" class="form-control" id="chapter1Content" placeholder="Content" value="">
-                                                                          <!-- <h4 id="h1" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4> -->
-                                                                      </div>
-                                                                    </div>
-                                                                  </li>
-                                                                  <li id="chapter2" style="display:none;">
-                                                                    <label for="chapter2">Chapter-2</label><br>
-                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                      <div class="form-group">
-                                                                          <input name="chapter2Name" type="text" class="form-control" id="chapter2Name" placeholder="Name" value="">
-                                                                          <!-- <h4 id="h1" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4> -->
-                                                                      </div>
-                                                                    </div>
-                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                      <div class="form-group">
-                                                                          <input name="chapter2Content" type="text" class="form-control" id="chapter2Content" placeholder="Content" value="">
-                                                                          <!-- <h4 id="h1" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4> -->
-                                                                      </div>
-                                                                    </div>
-                                                                  </li>
-                                                                  <li id="chapter3" style="display:none;">
-                                                                    <label for="chapter3">Chapter-3</label><br>
-                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                      <div class="form-group">
-                                                                          <input name="chapter3Name" type="text" class="form-control" id="chapter3Name" placeholder="Name" value="">
-                                                                          <!-- <h4 id="h1" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4> -->
-                                                                      </div>
-                                                                    </div>
-                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                      <div class="form-group">
-                                                                          <input name="chapter3Content" type="text" class="form-control" id="chapter3Content" placeholder="Content" value="">
-                                                                          <!-- <h4 id="h1" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4> -->
-                                                                      </div>
-                                                                    </div>
-                                                                  </li>
-                                                                  <li id="chapter4" style="display:none;">
-                                                                    <label for="chapter4">Chapter-4</label><br>
-                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                      <div class="form-group">
-                                                                          <input name="chapter4Name" type="text" class="form-control" id="chapter4Name" placeholder="Name" value="">
-                                                                          <!-- <h4 id="h1" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4> -->
-                                                                      </div>
-                                                                    </div>
-                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                      <div class="form-group">
-                                                                          <input name="chapter4Content" type="text" class="form-control" id="chapter4Content" placeholder="Content" value="">
-                                                                          <!-- <h4 id="h1" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4> -->
-                                                                      </div>
-                                                                    </div>
-                                                                  </li>
-                                                                  <li id="chapter5" style="display:none;">
-                                                                    <label for="chapter5">Chapter-5</label><br>
-                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                      <div class="form-group">
-                                                                          <input name="chapter5Name" type="text" class="form-control" id="chapter5Name" placeholder="Name" value="">
-                                                                          <!-- <h4 id="h1" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4> -->
-                                                                      </div>
-                                                                    </div>
-                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                      <div class="form-group">
-                                                                          <input name="chapter5Content" type="text" class="form-control" id="chapter5Content" placeholder="Content" value="">
-                                                                          <!-- <h4 id="h1" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4> -->
-                                                                      </div>
-                                                                    </div>
-                                                                  </li>
-                                                                  <li id="chapter6" style="display:none;">
-                                                                    <label for="chapter6">Chapter-6</label><br>
-                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                      <div class="form-group">
-                                                                          <input name="chapter6Name" type="text" class="form-control" id="chapter6Name" placeholder="Name" value="">
-                                                                          <!-- <h4 id="h1" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4> -->
-                                                                      </div>
-                                                                    </div>
-                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                      <div class="form-group">
-                                                                          <input name="chapter6Content" type="text" class="form-control" id="chapter6Content" placeholder="Content" value="">
-                                                                          <!-- <h4 id="h1" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4> -->
-                                                                      </div>
-                                                                    </div>
-                                                                  </li>
-                                                                  <li id="chapter7" style="display:none;">
-                                                                    <label for="chapter7">Chapter-7</label><br>
-                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                      <div class="form-group">
-                                                                          <input name="chapter7Name" type="text" class="form-control" id="chapter7Name" placeholder="Name" value="">
-                                                                          <!-- <h4 id="h1" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4> -->
-                                                                      </div>
-                                                                    </div>
-                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                      <div class="form-group">
-                                                                          <input name="chapter7Content" type="text" class="form-control" id="chapter7Content" placeholder="Content" value="">
-                                                                          <!-- <h4 id="h1" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4> -->
-                                                                      </div>
-                                                                    </div>
-                                                                  </li>
-                                                                  <li id="chapter8" style="display:none;">
-                                                                    <label for="chapter8">Chapter-8</label><br>
-                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                      <div class="form-group">
-                                                                          <input name="chapter8Name" type="text" class="form-control" id="chapter8Name" placeholder="Name" value="">
-                                                                          <!-- <h4 id="h1" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4> -->
-                                                                      </div>
-                                                                    </div>
-                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                      <div class="form-group">
-                                                                          <input name="chapter8Content" type="text" class="form-control" id="chapter8Content" placeholder="Content" value="">
-                                                                          <!-- <h4 id="h1" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4> -->
-                                                                      </div>
-                                                                    </div>
-                                                                  </li>
-                                                                  <li id="chapter9" style="display:none;">
-                                                                    <label for="chapter9">Chapter-9</label><br>
-                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                      <div class="form-group">
-                                                                          <input name="chapter9Name" type="text" class="form-control" id="chapter9Name" placeholder="Name" value="">
-                                                                          <!-- <h4 id="h1" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4> -->
-                                                                      </div>
-                                                                    </div>
-                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                      <div class="form-group">
-                                                                          <input name="chapter9Content" type="text" class="form-control" id="chapter9Content" placeholder="Content" value="">
-                                                                          <!-- <h4 id="h1" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4> -->
-                                                                      </div>
-                                                                    </div>
-                                                                  </li>
-                                                                  <li id="chapter10" style="display:none;">
-                                                                    <label for="chapter10">Chapter-10</label><br>
-                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                      <div class="form-group">
-                                                                          <input name="chapter10Name" type="text" class="form-control" id="chapter10Name" placeholder="Name" value="">
-                                                                          <!-- <h4 id="h1" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4> -->
-                                                                      </div>
-                                                                    </div>
-                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                      <div class="form-group">
-                                                                          <input name="chapter10Content" type="text" class="form-control" id="chapter10Content" placeholder="Content" value="">
-                                                                          <!-- <h4 id="h1" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4> -->
-                                                                      </div>
-                                                                    </div>
-                                                                  </li>
-                                                                  <li id="chapter11" style="display:none;">
-                                                                    <label for="chapter11">Chapter-11</label><br>
-                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                      <div class="form-group">
-                                                                          <input name="chapter11Name" type="text" class="form-control" id="chapter11Name" placeholder="Name" value="">
-                                                                          <!-- <h4 id="h1" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4> -->
-                                                                      </div>
-                                                                    </div>
-                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                      <div class="form-group">
-                                                                          <input name="chapter11Content" type="text" class="form-control" id="chapter11Content" placeholder="Content" value="">
-                                                                          <!-- <h4 id="h1" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4> -->
-                                                                      </div>
-                                                                    </div>
-                                                                  </li>
-                                                                  <li id="chapter12" style="display:none;">
-                                                                    <label for="chapter12">Chapter-12</label><br>
-                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                      <div class="form-group">
-                                                                          <input name="chapter12Name" type="text" class="form-control" id="chapter12Name" placeholder="Name" value="">
-                                                                          <!-- <h4 id="h1" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4> -->
-                                                                      </div>
-                                                                    </div>
-                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                      <div class="form-group">
-                                                                          <input name="chapter12Content" type="text" class="form-control" id="chapter12Content" placeholder="Content" value="">
-                                                                          <!-- <h4 id="h1" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4> -->
-                                                                      </div>
-                                                                    </div>
-                                                                  </li>
-                                                                  <li id="chapter13" style="display:none;">
-                                                                    <label for="chapter13">Chapter-13</label><br>
-                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                      <div class="form-group">
-                                                                          <input name="chapter13Name" type="text" class="form-control" id="chapter13Name" placeholder="Name" value="">
-                                                                          <!-- <h4 id="h1" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4> -->
-                                                                      </div>
-                                                                    </div>
-                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                      <div class="form-group">
-                                                                          <input name="chapter13Content" type="text" class="form-control" id="chapter13Content" placeholder="Content" value="">
-                                                                          <!-- <h4 id="h1" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4> -->
-                                                                      </div>
-                                                                    </div>
-                                                                  </li>
-                                                                  <li id="chapter14" style="display:none;">
-                                                                    <label for="chapter14">Chapter-14</label><br>
-                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                      <div class="form-group">
-                                                                          <input name="chapter14Name" type="text" class="form-control" id="chapter14Name" placeholder="Name" value="">
-                                                                          <!-- <h4 id="h1" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4> -->
-                                                                      </div>
-                                                                    </div>
-                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                      <div class="form-group">
-                                                                          <input name="chapter14Content" type="text" class="form-control" id="chapter14Content" placeholder="Content" value="">
-                                                                          <!-- <h4 id="h1" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4> -->
-                                                                      </div>
-                                                                    </div>
-                                                                  </li>
-                                                                  <li id="chapter15" style="display:none;">
-                                                                    <label for="chapter15">Chapter-15</label><br>
-                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                      <div class="form-group">
-                                                                          <input name="chapter15Name" type="text" class="form-control" id="chapter15Name" placeholder="Name" value="">
-                                                                          <!-- <h4 id="h1" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4> -->
-                                                                      </div>
-                                                                    </div>
-                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                      <div class="form-group">
-                                                                          <input name="chapter15Content" type="text" class="form-control" id="chapter15Content" placeholder="Content" value="">
-                                                                          <!-- <h4 id="h1" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4> -->
-                                                                      </div>
-                                                                    </div>
-                                                                  </li>
-                                                                  <li id="chapter16" style="display:none;">
-                                                                    <label for="chapter16">Chapter-16</label><br>
-                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                      <div class="form-group">
-                                                                          <input name="chapter16Name" type="text" class="form-control" id="chapter16Name" placeholder="Name" value="">
-                                                                          <!-- <h4 id="h1" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4> -->
-                                                                      </div>
-                                                                    </div>
-                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                      <div class="form-group">
-                                                                          <input name="chapter16Content" type="text" class="form-control" id="chapter16Content" placeholder="Content" value="">
-                                                                          <!-- <h4 id="h1" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4> -->
-                                                                      </div>
-                                                                    </div>
-                                                                  </li>
-                                                                  <li id="chapter17" style="display:none;">
-                                                                    <label for="chapter17">Chapter-17</label><br>
-                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                      <div class="form-group">
-                                                                          <input name="chapter17Name" type="text" class="form-control" id="chapter17Name" placeholder="Name" value="">
-                                                                          <!-- <h4 id="h1" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4> -->
-                                                                      </div>
-                                                                    </div>
-                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                      <div class="form-group">
-                                                                          <input name="chapter17Content" type="text" class="form-control" id="chapter17Content" placeholder="Content" value="">
-                                                                          <!-- <h4 id="h1" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4> -->
-                                                                      </div>
-                                                                    </div>
-                                                                  </li>
-                                                                  <li id="chapter18" style="display:none;">
-                                                                    <label for="chapter18">Chapter-18</label><br>
-                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                      <div class="form-group">
-                                                                          <input name="chapter18Name" type="text" class="form-control" id="chapter18Name" placeholder="Name" value="">
-                                                                          <!-- <h4 id="h1" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4> -->
-                                                                      </div>
-                                                                    </div>
-                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                      <div class="form-group">
-                                                                          <input name="chapter18Content" type="text" class="form-control" id="chapter18Content" placeholder="Content" value="">
-                                                                          <!-- <h4 id="h1" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4> -->
-                                                                      </div>
-                                                                    </div>
-                                                                  </li>
-                                                                  <li id="chapter19" style="display:none;">
-                                                                    <label for="chapter19">Chapter-19</label><br>
-                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                      <div class="form-group">
-                                                                          <input name="chapter19Name" type="text" class="form-control" id="chapter19Name" placeholder="Name" value="">
-                                                                          <!-- <h4 id="h1" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4> -->
-                                                                      </div>
-                                                                    </div>
-                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                      <div class="form-group">
-                                                                          <input name="chapter9Content" type="text" class="form-control" id="chapter9Content" placeholder="Content" value="">
-                                                                          <!-- <h4 id="h1" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4> -->
-                                                                      </div>
-                                                                    </div>
-                                                                  </li>
-                                                                  <li id="chapter20" style="display:none;">
-                                                                    <label for="chapter20">Chapter-20</label><br>
-                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                      <div class="form-group">
-                                                                          <input name="chapter20Name" type="text" class="form-control" id="chapter20Name" placeholder="Name" value="">
-                                                                          <!-- <h4 id="h1" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4> -->
-                                                                      </div>
-                                                                    </div>
-                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                      <div class="form-group">
-                                                                          <input name="chapter20Content" type="text" class="form-control" id="chapter20Content" placeholder="Content" value="">
-                                                                          <!-- <h4 id="h1" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4> -->
-                                                                      </div>
-                                                                    </div>
-                                                                  </li>
-
-                                                                </ul>
+                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                              <div class="form-group">
+                                                                <label for="chapterName">Chapter Name</label>
+                                                                  <input name="chapterName" type="text" class="form-control" id="chapterName" placeholder="Chapter Name" value="">
+                                                                  <h4 id="h3" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4>
                                                               </div>
 
+                                                              <div class="form-group">
+                                                                <label for="content">Content</label>
+                                                                  <textarea name="content" type="text" class="form-control" id="content" placeholder="Content" value=""></textarea>
+                                                                  <h4 id="h4" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4>
+                                                              </div>
+                                                            </div>
 
-
-
+                                                            </div>
 
                                                         <br><br>
                                                         <div class="row">
                                                             <div class="col-lg-12">
                                                                 <div class="payment-adress">
-                                                                    <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
+                                                                    <button type="submit" id="submitbtn" class="btn btn-primary waves-effect waves-light">Submit</button>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </form>
+
+
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
+                                
                                 </div>
 
                             </div>
@@ -604,7 +292,7 @@
       <!-- <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.sticky/1.0.4/jquery.sticky.js"></script> -->
 
-      <!-- <script src="../course.js"></script> -->
+      <script src="js/addCourse.js"></script>
 
       <!-- bootstrap JS
       ============================================ -->
@@ -654,7 +342,6 @@
       ============================================ -->
       <script src="build/js/main.js"></script>
 
-      <script src="build/js/addCourse.js"></script>
 
 </body>
 

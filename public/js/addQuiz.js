@@ -25,14 +25,14 @@ $(document).ready(function(){
 
 });
 
-function checkName(){
+function checkQuestion(){
 
-    var data = $("#coursename").val();
+    var data = $("#question").val();
     if(!isValid){
       return;
     }
     else if(data == ""){
-        $("#h1").text("Name can't be empty");
+        $("#h1").text("Question can't be empty");
         $("#h1").show();
         isValid = false;
     }
@@ -44,14 +44,14 @@ function checkName(){
     }
 }
 
-function checkDesc(){
+function checkOP1(){
 
-    var data = $("#desc").val();
+    var data = $("#op1").val();
     if(!isValid){
       return;
     }
     else if(data == ""){
-        $("#h2").text("Description can't be empty");
+        $("#h2").text("Option-1 can't be empty");
         $("#h2").show();
         isValid = false;
     }
@@ -62,20 +62,17 @@ function checkDesc(){
     }
 }
 
-function checkChapterName(){
+function checkOP2(){
 
-    //var re = /^[A-Z a-z0-9]+$/;
-
-    var data = $("#chapterName").val();
+    var data = $("#op2").val();
     if(!isValid){
       return;
     }
     else if(data == ""){
-        $("#h3").text("Name can't be empty");
+        $("#h3").text("Option-2 can't be empty");
         $("#h3").show();
         isValid = false;
     }
-
     else{
         $("#h3").text("");
         $("#h3").hide();
@@ -83,20 +80,59 @@ function checkChapterName(){
     }
 }
 
-function checkContent(){
+function checkOP3(){
 
-    var data = $("#content").val();
+    //var re = /^[A-Z a-z0-9]+$/;
+
+    var data = $("#op3").val();
     if(!isValid){
       return;
     }
     else if(data == ""){
-        $("#h4").text("Content can't be empty");
+        $("#h4").text("Option-3 can't be empty");
         $("#h4").show();
         isValid = false;
     }
+
     else{
-        $("#h3").text("");
-        $("#h3").hide();
+        $("#h4").text("");
+        $("#h4").hide();
+        isValid = true;
+    }
+}
+
+function checkOP4(){
+
+    var data = $("#op4").val();
+    if(!isValid){
+      return;
+    }
+    else if(data == ""){
+        $("#h5").text("Option-4 can't be empty");
+        $("#h5").show();
+        isValid = false;
+    }
+    else{
+        $("#h5").text("");
+        $("#h5").hide();
+        isValid = true;
+    }
+}
+
+function checkAnswer(){
+
+    var data = $("#answer").val();
+    if(!isValid){
+      return;
+    }
+    else if(data == ""){
+        $("#h6").text("Answer can't be empty");
+        $("#h6").show();
+        isValid = false;
+    }
+    else{
+        $("#h6").text("");
+        $("#h6").hide();
         isValid = true;
     }
 }
@@ -107,10 +143,12 @@ function checkInfo() {
 
   $("h4").hide();
 
-  checkName();
-  checkDesc();
-  checkChapterName();
-  checkContent();
+  checkQuestion();
+  checkOP1();
+  checkOP2();
+  checkOP3();
+  checkOP4();
+  checkAnswer();
 
   if(!isValid){
     return false;
