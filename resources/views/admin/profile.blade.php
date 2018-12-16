@@ -76,9 +76,9 @@
                 <nav class="sidebar-nav left-sidebar-menu-pro">
                     <ul class="metismenu" id="menu1">
                       <li class="active">
-                          <a class="has-arrow" href="{{route('admin.index')}}">
-                           <span class="educate-icon educate-home icon-wrap"></span>
-                           <span class="mini-click-non">Education</span>
+                         <!--  <a class="has-arrow" href="{{route('admin.index')}}"> -->
+                           <!-- <span class="educate-icon educate-home icon-wrap"></span>
+                           <span class="mini-click-non">Education</span> -->
                         </a>
 
                       </li>

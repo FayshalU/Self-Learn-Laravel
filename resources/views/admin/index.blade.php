@@ -71,9 +71,9 @@
                 <nav class="sidebar-nav left-sidebar-menu-pro">
                     <ul class="metismenu" id="menu1">
                         <li class="active">
-                            <a class="has-arrow" href="{{route('admin.index')}}">
-          								   <span class="educate-icon educate-home icon-wrap"></span>
-          								   <span class="mini-click-non">Education</span>
+                            <!-- <a class="has-arrow" href="{{route('admin.index')}}"> -->
+          								 <!--   <span class="educate-icon educate-home icon-wrap"></span>
+          								   <span class="mini-click-non">Education</span> -->
           								</a>
 
                         </li>
@@ -174,8 +174,8 @@
                                                         <li><a href="{{route('admin.profile')}}"><span class="edu-icon edu-user-rounded author-log-ic"></span>My Profile</a>
                                                         </li>
 
-                                                        <li><a href=""><span class="edu-icon edu-settings author-log-ic"></span>Settings</a>
-                                                        </li>
+                                                        <!-- <li><a href=""><span class="edu-icon edu-settings author-log-ic"></span>Settings</a>
+                                                        </li> -->
                                                         <li><a href="{{route('logout.index')}}"><span class="edu-icon edu-locked author-log-ic"></span>Log Out</a>
                                                         </li>
                                                     </ul>

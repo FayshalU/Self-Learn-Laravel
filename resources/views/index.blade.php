@@ -78,8 +78,16 @@
                         <li>
                             <a class="has-arrow" href="{{route('home.index')}}">
             								   <span class="educate-icon educate-home icon-wrap"></span>
-            								   <span class="mini-click-non">Education</span>
+            								   <span class="mini-click-non">Home</span>
             								</a>
+                                            <a class="has-arrow" href="{{route('login.index')}}">
+                                               <span class="educate-icon educate-home icon-wrap"></span>
+                                               <span class="mini-click-non">Login</span>
+                                            </a>
+                                            <a class="has-arrow" href="{{route('register.index')}}">
+                                               <span class="educate-icon educate-home icon-wrap"></span>
+                                               <span class="mini-click-non">Register</span>
+                                            </a>
 
                         </li>
 
@@ -115,12 +123,11 @@
                                     <div class="col-lg-6 col-md-7 col-sm-6 col-xs-12">
                                         <div class="header-top-menu tabl-d-n">
                                             <ul class="nav navbar-nav mai-top-nav">
-                                                <li class="nav-item"><a href="{{route('home.index')}}" class="nav-link">Home</a>
-                                                </li>
-                                                <li class="nav-item"><a href="" class="nav-link">About</a>
-                                                </li>
-                                                <li class="nav-item"><a href="#" class="nav-link">Courses</a>
-                                                </li>
+                                                <<!-- li class="nav-item"><a href="{{route('home.index')}}" class="nav-link">Home</a>
+                                                </li> -->
+                                                
+                                               <!--  <li class="nav-item"><a href="#" class="nav-link">Courses</a>
+                                                </li> -->
 
                                             </ul>
                                         </div>
