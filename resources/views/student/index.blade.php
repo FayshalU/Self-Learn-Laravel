@@ -139,7 +139,7 @@
 
                                                 <li class="nav-item">
                                                     <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
-                        															<!-- <img src="img/product/pro4.jpg" alt="" /> -->
+                        															<img src="image/{{$user->image}}" alt="" />
                         															<span class="admin-name">{{$user->name}}</span>
                         															<i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
                         														</a>
@@ -219,12 +219,17 @@
 
                                         <!-- post loop -->
 
-                                        @foreach($posts as $post)
+                              <?php for($i=0; $i< count($post); $i++){ ?>
 
-                                        <h1><a class="blog-ht" href="">{{ $post->user_name }}</a></h1>
-                                        <p style="font-size: 20px;">{{ $post->text }}</p><br>
+                                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                                            <div class="profile-img">
+                                                <img height="42" width="42" src="image/{{$data[$i]->image}}" alt="No Image">
+                                            </div>
+                                        </div>
+                                        <h1><a class="blog-ht" href="">{{ $post[$i]->user_name }}</a></h1>
+                                        <p style="font-size: 20px;">{{ $post[$i]->text }}</p><br>
 
-                                    		@endforeach
+                                <?php } ?>
 
                                       </div>
                                       <div class="product-buttons">

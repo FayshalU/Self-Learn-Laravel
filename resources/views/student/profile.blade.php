@@ -149,7 +149,7 @@
 
                                                 <li class="nav-item">
                                                     <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
-                        															<!-- <img src="img/product/pro4.jpg" alt="" /> -->
+                        															<img src="image/{{$user->image}}" alt="" />
                         															<span class="admin-name">{{$user->name}}</span>
                         															<i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
                         														</a>
@@ -235,7 +235,7 @@
                                         <div class="row">
                                           <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                                               <div class="profile-img">
-                                                  
+
                                               </div>
                                           </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">

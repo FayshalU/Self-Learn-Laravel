@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 16, 2018 at 01:09 PM
+-- Generation Time: Dec 16, 2018 at 04:51 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.10
 
@@ -71,18 +71,22 @@ CREATE TABLE `chapter_info` (
   `chapter_id` int(50) NOT NULL,
   `name` varchar(50) NOT NULL,
   `course_id` varchar(50) NOT NULL,
-  `content` varchar(10000) NOT NULL
+  `content` varchar(10000) NOT NULL,
+  `image` varchar(1000) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `chapter_info`
 --
 
-INSERT INTO `chapter_info` (`chapter_id`, `name`, `course_id`, `content`) VALUES
-(1, 'Home', '1', 'C is a general-purpose, procedural, imperative computer programming language developed in 1972 by Dennis M. Ritchie at the Bell Telephone Laboratories to develop the UNIX operating system. C is the most widely used computer language. It keeps fluctuating at number one scale of popularity along with '),
-(2, 'Overview', '1', 'C is a general-purpose, high-level language that was originally developed by Dennis M. Ritchie to develop the UNIX operating system at Bell Labs. C was originally first implemented on the DEC PDP-11 computer in 1972.  In 1978, Brian Kernighan and Dennis Ritchie produced the first publicly availabl'),
-(3, 'About', '10', 'Java is a general-purpose computer-programming language that is concurrent, class-based, object-oriented, and specifically designed to have as few implementation dependencies as possible. It is intended to let application developers \"write once, run anywhere\", meaning that compiled Java code can run on all platforms that support Java without the need for recompilation.'),
-(4, 'History', '10', 'In publishing and graphic design, lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content. Replacing the actual content with placeholder text allows designers to design the form of the content before the content itself has been produced.');
+INSERT INTO `chapter_info` (`chapter_id`, `name`, `course_id`, `content`, `image`) VALUES
+(1, 'Home', '1', 'C is a general-purpose, procedural, imperative computer programming language developed in 1972 by Dennis M. Ritchie at the Bell Telephone Laboratories to develop the UNIX operating system. C is the most widely used computer language. It keeps fluctuating at number one scale of popularity along with', '1544973185.jpg'),
+(2, 'Overview', '1', 'C is a general-purpose, high-level language that was originally developed by Dennis M. Ritchie to develop the UNIX operating system at Bell Labs. C was originally first implemented on the DEC PDP-11 computer in 1972.  In 1978, Brian Kernighan and Dennis Ritchie produced the first publicly availabl', NULL),
+(3, 'About', '10', 'Java is a general-purpose computer-programming language that is concurrent, class-based, object-oriented, and specifically designed to have as few implementation dependencies as possible. It is intended to let application developers \"write once, run anywhere\", meaning that compiled Java code can run on all platforms that support Java without the need for recompilation.', '1544973226.png'),
+(5, 'About', '11', 'In publishing and graphic design, lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content. Replacing the actual content with placeholder text allows designers to design the form of the content before the content itself has been produced.', NULL),
+(6, 'History', '10', 'In publishing and graphic design, lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content. Replacing the actual content with placeholder text allows designers to design the form of the content before the content itself has been produced.', NULL),
+(9, 'edbrgb', '14', 'aaaaaaaaaaaa', '1544972818.png'),
+(10, 'New', '14', 'rbgrgfb gfrb', '1544973115.jpg');
 
 -- --------------------------------------------------------
 
@@ -129,7 +133,9 @@ INSERT INTO `courses` (`course_id`, `instructor_id`, `name`, `info`) VALUES
 (2, 'ee', 'Programming Language 2', ''),
 (6, 'ff', 'Data Structure', ''),
 (8, 'ee', 'Web Technologies ', ''),
-(10, 'dd', 'Java Programming', 'Java is a general-purpose computer-programming language that is concurrent, class-based, object-oriented, and specifically designed to have as few implementation dependencies as possible. It is intended to let application developers \"write once, run anywhere\", meaning that compiled Java code can run on all platforms that support Java without the need for recompilation.');
+(10, 'dd', 'Java Programming', 'Java is a general-purpose computer-programming language that is concurrent, class-based, object-oriented, and specifically designed to have as few implementation dependencies as possible. It is intended to let application developers \"write once, run anywhere\", meaning that compiled Java code can run on all platforms that support Java without the need for recompilation.'),
+(11, 'dd', 'New course', 'In publishing and graphic design, lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content.'),
+(14, 'dd', 'New course2', 'b fdb fdgn');
 
 -- --------------------------------------------------------
 
@@ -415,7 +421,7 @@ ALTER TABLE `students`
 -- AUTO_INCREMENT for table `chapter_info`
 --
 ALTER TABLE `chapter_info`
-  MODIFY `chapter_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `chapter_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `comment`
@@ -427,7 +433,7 @@ ALTER TABLE `comment`
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `course_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `course_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `courses_taken`
@@ -451,7 +457,7 @@ ALTER TABLE `quiz`
 -- AUTO_INCREMENT for table `quiz_result`
 --
 ALTER TABLE `quiz_result`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

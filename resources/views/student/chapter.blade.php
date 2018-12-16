@@ -143,7 +143,7 @@
 
                                                 <li class="nav-item">
                                                     <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
-                        															<!-- <img src="img/product/pro4.jpg" alt="" /> -->
+                        															<img src="image/{{$user->image}}" alt="" />
                         															<span class="admin-name">{{$user->name}}</span>
                         															<i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
                         														</a>
@@ -220,7 +220,15 @@
 
                                       <div class="blog-details blog-sig-details">
 
-                                          <h1><a class="blog-ht" href="#">{{$selectedChapter->name}}</a></h1>
+                                          <h1>{{$selectedChapter->name}}</h1>
+                                          <div class="row">
+                                              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                                  <div class="profile-img">
+                                                      <img height="42" width="42" src="image/chapter/{{$selectedChapter->image}}" alt="">
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <br>
                                           <p style="font-size: 20px;">{{$selectedChapter->content}}</p>
                                       </div>
                                       <div class="product-buttons">

@@ -15,10 +15,18 @@ class StudentController extends Controller
       $user=DB::table('students')
               ->where('id',$request->session()->get('user_id'))->get();
 
-      $posts=DB::table('post')->get();
+      $post=DB::table('post')->get();
 
-      return view('student.index')->with('posts',$posts)
-                          ->with('user',$user[0]);
+      $data = [];
+      for ($i=0; $i < count($post); $i++) {
+        $temp=DB::table('students')
+                ->where('id',$post[$i]->user_id)->first();
+        $data[$i] = $temp;
+      }
+
+      return view('student.index')->with('post',$post)
+                          ->with('user',$user[0])
+                          ->with('data',$data);
     }
 
     public function allCourse(Request $request)
@@ -386,6 +394,41 @@ class StudentController extends Controller
       $array = explode("|",$id2);
 
       DB::table('quiz_result')->insert(['chapter_id' => $array[0], 'student_id' => $request->session()->get('user_id'),'score' => $array[1]]);
+
+      $chapter=DB::table('chapter_info')
+                  ->where('chapter_id',$array[0])->get();
+
+      $course_id = $chapter[0]->course_id;
+
+      $counts = DB::table('chapter_info')
+                  ->where('course_id',$course_id)->get();
+      $count = count($counts);
+
+      $data = 0;
+
+      $chapters=DB::table('chapter_info')
+                  ->where('course_id',$course_id)->get();
+
+      // DB::table('quiz_result')->insert(['chapter_id' => $array[0], 'student_id' => $request->session()->get('user_id'),'score' => $course_id]);
+
+      for ($i=0; $i < $count; $i++) {
+        $temp = DB::table('quiz_result')
+                    ->where('chapter_id',$chapters[$i]->chapter_id)
+                    ->where('student_id',$request->session()->get('user_id'))->get();
+        if (count($temp)>0) {
+          $data = $data+1;
+        }
+      }
+
+      // DB::table('quiz_result')->insert(['chapter_id' => $array[0], 'student_id' => $request->session()->get('user_id'),'score' => $data]);
+
+      if ($count == $data) {
+        DB::table('courses_taken')
+           ->where('student_id', $request->session()->get('user_id'))
+           ->where('course_id', $course_id)
+           ->update(['status' => "finished"]);
+      }
+
       return $array[1];
     }
 

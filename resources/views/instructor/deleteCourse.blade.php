@@ -152,7 +152,7 @@
 
                                                 <li class="nav-item">
                                                     <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
-                        															<img src="img/product/pro4.jpg" alt="" />
+                        															<img src="image/{{$user->image}}" alt="" />
                         															<span class="admin-name">{{$user->name}}</span>
                         															<i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
                         														</a>

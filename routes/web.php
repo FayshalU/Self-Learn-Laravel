@@ -79,7 +79,10 @@ Route::post('/instructor/editChapter','InstructorController@editChapter')->name(
 Route::post('/instructor/addChapterEdit','InstructorController@addChapterEdit')->name('instructor.addChapterEdit');
 Route::get('/instructor/{id}/deleteCourse','InstructorController@deleteCourse')->name('instructor.deleteCourse');
 Route::post('/instructor/deleteCoursePost','InstructorController@deleteCoursePost')->name('instructor.deleteCoursePost');
+Route::get('/instructor/{id}/deleteChapter','InstructorController@deleteChapter')->name('instructor.deleteChapter');
+Route::post('/instructor/deleteChapterPost','InstructorController@deleteChapterPost')->name('instructor.deleteChapterPost');
 Route::get('/instructor/{id}/addQuiz','InstructorController@addQuiz')->name('instructor.addQuiz');
 Route::post('/instructor/addQuizPost','InstructorController@addQuizPost')->name('instructor.addQuizPost');
+Route::get('/instructor/{id}/deleteQuiz','InstructorController@deleteQuiz')->name('instructor.deleteQuiz');
 Route::post('/instructor/addComment','InstructorController@addComment')->name('instructor.addComment');
 Route::resource('/instructor','InstructorController');

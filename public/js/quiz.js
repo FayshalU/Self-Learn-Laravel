@@ -50,7 +50,7 @@ $(document).ready(function(){
          type: 'GET',
          data: { id: chapter+"|"+score },
          success:function(data) {
-            // console.log("Success");
+            console.log("Success");
             console.log(data);
          }
       });

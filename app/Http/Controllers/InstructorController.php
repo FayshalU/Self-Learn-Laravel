@@ -19,10 +19,18 @@ class InstructorController extends Controller
       $user=DB::table('instructors')
               ->where('id',$request->session()->get('user_id'))->get();
 
-      $posts=DB::table('post')->get();
+      $post=DB::table('post')->get();
 
-      return view('instructor.index')->with('posts',$posts)
-                                    ->with('user',$user[0]);
+      $data = [];
+      for ($i=0; $i < count($post); $i++) {
+        $temp=DB::table('students')
+                ->where('id',$post[$i]->user_id)->first();
+        $data[$i] = $temp;
+      }
+
+      return view('instructor.index')->with('post',$post)
+                          ->with('user',$user[0])
+                          ->with('data',$data);
     }
 
     public function myCourses(Request $request)
@@ -385,14 +393,30 @@ class InstructorController extends Controller
       }
       else {
 
+        if ($request->hasFile('image'))
+        {
+          $image = $request->file('image');
+          $imageName = time().'.'.$request->image->getClientOriginalExtension();
+          $request->image->move(public_path('image/chapter'), $imageName);
 
-        DB::table('chapter_info')
-           ->where('chapter_id', $request->chapter_id)
-           ->update(['name' => $request->chapterName, 'content' => $request->content]);
+          DB::table('chapter_info')
+             ->where('chapter_id', $request->chapter_id)
+             ->update(['name' => $request->chapterName, 'content' => $request->content, 'image' => $imageName]);
 
-        $request->session()->flash('msg','Chapter Edited successfully');
+          $request->session()->flash('msg','Chapter Edited successfully');
 
-        return redirect()->route('instructor.editCourse',$request->course_id);
+          return redirect()->route('instructor.editCourse',$request->course_id);
+        }
+        else {
+
+          DB::table('chapter_info')
+             ->where('chapter_id', $request->chapter_id)
+             ->update(['name' => $request->chapterName, 'content' => $request->content]);
+
+          $request->session()->flash('msg','Chapter Edited successfully');
+
+          return redirect()->route('instructor.editCourse',$request->course_id);
+        }
 
       }
 
@@ -414,11 +438,27 @@ class InstructorController extends Controller
       }
       else {
 
-        DB::table('chapter_info')->insert(['name' => $request->chapterNameNew, 'course_id' => $request->course_id, 'content' => $request->contentNew]);
+        if ($request->hasFile('image'))
+        {
 
-        $request->session()->flash('msg','Chapter added successfully');
+          $image = $request->file('image');
+          $imageName = time().'.'.$request->image->getClientOriginalExtension();
+          $request->image->move(public_path('image/chapter'), $imageName);
 
-        return redirect()->route('instructor.editCourse',$request->course_id);
+          DB::table('chapter_info')->insert(['name' => $request->chapterNameNew, 'course_id' => $request->course_id, 'content' => $request->contentNew, 'image' => $imageName]);
+
+          $request->session()->flash('msg','Chapter added successfully');
+
+          return redirect()->route('instructor.editCourse',$request->course_id);
+        }
+        else {
+          DB::table('chapter_info')->insert(['name' => $request->chapterNameNew, 'course_id' => $request->course_id, 'content' => $request->contentNew]);
+
+          $request->session()->flash('msg','Chapter added successfully');
+
+          return redirect()->route('instructor.editCourse',$request->course_id);
+        }
+
 
       }
 
@@ -450,6 +490,52 @@ class InstructorController extends Controller
           return redirect()->route('instructor.myCourses');
         }
 
+    }
+
+    public function deleteChapter(Request $request, $id)
+    {
+        $user=DB::table('instructors')
+              ->where('id',$request->session()->get('user_id'))->get();
+
+        $chapter=DB::table('chapter_info')
+                    ->where('chapter_id',$id)->get();
+
+        $course=DB::table('courses')
+                    ->where('course_id',$chapter[0]->course_id)->get();
+
+        return view('instructor.deleteChapter')->with('chapter',$chapter[0])
+                                                ->with('course',$course[0])
+                                              ->with('user',$user[0]);
+    }
+
+    public function deleteChapterPost(Request $request)
+    {
+        $id = $request->id;
+
+        echo $request->course_id;
+
+        if (isset($_POST['yes'])) {
+          DB::table('chapter_info')->where('chapter_id', $id)->delete();
+          return redirect()->route('instructor.chapter',$request->course_id);
+        }
+        else {
+          return redirect()->route('instructor.chapter',[$request->course_id,$id]);
+
+        }
+
+    }
+
+    public function deleteQuiz(Request $request, $id)
+    {
+        $quiz=DB::table('quiz')
+                  ->where('quiz_id',$id)->get();
+
+        $chapter=DB::table('chapter_info')
+                    ->where('chapter_id',$quiz[0]->chapter_id)->get();
+
+        DB::table('quiz')->where('quiz_id', $id)->delete();
+
+        return redirect()->route('instructor.chapter',[$chapter[0]->course_id, $chapter[0]->chapter_id]);
     }
 
 
@@ -494,14 +580,34 @@ class InstructorController extends Controller
          return redirect()->route('instructor.create');
        }
        else {
-         DB::table('courses')->insert(['instructor_id' => $request->session()->get('user_id'), 'name' => $request->coursename,'info' => $request->desc]);
 
-         $courses=DB::table('courses')->get();
-         print_r($courses[count($courses)-1]);
+         if ($request->hasFile('image'))
+         {
+           // echo "string";
 
-         DB::table('chapter_info')->insert(['name' => $request->chapterName, 'course_id' => $courses[count($courses)-1]->course_id, 'content' => $request->content]);
+           $image = $request->file('image');
+           $imageName = time().'.'.$request->image->getClientOriginalExtension();
+           $request->image->move(public_path('image/chapter'), $imageName);
 
-         return redirect()->route('instructor.myCourses');
+           DB::table('courses')->insert(['instructor_id' => $request->session()->get('user_id'), 'name' => $request->coursename,'info' => $request->desc]);
+
+           $courses=DB::table('courses')->get();
+           // print_r($courses[count($courses)-1]);
+
+           DB::table('chapter_info')->insert(['name' => $request->chapterName, 'course_id' => $courses[count($courses)-1]->course_id, 'content' => $request->content, 'image' => $imageName]);
+
+           return redirect()->route('instructor.myCourses');
+         }
+         else {
+           DB::table('courses')->insert(['instructor_id' => $request->session()->get('user_id'), 'name' => $request->coursename,'info' => $request->desc]);
+
+           $courses=DB::table('courses')->get();
+           // print_r($courses[count($courses)-1]);
+
+           DB::table('chapter_info')->insert(['name' => $request->chapterName, 'course_id' => $courses[count($courses)-1]->course_id, 'content' => $request->content]);
+
+           return redirect()->route('instructor.myCourses');
+         }
 
        }
 

@@ -18,10 +18,18 @@ class AdminController extends Controller
       $user=DB::table('admins')
               ->where('id',$request->session()->get('user_id'))->get();
 
-      $posts=DB::table('post')->get();
+      $post=DB::table('post')->get();
 
-      return view('admin.index')->with('posts',$posts)
-                                    ->with('user',$user[0]);
+      $data = [];
+      for ($i=0; $i < count($post); $i++) {
+        $temp=DB::table('students')
+                ->where('id',$post[$i]->user_id)->first();
+        $data[$i] = $temp;
+      }
+
+      return view('admin.index')->with('post',$post)
+                          ->with('user',$user[0])
+                          ->with('data',$data);
     }
 
     public function showInstructors(Request $request){

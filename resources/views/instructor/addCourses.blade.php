@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="build/css/owl.carousel.css">
     <link rel="stylesheet" href="build/css/owl.theme.css">
     <link rel="stylesheet" href="build/css/owl.transitions.css">
+
     <!-- animate CSS
 		============================================ -->
     <link rel="stylesheet" href="build/css/animate.css">
@@ -35,12 +36,18 @@
     <!-- main CSS
 		============================================ -->
     <link rel="stylesheet" href="build/css/main.css">
+    <!-- forms CSS
+		============================================ -->
+    <link rel="stylesheet" href="build/css/form/all-type-forms.css">
     <!-- educate icon CSS
 		============================================ -->
     <link rel="stylesheet" href="build/css/educate-custon-icon.css">
     <!-- morrisjs CSS
 		============================================ -->
     <link rel="stylesheet" href="build/css/morrisjs/morris.css">
+    <!-- dropzone CSS
+		============================================ -->
+    <link rel="stylesheet" href="build/css/dropzone/dropzone.css">
     <!-- mCustomScrollbar CSS
 		============================================ -->
     <link rel="stylesheet" href="build/css/scrollbar/jquery.mCustomScrollbar.min.css">
@@ -48,7 +55,10 @@
 		============================================ -->
     <link rel="stylesheet" href="build/css/metisMenu/metisMenu.min.css">
     <link rel="stylesheet" href="build/css/metisMenu/metisMenu-vertical.css">
-
+    <!-- calendar CSS
+		============================================ -->
+    <link rel="stylesheet" href="build/css/calendar/fullcalendar.min.css">
+    <link rel="stylesheet" href="build/css/calendar/fullcalendar.print.min.css">
     <!-- style CSS
 		============================================ -->
     <link rel="stylesheet" href="build/css/style.css">
@@ -152,7 +162,7 @@
 
                                                 <li class="nav-item">
                                                     <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
-                        															<img src="img/product/pro4.jpg" alt="" />
+                        															<img src="image/{{$user->image}}" alt="" />
                         															<span class="admin-name">{{$user->name}}</span>
                         															<i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
                         														</a>
@@ -220,7 +230,7 @@
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="review-content-section">
                                                 <div id="dropzone1" class="pro-ad addcoursepro">
-                                                    <form  method="post" action="/instructor/addCourse"  onsubmit="return checkInfo()" class="dropzone dropzone-custom needsclick addcourse" id="demo1-upload">
+                                                    <form  method="post" action="/instructor/addCourse" enctype="multipart/form-data"  onsubmit="return checkInfo()" class="dropzone dropzone-custom needsclick addcourse" id="demo1-upload">
                                                       {{@csrf_field()}}
                                                         <div class="row">
                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -254,6 +264,19 @@
                                                                   <textarea name="content" type="text" class="form-control" id="content" placeholder="Content" value=""></textarea>
                                                                   <h4 id="h4" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4>
                                                               </div>
+                                                              <div class="file-upload-inner ts-forms">
+                                                                  <div class="input prepend-big-btn">
+                                                                      <label class="icon-right" for="prepend-big-btn">
+                                                                          <i class="fa fa-download"></i>
+                                                                        </label>
+                                                                      <div class="file-button">
+                                                                          Browse
+                                                                          <input type="file" onchange="document.getElementById('prepend-big-btn').value = this.value;" name="image">
+                                                                      </div>
+                                                                      <input type="text" id="prepend-big-btn" placeholder="No file selected">
+                                                                  </div>
+                                                              </div>
+                                                              <h4 id="h5" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4>
                                                             </div>
 
                                                             </div>
@@ -274,7 +297,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 </div>
 
                             </div>

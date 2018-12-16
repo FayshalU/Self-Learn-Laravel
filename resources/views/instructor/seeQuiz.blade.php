@@ -143,7 +143,7 @@
 
                                                 <li class="nav-item">
                                                   <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
-                                                    <!-- <img src="img/product/pro4.jpg" alt="" /> -->
+                                                    <img src="image/{{$user->image}}" alt="" />
                                                     <span class="admin-name">{{$user->name}}</span>
                                                     <i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
                                                   </a>
@@ -235,6 +235,11 @@
                                               <input type="radio" name="{{$i}}" value="{{$quiz[$i]->op4}}"> {{$quiz[$i]->op4}} <br><br>
 
                                               <p class="answer" hidden>Answer: <span class="{{$i}}">{{$quiz[$i]->answer}}</span></p>
+
+                                              <div class="product-buttons">
+                                                <a href="{{route('instructor.deleteQuiz',[$quiz[$i]->quiz_id])}}"><button type="button" class="button-default cart-btn">Delete quiz</button></a>
+                                              </div>
+
 
                                         <?php } ?>
 
