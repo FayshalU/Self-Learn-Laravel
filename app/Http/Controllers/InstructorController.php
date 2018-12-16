@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\instructor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class InstructorController extends Controller
 {
@@ -81,6 +82,11 @@ class InstructorController extends Controller
         for ($i=0; $i < count($comments); $i++) {
           $students[$i] =DB::table('students')
                               ->where('id',$comments[$i]->user_id)->first();
+
+          if ($students[$i] == null) {
+            $students[$i] =DB::table('instructors')
+                              ->where('id',$comments[$i]->user_id)->first();
+          }
         }
 
          return view('instructor.seeCourse')->with('course',$course)
@@ -290,6 +296,32 @@ class InstructorController extends Controller
          $request->session()->flash('msg','Password updated successfully');
           return redirect()->route('instructor.profile');
         }
+
+    }
+
+    public function addImage(Request $request)
+    {
+
+      // echo $request->imageico;
+
+      if ($request->hasFile('image'))
+      {
+        // echo "string2";
+        $image = $request->file('image');
+        $imageName = time().'.'.$request->image->getClientOriginalExtension();
+        $request->image->move(public_path('image'), $imageName);
+
+        DB::table('instructors')
+           ->where('id', $request->session()->get('user_id'))
+           ->update(['image' => $imageName]);
+
+           $request->session()->flash('msg','Picture updated successfully');
+            return redirect()->route('instructor.profile');
+      }
+      else {
+        $request->session()->flash('msg','Please select an image');
+         return redirect()->route('instructor.profile');
+      }
 
     }
 

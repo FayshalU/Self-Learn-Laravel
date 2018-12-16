@@ -58,6 +58,7 @@ Route::get('/student/share/{id}','StudentController@share')->name('student.share
 Route::get('/student/profile','StudentController@profile')->name('student.profile');
 Route::post('/student/editInfo','StudentController@editInfo')->name('student.editInfo');
 Route::post('/student/editPass','StudentController@editPass')->name('student.editPass');
+Route::post('/student/addImage','StudentController@addImage')->name('student.addImage');
 Route::post('/student/addComment','StudentController@addComment')->name('student.addComment');
 Route::resource('/student','StudentController');
 
@@ -66,6 +67,7 @@ Route::resource('/student','StudentController');
 Route::get('/instructor/profile','InstructorController@profile')->name('instructor.profile');
 Route::post('/instructor/editInfo','InstructorController@editInfo')->name('instructor.editInfo');
 Route::post('/instructor/editPass','InstructorController@editPass')->name('instructor.editPass');
+Route::post('/instructor/addImage','InstructorController@addImage')->name('instructor.addImage');
 Route::get('/instructor/myCourses','InstructorController@myCourses')->name('instructor.myCourses');
 Route::get('/instructor/{id}/seeCourse','InstructorController@seeCourse')->name('instructor.seeCourse');
 Route::get('/instructor/chapter/{id}/{id2?}','InstructorController@chapter')->name('instructor.chapter');

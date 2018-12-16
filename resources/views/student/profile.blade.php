@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="build/css/owl.carousel.css">
     <link rel="stylesheet" href="build/css/owl.theme.css">
     <link rel="stylesheet" href="build/css/owl.transitions.css">
+
     <!-- animate CSS
 		============================================ -->
     <link rel="stylesheet" href="build/css/animate.css">
@@ -35,12 +36,18 @@
     <!-- main CSS
 		============================================ -->
     <link rel="stylesheet" href="build/css/main.css">
+    <!-- forms CSS
+		============================================ -->
+    <link rel="stylesheet" href="build/css/form/all-type-forms.css">
     <!-- educate icon CSS
 		============================================ -->
     <link rel="stylesheet" href="build/css/educate-custon-icon.css">
     <!-- morrisjs CSS
 		============================================ -->
     <link rel="stylesheet" href="build/css/morrisjs/morris.css">
+    <!-- dropzone CSS
+		============================================ -->
+    <link rel="stylesheet" href="build/css/dropzone/dropzone.css">
     <!-- mCustomScrollbar CSS
 		============================================ -->
     <link rel="stylesheet" href="build/css/scrollbar/jquery.mCustomScrollbar.min.css">
@@ -48,7 +55,10 @@
 		============================================ -->
     <link rel="stylesheet" href="build/css/metisMenu/metisMenu.min.css">
     <link rel="stylesheet" href="build/css/metisMenu/metisMenu-vertical.css">
-
+    <!-- calendar CSS
+		============================================ -->
+    <link rel="stylesheet" href="build/css/calendar/fullcalendar.min.css">
+    <link rel="stylesheet" href="build/css/calendar/fullcalendar.print.min.css">
     <!-- style CSS
 		============================================ -->
     <link rel="stylesheet" href="build/css/style.css">
@@ -215,17 +225,28 @@
                               <li class="active"><a href="#description">Information</a></li>
                               <li><a href="#INFORMATION">Update Details</a></li>
                               <li><a href="#Password">Update Password</a></li>
+                              <li><a href="#Image">Update Picture</a></li>
                           </ul>
                           <div id="myTabContent" class="tab-content custom-product-edit st-prf-pro">
                               <div class="product-tab-list tab-pane fade active in" id="description">
                                 <div class="row">
                                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="profile-info-inner">
-                                        <div class="profile-img">
-                                            <img src="img/profile/1.jpg" alt="">
+                                        <div class="row">
+                                          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                              <div class="profile-img">
+                                                  
+                                              </div>
+                                          </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                <div class="profile-img">
+                                                    <img height="42" width="42" src="image/{{$user->image}}" alt="No Image">
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="profile-details-hr">
-                                            <div class="row">
+
+                                          <div class="row">
                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                     <div class="address-hr">
                                                         <p><b>Name</b><br>{{$user->name}}</p>
@@ -378,12 +399,53 @@
                                       </div>
                                   </div>
                               </div>
+                              <div class="product-tab-list tab-pane fade" id="Image">
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="review-content-section">
+                                            <div id="dropzone1" class="pro-ad">
+                                                <form action="/student/addImage" method="post" enctype="multipart/form-data" class="" id="demo1-upload" onsubmit="return checkImage()">
+                                                  {{@csrf_field()}}
+                                                    <div class="row">
+                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+                                                          <div class="file-upload-inner ts-forms">
+                                                              <div class="input prepend-big-btn">
+                                                                  <label class="icon-right" for="prepend-big-btn">
+                                                                      <i class="fa fa-download"></i>
+                                                                    </label>
+                                                                  <div class="file-button">
+                                                                      Browse
+                                                                      <input type="file" onchange="document.getElementById('prepend-big-btn').value = this.value;" name="image">
+                                                                  </div>
+                                                                  <input type="text" id="prepend-big-btn" placeholder="No file selected">
+                                                              </div>
+                                                          </div>
+                                                          <h4 id="h5" style="text-align: center;color: #ff0000;font-weight: 50;height:20px;font-size: 15px;"></h4>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <br>
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <div class="payment-adress">
+                                                                <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
                           </div>
                       </div>
                   </div>
               </div>
           </div>
-      </div>
       </div>
         <br><br><br><br><br>
         <div class="footer-copyright-area">
@@ -403,6 +465,7 @@
         <script src="build/js/vendor/jquery-1.12.4.min.js"></script>
 
         <script src="js/profile.js"></script>
+
 
         <!-- bootstrap JS
     		============================================ -->
@@ -444,7 +507,25 @@
         <script src="build/js/icheck/icheck.min.js"></script>
         <script src="build/js/icheck/icheck-active.js"></script>
 
-
+        <!-- maskedinput JS
+    		============================================ -->
+        <script src="build/js/jquery.maskedinput.min.js"></script>
+        <script src="build/js/masking-active.js"></script>
+        <!-- datepicker JS
+    		============================================ -->
+        <script src="build/js/datepicker/jquery-ui.min.js"></script>
+        <script src="build/js/datepicker/datepicker-active.js"></script>
+        <!-- form validate JS
+    		============================================ -->
+        <!-- <script src="build/js/form-validation/jquery.form.min.js"></script> -->
+        <!-- <script src="build/js/form-validation/jquery.validate.min.js"></script> -->
+        <!-- <script src="build/js/form-validation/form-active.js"></script> -->
+        <!-- dropzone JS
+    		============================================ -->
+        <script src="build/js/dropzone/dropzone.js"></script>
+        <!-- tab JS
+    		============================================ -->
+        <script src="build/js/tab.js"></script>
         <!-- plugins JS
     		============================================ -->
         <script src="build/js/plugins.js"></script>

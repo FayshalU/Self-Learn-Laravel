@@ -344,6 +344,8 @@
             var array = <?php echo json_encode($courseNames);?> ;
             var count = <?php echo json_encode($data);?> ;
 
+            // console.log(array);
+
             var barchart1 = new Chart(ctx, {
               type: 'bar',
               data: {

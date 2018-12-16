@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 15, 2018 at 08:57 PM
+-- Generation Time: Dec 16, 2018 at 01:09 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.10
 
@@ -104,7 +104,8 @@ CREATE TABLE `comment` (
 
 INSERT INTO `comment` (`comment_id`, `course_id`, `user_id`, `text`, `date`) VALUES
 (1, '1', 'bb', 'New Comment', '2018-12-15'),
-(2, '1', 'cc', 'Great Course!', '2018-12-15');
+(2, '1', 'cc', 'Great Course!', '2018-12-15'),
+(3, '1', 'dd', 'Thanks', '2018-12-16');
 
 -- --------------------------------------------------------
 
@@ -128,7 +129,6 @@ INSERT INTO `courses` (`course_id`, `instructor_id`, `name`, `info`) VALUES
 (2, 'ee', 'Programming Language 2', ''),
 (6, 'ff', 'Data Structure', ''),
 (8, 'ee', 'Web Technologies ', ''),
-(9, 'dd', 'math1', ''),
 (10, 'dd', 'Java Programming', 'Java is a general-purpose computer-programming language that is concurrent, class-based, object-oriented, and specifically designed to have as few implementation dependencies as possible. It is intended to let application developers \"write once, run anywhere\", meaning that compiled Java code can run on all platforms that support Java without the need for recompilation.');
 
 -- --------------------------------------------------------
@@ -165,17 +165,18 @@ CREATE TABLE `instructors` (
   `name` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
-  `joined` date NOT NULL
+  `joined` date NOT NULL,
+  `image` varchar(1000) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `instructors`
 --
 
-INSERT INTO `instructors` (`id`, `name`, `email`, `password`, `joined`) VALUES
-('dd', 'John', 'john@outlook.com', 'dd', '2018-12-05'),
-('ee', 'Instructor2', 'Instructor2@mail.com', 'ee', '2018-12-14'),
-('ff', 'Instructor3', 'Instructor3@mail.com', 'ff', '2018-12-15');
+INSERT INTO `instructors` (`id`, `name`, `email`, `password`, `joined`, `image`) VALUES
+('dd', 'John', 'john@outlook.com', 'dd', '2018-12-05', '1544959545.png'),
+('ee', 'Instructor2', 'Instructor2@mail.com', 'ee', '2018-12-14', NULL),
+('ff', 'Instructor3', 'Instructor3@mail.com', 'ff', '2018-12-15', NULL);
 
 -- --------------------------------------------------------
 
@@ -305,17 +306,18 @@ CREATE TABLE `students` (
   `name` varchar(50) NOT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(50) NOT NULL,
-  `joined` date NOT NULL
+  `joined` date NOT NULL,
+  `image` varchar(1000) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`id`, `name`, `email`, `password`, `joined`) VALUES
-('bb', 'Adam Levine', 'adam@gmail.com', 'bb', '2018-12-06'),
-('cc', 'New Student', 'student2@gmail.com', 'cc', '2018-12-01'),
-('fsl', 'Faysal', 'faysal@gmail.com', 'ffff', '2018-12-15');
+INSERT INTO `students` (`id`, `name`, `email`, `password`, `joined`, `image`) VALUES
+('bb', 'Adam Levine', 'adam@gmail.com', 'bb', '2018-12-06', '1544959018.png'),
+('cc', 'New Student', 'student2@gmail.com', 'cc', '2018-12-01', NULL),
+('fsl', 'Faysal', 'faysal@gmail.com', 'ffff', '2018-12-15', NULL);
 
 --
 -- Indexes for dumped tables
@@ -419,7 +421,7 @@ ALTER TABLE `chapter_info`
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `comment_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `comment_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `courses`

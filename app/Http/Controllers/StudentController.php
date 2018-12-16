@@ -242,6 +242,10 @@ class StudentController extends Controller
     {
         $course=DB::table('courses')
                     ->where('course_id',$id)->get();
+
+        $instructor=DB::table('instructors')
+                    ->where('id',$course[0]->instructor_id)->get();
+
         $taken=DB::table('courses_taken')
                     ->where('course_id',$id)
                     ->where('student_id',$request->session()->get('user_id'))->get();
@@ -267,9 +271,15 @@ class StudentController extends Controller
         for ($i=0; $i < count($comments); $i++) {
           $students[$i] =DB::table('students')
                               ->where('id',$comments[$i]->user_id)->first();
+
+          if ($students[$i] == null) {
+            $students[$i] =DB::table('instructors')
+                              ->where('id',$comments[$i]->user_id)->first();
+          }
         }
 
         return view('student.showCourse')->with('course',$course[0])
+                            ->with('instructor',$instructor[0])
                             ->with('user',$user[0])
                             ->with('data',$data)
                             ->with('comments',$comments)
@@ -491,6 +501,32 @@ class StudentController extends Controller
          $request->session()->flash('msg','Password updated successfully');
           return redirect()->route('student.profile');
         }
+
+    }
+
+    public function addImage(Request $request)
+    {
+
+      // echo $request->imageico;
+
+      if ($request->hasFile('image'))
+      {
+        // echo "string2";
+        $image = $request->file('image');
+        $imageName = time().'.'.$request->image->getClientOriginalExtension();
+        $request->image->move(public_path('image'), $imageName);
+
+        DB::table('students')
+           ->where('id', $request->session()->get('user_id'))
+           ->update(['image' => $imageName]);
+
+           $request->session()->flash('msg','Picture updated successfully');
+            return redirect()->route('student.profile');
+      }
+      else {
+        $request->session()->flash('msg','Please select an image');
+         return redirect()->route('student.profile');
+      }
 
     }
 

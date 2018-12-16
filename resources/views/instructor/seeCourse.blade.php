@@ -249,6 +249,11 @@
                                   <div class="user-comment">
                                       <!-- <img src="img/contact/1.jpg" alt=""> -->
                                       <div class="comment-details">
+                                          <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                                              <div class="profile-img">
+                                                  <img height="42" width="42" src="image/{{$students[$i]->image}}" alt="No Image">
+                                              </div>
+                                          </div>
                                           <h4><strong>{{$students[$i]->name}}</strong> ({{$comments[$i]->date}})</h4>
                                           <p>{{$comments[$i]->text}}</p>
                                       </div>
@@ -259,7 +264,7 @@
                     <?php } ?>
 
                           <br>
-                          <!-- <div class="row">
+                          <div class="row">
                               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                   <div class="lead-head">
                                       <h3>Leave A Comment</h3>
@@ -285,7 +290,7 @@
                                       </div>
                                   </form>
                               </div>
-                          </div> -->
+                          </div>
 
                       </div>
                   </div>

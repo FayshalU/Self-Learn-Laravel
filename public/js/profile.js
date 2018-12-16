@@ -139,3 +139,18 @@ function checkPass() {
 
   return true;
 }
+
+function checkImage(){
+    var data = $("#prepend-big-btn").val();
+    if(data == ""){
+        $("#h5").text("Please select an image");
+        $("#h5").show();
+        return false;
+    }
+
+    else{
+        $("#h5").text("");
+        $("#h5").hide();
+        return true;
+    }
+}
