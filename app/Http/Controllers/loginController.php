@@ -31,14 +31,17 @@ class loginController extends Controller
     	if($user!=null)
     	{
     		$request->session()->put('user_id',$user->id);
-        
+
         if ($user->type == 'admin') {
+          $request->session()->put('type',1);
           return redirect()->route('admin.index');
         }
         else if ($user->type == 'student') {
+          $request->session()->put('type',2);
           return redirect()->route('student.index');
         }
         else{
+          $request->session()->put('type',3);
           return redirect()->route('instructor.index');
         }
     	}

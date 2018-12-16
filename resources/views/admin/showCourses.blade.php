@@ -249,26 +249,27 @@
             <div class="container-fluid">
                 <div class="row">
 
-            @foreach($courses as $course)
+
+            <?php for($i=0; $i< count($courses); $i++){ ?>
 
                   <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                       <div class="courses-inner res-mg-b-30">
                           <div class="courses-title">
-                              <h2>{{$course->name}}</h2>
+                              <h2>{{$courses[$i]->name}}</h2>
                           </div>
 
                           <div class="course-des">
-
-                              <p><span><i class="fa fa-clock"></i></span> <b>Instrcutor:</b> {{$course->instructor_id}}</p>
+                              <p><span><i class="fa fa-clock"></i></span> <b>Chapter:</b> {{$chapters[$i]}}</p>
+                              <p><span><i class="fa fa-clock"></i></span> <b>Instrcutor:</b> {{$instructors[$i]}}</p>
                           </div>
                           <div class="product-buttons">
 
-                              <a href="{{route('admin.deleteCourses',$course->course_id)}}"><button type="button" class="button-default cart-btn">Delete</button></a>
+                              <a href="{{route('admin.deleteCourses',$courses[$i]->course_id)}}"><button type="button" class="button-default cart-btn">Delete</button></a>
                           </div>
                       </div>
                   </div>
 
-            @endforeach
+            <?php } ?>
 
 
                 </div>

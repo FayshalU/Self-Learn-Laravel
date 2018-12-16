@@ -83,12 +83,36 @@ class AdminController extends Controller
       $user=DB::table('admins')
               ->where('id',$request->session()->get('user_id'))->get();
 
-         $courses = DB::table('courses')
+      $courses = DB::table('courses')
                         ->get();
+
+        $chapters = [];
+
+        for ($i=0; $i < count($courses); $i++) {
+          $chapter = DB::table('chapter_info')
+                      ->where('course_id',$courses[$i]->course_id)->get();
+          $chapters[$i] = count($chapter);
+        }
+
+        $instructors = [];
+
+        for ($i=0; $i < count($courses); $i++) {
+          $instructor = DB::table('instructors')
+                      ->where('id',$courses[$i]->instructor_id)->first();
+          if ($instructor!=null) {
+            $instructors[$i] = $instructor->name;
+          }
+          else {
+            $instructors[$i] = null;
+          }
+
+        }
 
         return view('admin.showCourses')
                                     ->with('courses',$courses)
-                                    ->with('user',$user[0]);
+                                    ->with('user',$user[0])
+                                    ->with('chapters',$chapters)
+                                    ->with('instructors',$instructors);
 
     }
 
