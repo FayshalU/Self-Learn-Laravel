@@ -76,10 +76,10 @@
                 <nav class="sidebar-nav left-sidebar-menu-pro">
                     <ul class="metismenu" id="menu1">
                         <li>
-                            <a class="has-arrow" href="{{route('student.index')}}">
+                            <!-- <a class="has-arrow" href="{{route('student.index')}}">
             								   <span class="educate-icon educate-home icon-wrap"></span>
             								   <span class="mini-click-non">Education</span>
-            								</a>
+            								</a> -->
 
                         </li>
                         <li>
@@ -128,8 +128,8 @@
                                             <ul class="nav navbar-nav mai-top-nav">
                                                 <li class="nav-item"><a href="{{route('student.index')}}" class="nav-link">Home</a>
                                                 </li>
-                                                <li class="nav-item"><a href="" class="nav-link">About</a>
-                                                </li>
+                                               <!--  <li class="nav-item"><a href="" class="nav-link">About</a>
+                                                </li> -->
                                                 <li class="nav-item"><a href="{{route('student.course')}}" class="nav-link">Courses</a>
                                                 </li>
 
@@ -152,8 +152,8 @@
                                                         <li><a href="{{route('student.profile')}}"><span class="edu-icon edu-user-rounded author-log-ic"></span>My Profile</a>
                                                         </li>
 
-                                                        <li><a href=""><span class="edu-icon edu-settings author-log-ic"></span>Settings</a>
-                                                        </li>
+                                                       <!--  <li><a href=""><span class="edu-icon edu-settings author-log-ic"></span>Settings</a>
+                                                        </li> -->
                                                         <li><a href="{{route('logout.index')}}"><span class="edu-icon edu-locked author-log-ic"></span>Log Out</a>
                                                         </li>
                                                     </ul>

@@ -76,10 +76,10 @@
                 <nav class="sidebar-nav left-sidebar-menu-pro">
                     <ul class="metismenu" id="menu1">
                         <li>
-                            <a class="has-arrow" href="{{route('student.index')}}">
+                           <!--  <a class="has-arrow" href="{{route('student.index')}}">
             								   <span class="educate-icon educate-home icon-wrap"></span>
             								   <span class="mini-click-non">Education</span>
-            								</a>
+            								</a> -->
 
                         </li>
                         
@@ -117,10 +117,9 @@
                                             <ul class="nav navbar-nav mai-top-nav">
                                                 <li class="nav-item"><a href="{{route('home.index')}}" class="nav-link">Home</a>
                                                 </li>
-                                                <li class="nav-item"><a href="" class="nav-link">About</a>
-                                                </li>
-                                                <li class="nav-item"><a href="{{route('home.index')}}" class="nav-link">Courses</a>
-                                                </li>
+                                                
+                                                <!-- <li class="nav-item"><a href="{{route('home.index')}}" class="nav-link">Courses</a>
+                                                </li> -->
 
                                             </ul>
                                         </div>
