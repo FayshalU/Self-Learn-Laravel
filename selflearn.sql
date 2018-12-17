@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 16, 2018 at 04:51 PM
+-- Generation Time: Dec 17, 2018 at 11:20 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.10
 
@@ -86,7 +86,8 @@ INSERT INTO `chapter_info` (`chapter_id`, `name`, `course_id`, `content`, `image
 (5, 'About', '11', 'In publishing and graphic design, lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content. Replacing the actual content with placeholder text allows designers to design the form of the content before the content itself has been produced.', NULL),
 (6, 'History', '10', 'In publishing and graphic design, lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content. Replacing the actual content with placeholder text allows designers to design the form of the content before the content itself has been produced.', NULL),
 (9, 'edbrgb', '14', 'aaaaaaaaaaaa', '1544972818.png'),
-(10, 'New', '14', 'rbgrgfb gfrb', '1544973115.jpg');
+(10, 'New', '14', 'rbgrgfb gfrb', '1544973115.jpg'),
+(11, 'Iteration', '1', 'Loop', '1545024645.PNG');
 
 -- --------------------------------------------------------
 
@@ -158,7 +159,8 @@ INSERT INTO `courses_taken` (`id`, `course_id`, `student_id`, `status`) VALUES
 (1, 1, 'bb', 'running'),
 (5, 1, 'cc', 'finished'),
 (6, 6, 'bb', 'running'),
-(7, 10, 'cc', 'running');
+(7, 10, 'cc', 'running'),
+(8, 1, 'test', 'finished');
 
 -- --------------------------------------------------------
 
@@ -182,7 +184,7 @@ CREATE TABLE `instructors` (
 INSERT INTO `instructors` (`id`, `name`, `email`, `password`, `joined`, `image`) VALUES
 ('dd', 'John', 'john@outlook.com', 'dd', '2018-12-05', '1544959545.png'),
 ('ee', 'Instructor2', 'Instructor2@mail.com', 'ee', '2018-12-14', NULL),
-('ff', 'Instructor3', 'Instructor3@mail.com', 'ff', '2018-12-15', NULL);
+('ff', 'Instructor', 'ff@some.com', 'ff', '2018-12-07', NULL);
 
 -- --------------------------------------------------------
 
@@ -218,8 +220,8 @@ INSERT INTO `login` (`id`, `password`, `type`) VALUES
 ('cc', 'cc', 'student'),
 ('dd', 'dd', 'instructor'),
 ('ee', 'ee', 'instructor'),
-('ff', 'ff', 'instructor'),
-('fsl', 'ffff', 'student');
+('fsl', 'ffff', 'student'),
+('test', 'test', 'student');
 
 -- --------------------------------------------------------
 
@@ -231,16 +233,18 @@ CREATE TABLE `post` (
   `post_id` int(50) NOT NULL,
   `user_id` varchar(100) NOT NULL,
   `user_name` varchar(50) NOT NULL,
-  `text` varchar(50) NOT NULL
+  `text` varchar(1000) NOT NULL,
+  `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `post`
 --
 
-INSERT INTO `post` (`post_id`, `user_id`, `user_name`, `text`) VALUES
-(3, 'cc', 'Student', 'I have scored 2 on Home of Programming Language 1'),
-(5, 'bb', 'Adam Levine', 'I have scored 2 on Home of Programming Language 1');
+INSERT INTO `post` (`post_id`, `user_id`, `user_name`, `text`, `date`) VALUES
+(3, 'cc', 'Student', 'I have scored 2 on Home of Programming Language 1', '2018-12-04'),
+(5, 'bb', 'Adam Levine', 'I have scored 2 on Home of Programming Language 1', '2018-12-09'),
+(6, 'test', 'Test', 'I have scored 2 on Home of Programming Language 1', '2018-12-17');
 
 -- --------------------------------------------------------
 
@@ -266,7 +270,8 @@ CREATE TABLE `quiz` (
 INSERT INTO `quiz` (`quiz_id`, `chapter_id`, `question`, `op1`, `op2`, `op3`, `op4`, `answer`) VALUES
 (1, 1, 'Which is valid C expression?', 'int my_num = 100,000;', 'int my_num = 100000;', 'int my num = 1000;', 'int $my_num = 10000;', 'int my_num = 100000;'),
 (2, 1, 'Which among the following is NOT a logical or relational operator?', '!=', '==', '||', '=', '='),
-(3, 3, 'evbebvebve', 'svs', 'vsdbdfb', 'svsfd', 'svfdb', 'svs');
+(3, 3, 'evbebvebve', 'svs', 'vsdbdfb', 'svsfd', 'svfdb', 'svs'),
+(4, 11, 'djnvldsvjn', 'dknvlsd', 'kjdvnsdk', 'dbfbdf', 'fbfgnf', 'dbfbdf');
 
 -- --------------------------------------------------------
 
@@ -286,7 +291,10 @@ CREATE TABLE `quiz_result` (
 --
 
 INSERT INTO `quiz_result` (`id`, `chapter_id`, `student_id`, `score`) VALUES
-(3, '1', 'bb', '2');
+(3, '1', 'bb', '2'),
+(4, '1', 'test', '2'),
+(5, '2', 'test', '0'),
+(6, '11', 'test', '1');
 
 -- --------------------------------------------------------
 
@@ -323,7 +331,8 @@ CREATE TABLE `students` (
 INSERT INTO `students` (`id`, `name`, `email`, `password`, `joined`, `image`) VALUES
 ('bb', 'Adam Levine', 'adam@gmail.com', 'bb', '2018-12-06', '1544959018.png'),
 ('cc', 'New Student', 'student2@gmail.com', 'cc', '2018-12-01', NULL),
-('fsl', 'Faysal', 'faysal@gmail.com', 'ffff', '2018-12-15', NULL);
+('fsl', 'Faysal', 'faysal@gmail.com', 'ffff', '2018-12-15', NULL),
+('test', 'Test', 'test@something.com', 'test', '2018-12-17', NULL);
 
 --
 -- Indexes for dumped tables
@@ -421,7 +430,7 @@ ALTER TABLE `students`
 -- AUTO_INCREMENT for table `chapter_info`
 --
 ALTER TABLE `chapter_info`
-  MODIFY `chapter_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `chapter_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `comment`
@@ -439,25 +448,25 @@ ALTER TABLE `courses`
 -- AUTO_INCREMENT for table `courses_taken`
 --
 ALTER TABLE `courses_taken`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `post_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `post_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `quiz`
 --
 ALTER TABLE `quiz`
-  MODIFY `quiz_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `quiz_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `quiz_result`
 --
 ALTER TABLE `quiz_result`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

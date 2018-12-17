@@ -18,7 +18,8 @@ class AdminController extends Controller
       $user=DB::table('admins')
               ->where('id',$request->session()->get('user_id'))->get();
 
-      $post=DB::table('post')->get();
+      $post=DB::table('post')
+                ->orderBy('date','desc')->get();
 
       $data = [];
       for ($i=0; $i < count($post); $i++) {
@@ -234,7 +235,7 @@ class AdminController extends Controller
         $id = $request->id;
 
         if (isset($_POST['yes'])) {
-          DB::table('instructors')->where('id', $id)->delete();
+          // DB::table('instructors')->where('id', $id)->delete();
           DB::table('login')->where('id', $id)->delete();
           return redirect()->route('admin.showInstructors');
         }
@@ -262,7 +263,7 @@ class AdminController extends Controller
         $id = $request->id;
 
         if (isset($_POST['yes'])) {
-          DB::table('students')->where('id', $id)->delete();
+          // DB::table('students')->where('id', $id)->delete();
           DB::table('login')->where('id', $id)->delete();
           return redirect()->route('admin.showStudents');
         }

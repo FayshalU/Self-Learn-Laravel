@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>My Courses</title>
+    <title>{{$course->name}}</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <base href="/">
@@ -76,27 +76,26 @@
                 <nav class="sidebar-nav left-sidebar-menu-pro">
                     <ul class="metismenu" id="menu1">
                         <li>
-                            <!-- <a class="has-arrow" href="">
+                           <!--  <a class="has-arrow" href="{{route('instructor.index')}}">
             								   <span class="educate-icon educate-home icon-wrap"></span>
             								   <span class="mini-click-non">Education</span>
             								</a> -->
 
                         </li>
                         <li>
-                            <a class="has-arrow" href="" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Courses</span></a>
+                          <a class="has-arrow" href="" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Courses</span></a>
 
-                             <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="All Courses" href=""><span class="mini-sub-pro">My Courses
-                                </span></a></li>
+                           <ul class="submenu-angle" aria-expanded="false">
+                              <li><a title="All Courses" href=""><span class="mini-sub-pro">My Courses
+                              </span></a></li>
 
-                            </ul>
-                            <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="Add Course" href="{{route('instructor.create')}}"><span class="mini-sub-pro">Add Courses
-                                </span></a></li>
+                          </ul>
+                          <ul class="submenu-angle" aria-expanded="false">
+                              <li><a title="Add Course" href="{{route('instructor.create')}}"><span class="mini-sub-pro">Add Courses
+                              </span></a></li>
 
-                            </ul>
+                          </ul>
                         </li>
-
                     </ul>
                 </nav>
             </div>
@@ -172,6 +171,7 @@
                 </div>
             </div>
             <!-- Mobile Menu start -->
+
             <div class="mobile-menu-area">
                 <div class="container">
                     <div class="row">
@@ -186,26 +186,23 @@
                 </div>
             </div>
 
-
             <!-- Mobile Menu end -->
             <div class="breadcome-area">
                 <div class="container-fluid">
+                  <h2></h2>
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="breadcome-list">
                                 <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                        <div class="breadcome-heading nav-item">
+                                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                      <div class="breadcome-heading nav-item">
+                                        <h6 style="text-align: center;font-weight: 300;height: 20px;font-size: 40px;">{{$course->name}}</h6>
+
+                                      </div>
+
+                                  </div>
 
 
-                                        </div>
-
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                        <ul class="breadcome-menu">
-
-                                        </ul>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -217,57 +214,59 @@
             <div class="container-fluid">
                 <div class="row">
 
-                  <!-- Show all courses -->
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                      <div class="blog-details-inner">
+                          <div class="row">
+                              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                  <div class="latest-blog-single blog-single-full-view">
 
-                  <?php for($i=0; $i< count($courses); $i++){ ?>
+                                    <div class="sparkline8-hd">
+                                        <div class="main-sparkline8-hd">
+                                            <h1>Students Info</h1>
+                                        </div>
+                                    </div>
+                                    <div class="sparkline8-graph">
+                                        <div class="static-table-list">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>ID</th>
+                                                        <th>Name</th>
+                                                        <th>Chapters Completed</th>
+                                                        <th>Status</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
 
-                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                            <div class="courses-inner res-mg-b-30">
-                                <div class="courses-title">
-                                    <h2>{{$courses[$i]->name}}</h2>
+                                        <?php for($i=0; $i< count($students); $i++){ ?>
+
+
+                                                  <tr>
+                                                      <td>{{$students[$i]->id}}</td>
+                                                      <td>{{$students[$i]->name}}</td>
+                                                      <td>{{$chapter[$i]}}</td>
+                                                      <td>{{$taken[$i]->status}}</td>
+                                                  </tr>
+
+                                          <?php } ?>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <div class="course-des">
-                                    <p><span><i class="fa fa-clock"></i></span> <b>Chapter:</b> {{$chapters[$i]}}</p>
-                                </div>
-                                <div class="product-buttons">
-                                    <a href="{{route('instructor.seeCourse',[$courses[$i]->course_id])}}"><button type="button" class="btn btn-custon-rounded-three btn-warning">Details</button></a>
-                                    <a href="{{route('instructor.seeStudent',[$courses[$i]->course_id])}}"><button type="button" class="btn btn-custon-rounded-three btn-warning">See Students</button></a>
+                                  </div>
+                              </div>
+                          </div>
 
-                                </div>
-                                <br>
-                                <div class="product-buttons">
-                                    <!-- <a href="{{route('instructor.seeCourse',[$courses[$i]->course_id])}}"><button type="button" class="btn btn-custon-rounded-three btn-warning">Details</button></a> -->
-                                    <a href="{{route('instructor.addQuiz',[$courses[$i]->course_id])}}"><button type="button" class="btn btn-custon-rounded-three btn-warning">Add Quiz</button></a>
-                                    <a href="{{route('instructor.editCourse',[$courses[$i]->course_id])}}"><button type="button" class="btn btn-custon-rounded-three btn-warning">Edit</button></a>
-                                    <a href="{{route('instructor.deleteCourse',[$courses[$i]->course_id])}}"><button type="button" class="btn btn-custon-rounded-three btn-danger">Delete</button></a>
-                                </div>
-                            </div>
-                        </div>
-
-                    <?php } ?>
+                      </div>
+                  </div>
 
                 </div>
 
             </div>
         </div>
-
-        <br>
-
-        <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                <div class="charts-single-pro responsive-mg-b-30">
-                    <div class="alert-title">
-                        <h2>Bar Chart</h2>
-                        <!-- <p>A bar chart provides a way of showing data values. It is sometimes used to show trend data. we create a bar chart for a single dataset and render that in our page.</p> -->
-                    </div>
-                    <div id="bar1-chart">
-                        <canvas id="barchart1"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <br><br><br><br><br>
         <div class="footer-copyright-area">
             <div class="container-fluid">
@@ -280,128 +279,63 @@
                 </div>
             </div>
         </div>
-        </div>
 
-        <!-- jquery
-    		============================================ -->
-        <script src="build/js/jquery-1.12.4.js"></script>
+    </div>
 
-        <!-- <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.sticky/1.0.4/jquery.sticky.js"></script> -->
+    <!-- jquery
+		============================================ -->
+    <script src="build/js/vendor/jquery-1.12.4.min.js"></script>
 
-        <!-- <script src="../course.js"></script> -->
+    <!-- <script src="../course.js"></script> -->
 
-        <!-- bootstrap JS
-    		============================================ -->
-        <script src="build/js/bootstrap.min.js"></script>
-        <!-- wow JS
-    		============================================ -->
-        <script src="build/js/wow.min.js"></script>
-        <!-- price-slider JS
-    		============================================ -->
-        <script src="build/js/jquery-price-slider.js"></script>
-        <!-- meanmenu JS
-    		============================================ -->
-        <script src="build/js/jquery.meanmenu.js"></script>
-        <!-- owl.carousel JS
-    		============================================ -->
-        <script src="build/js/owl.carousel.min.js"></script>
-        <!-- sticky JS
-    		============================================ -->
-        <script src="build/js/jquery.sticky.js"></script>
-        <!-- scrollUp JS
-    		============================================ -->
-        <script src="build/js/jquery.scrollUp.min.js"></script>
-        <!-- mCustomScrollbar JS
-    		============================================ -->
-        <script src="build/js/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
-        <script src="build/js/scrollbar/mCustomScrollbar-active.js"></script>
-        <!-- metisMenu JS
-    		============================================ -->
-        <script src="build/js/metisMenu/metisMenu.min.js"></script>
-        <script src="build/js/metisMenu/metisMenu-active.js"></script>
-        <!-- Charts JS
-    		============================================ -->
-        <script src="build/js/charts/Chart.js"></script>
-        <script src="build/js/charts/bar-chart.js"></script>
-        <!-- morrisjs JS
-    		============================================ -->
-        <script src="build/js/sparkline/jquery.sparkline.min.js"></script>
-        <script src="build/js/sparkline/jquery.charts-sparkline.js"></script>
-        <script src="build/js/sparkline/sparkline-active.js"></script>
+    <!-- bootstrap JS
+		============================================ -->
+    <script src="build/js/bootstrap.min.js"></script>
+    <!-- wow JS
+		============================================ -->
+    <script src="build/js/wow.min.js"></script>
+    <!-- price-slider JS
+		============================================ -->
+    <script src="build/js/jquery-price-slider.js"></script>
+    <!-- meanmenu JS
+		============================================ -->
+    <script src="build/js/jquery.meanmenu.js"></script>
+    <!-- owl.carousel JS
+		============================================ -->
+    <script src="build/js/owl.carousel.min.js"></script>
+    <!-- sticky JS
+		============================================ -->
+    <script src="build/js/jquery.sticky.js"></script>
+    <!-- scrollUp JS
+		============================================ -->
+    <script src="build/js/jquery.scrollUp.min.js"></script>
+    <!-- mCustomScrollbar JS
+		============================================ -->
+    <script src="build/js/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="build/js/scrollbar/mCustomScrollbar-active.js"></script>
+    <!-- metisMenu JS
+		============================================ -->
+    <script src="build/js/metisMenu/metisMenu.min.js"></script>
+    <script src="build/js/metisMenu/metisMenu-active.js"></script>
+    <!-- morrisjs JS
+		============================================ -->
+    <script src="build/js/sparkline/jquery.sparkline.min.js"></script>
+    <script src="build/js/sparkline/jquery.charts-sparkline.js"></script>
+    <script src="build/js/sparkline/sparkline-active.js"></script>
 
-        <!-- icheck JS
-    		============================================ -->
-        <script src="build/js/icheck/icheck.min.js"></script>
-        <script src="build/js/icheck/icheck-active.js"></script>
+    <!-- icheck JS
+		============================================ -->
+    <script src="build/js/icheck/icheck.min.js"></script>
+    <script src="build/js/icheck/icheck-active.js"></script>
 
 
-        <!-- plugins JS
-    		============================================ -->
-        <script src="build/js/plugins.js"></script>
-        <!-- main JS
-    		============================================ -->
-        <script src="build/js/main.js"></script>
+    <!-- plugins JS
+		============================================ -->
+    <script src="build/js/plugins.js"></script>
+    <!-- main JS
+		============================================ -->
+    <script src="build/js/main.js"></script>
 
-        <script>
-
-            var ctx = document.getElementById("barchart1");
-
-            var array = <?php echo json_encode($courseNames);?> ;
-            var count = <?php echo json_encode($data);?> ;
-
-            // console.log(array);
-
-            var barchart1 = new Chart(ctx, {
-              type: 'bar',
-              data: {
-                labels: array,
-                datasets: [{
-                  label: 'Enrolled',
-                  data: count,
-                  backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                  ],
-                  borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                  ],
-                  borderWidth: 1
-                }]
-              },
-              options: {
-                scales: {
-                  xAxes: [{
-                    ticks: {
-                      autoSkip: false,
-                      maxRotation: 0
-                    },
-                    ticks: {
-                      fontColor: "#fff", // this here
-                    }
-                  }],
-                  yAxes: [{
-                    ticks: {
-                      autoSkip: false,
-                      maxRotation: 0
-                    },
-                    ticks: {
-                      fontColor: "#fff", // this here
-                    }
-                  }]
-                }
-              }
-            });
-        </script>
 
 
 </body>

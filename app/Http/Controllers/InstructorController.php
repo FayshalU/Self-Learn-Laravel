@@ -19,7 +19,8 @@ class InstructorController extends Controller
       $user=DB::table('instructors')
               ->where('id',$request->session()->get('user_id'))->get();
 
-      $post=DB::table('post')->get();
+      $post=DB::table('post')
+                ->orderBy('date','desc')->get();
 
       $data = [];
       for ($i=0; $i < count($post); $i++) {
@@ -103,6 +104,51 @@ class InstructorController extends Controller
                                             ->with('comments',$comments)
                                             ->with('students',$students);
      }
+
+     public function seeStudent(Request $request, $id)
+      {
+          $user=DB::table('instructors')
+                ->where('id',$request->session()->get('user_id'))->get();
+
+          $course=DB::table('courses')
+                      ->where('course_id',$id)->first();
+
+          $taken=DB::table('courses_taken')
+                      ->where('course_id',$id)->get();
+
+         // $data = (object)['count'=>count($taken)];
+         //
+         // //Comment
+         // $comments = DB::table('comment')
+         //             ->where('course_id',$id)->get();
+         $students= [];
+
+         for ($i=0; $i < count($taken); $i++) {
+           $students[$i] =DB::table('students')
+                               ->where('id',$taken[$i]->student_id)->first();
+
+         }
+
+         $chapters=DB::table('chapter_info')
+                     ->where('course_id',$id)->get();
+
+         $chapter= [];
+
+         for ($i=0; $i < count($taken); $i++) {
+           $temp =DB::table('quiz_result')
+                               ->where('student_id',$taken[$i]->student_id)
+                               ->where('chapter_id',$chapters[$i]->chapter_id)->get();
+
+            $chapter[$i] = count($temp);
+
+         }
+
+          return view('instructor.seeStudent')->with('course',$course)
+                                             ->with('user',$user[0])
+                                             ->with('taken',$taken)
+                                             ->with('students',$students)
+                                             ->with('chapter',$chapter);
+      }
 
      public function chapter(Request $request, $id, $id2=null)
       {

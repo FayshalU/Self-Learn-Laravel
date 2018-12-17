@@ -15,7 +15,8 @@ class StudentController extends Controller
       $user=DB::table('students')
               ->where('id',$request->session()->get('user_id'))->get();
 
-      $post=DB::table('post')->get();
+      $post=DB::table('post')
+                ->orderBy('date','desc')->get();
 
       $data = [];
       for ($i=0; $i < count($post); $i++) {
@@ -301,6 +302,10 @@ class StudentController extends Controller
 
         $course=DB::table('courses')
                     ->where('name',$id)->get();
+
+        $instructor=DB::table('instructors')
+                    ->where('id',$course[0]->instructor_id)->get();
+
         $taken=DB::table('courses_taken')
                     ->where('course_id',$course[0]->course_id)
                     ->where('student_id',$request->session()->get('user_id'))->get();
@@ -312,15 +317,33 @@ class StudentController extends Controller
           $data = (object)['status'=>true];
         }
 
-        //print_r($data);
+        // print_r($data);
 
 
         $user=DB::table('students')
                 ->where('id',$request->session()->get('user_id'))->get();
 
+        //Comment
+        $comments = DB::table('comment')
+                    ->where('course_id',$course[0]->course_id)->get();
+        $students= [];
+
+        for ($i=0; $i < count($comments); $i++) {
+          $students[$i] =DB::table('students')
+                              ->where('id',$comments[$i]->user_id)->first();
+
+          if ($students[$i] == null) {
+            $students[$i] =DB::table('instructors')
+                              ->where('id',$comments[$i]->user_id)->first();
+          }
+        }
+
         return view('student.showCourse')->with('course',$course[0])
+                            ->with('instructor',$instructor[0])
                             ->with('user',$user[0])
-                            ->with('data',$data);
+                            ->with('data',$data)
+                            ->with('comments',$comments)
+                            ->with('students',$students);
     }
 
     public function chapter(Request $request,$id,$id2=null)
@@ -393,6 +416,7 @@ class StudentController extends Controller
       $id2 = $_GET['id'];
       $array = explode("|",$id2);
 
+
       DB::table('quiz_result')->insert(['chapter_id' => $array[0], 'student_id' => $request->session()->get('user_id'),'score' => $array[1]]);
 
       $chapter=DB::table('chapter_info')
@@ -436,6 +460,8 @@ class StudentController extends Controller
     {
       $array = explode("|",$id);
 
+      $date = Carbon::now();
+
       // echo $array[1];
 
       $chapter=DB::table('chapter_info')
@@ -449,7 +475,7 @@ class StudentController extends Controller
 
       // echo $string;
 
-      DB::table('post')->insert(['user_id' => $request->session()->get('user_id'), 'user_name' => $user[0]->name,'text' => $string]);
+      DB::table('post')->insert(['user_id' => $request->session()->get('user_id'), 'user_name' => $user[0]->name,'text' => $string, 'date' => $date]);
       // return $array[1];
 
       return redirect()->route('student.chapter',[$chapter[0]->course_id, $array[0]]);

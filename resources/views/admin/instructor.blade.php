@@ -274,7 +274,7 @@
                                                 <th data-field="name" data-editable="false">Instrcutor Name</th>
                                                 <th data-field="email" data-editable="false">Email</th>
                                                 <th data-field="joined" data-editable="false">Joined</th>
-                                                <th data-field="joined" data-editable="false">Courses offered</th>
+                                                <th data-field="" data-editable="false">Courses offered</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>

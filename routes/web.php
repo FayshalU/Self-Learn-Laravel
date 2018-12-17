@@ -79,6 +79,7 @@ Route::group(['middleware'=>['session']],function(){
         Route::post('/instructor/addImage','InstructorController@addImage')->name('instructor.addImage');
         Route::get('/instructor/myCourses','InstructorController@myCourses')->name('instructor.myCourses');
         Route::get('/instructor/{id}/seeCourse','InstructorController@seeCourse')->name('instructor.seeCourse');
+        Route::get('/instructor/{id}/seeStudent','InstructorController@seeStudent')->name('instructor.seeStudent');
         Route::get('/instructor/chapter/{id}/{id2?}','InstructorController@chapter')->name('instructor.chapter');
         Route::get('/instructor/{id}/quiz','InstructorController@quiz')->name('instructor.quiz');
         Route::post('/instructor/addCourse','InstructorController@addCourse')->name('instructor.addCourse');
